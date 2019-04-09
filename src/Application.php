@@ -34,9 +34,11 @@ class Application extends BaseApplication
      */
     public function bootstrap()
     {
+        $this->addPlugin('DebugKit');
+
         // Call parent to load bootstrap from files.
         parent::bootstrap();
-
+        $this->addPlugin(\DebugKit\Plugin::class);
         if (PHP_SAPI === 'cli') {
             try {
                 $this->addPlugin('Bake');

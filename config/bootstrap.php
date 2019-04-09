@@ -31,6 +31,7 @@ require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
 use Cake\Cache\Cache;
 use Cake\Console\ConsoleErrorHandler;
+use Cake\Core\App;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Core\Plugin;
@@ -99,7 +100,7 @@ if (Configure::read('debug')) {
  * Check http://php.net/manual/en/timezones.php for list of valid timezone strings.
  */
 date_default_timezone_set(Configure::read('App.defaultTimezone'));
-
+date_default_timezone_set('America/Maceio');
 /*
  * Configure the mbstring extension to use the correct encoding.
  */
@@ -192,6 +193,8 @@ Type::build('datetime')
 Type::build('timestamp')
     ->useImmutable();
 
+
+ini_set('intl.default_locale', 'pt_BR');
 /*
  * Custom Inflector rules, can be set to correctly pluralize or singularize
  * table, model, controller names or whatever other string is passed to the
@@ -201,3 +204,6 @@ Type::build('timestamp')
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
+Type::build('date')->useLocaleParser();
+Type::build('datetime')->useLocaleParser();
+
