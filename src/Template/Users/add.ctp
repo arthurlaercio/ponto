@@ -13,17 +13,18 @@
 <div class="users form large-9 medium-8 columns content">
     <?= $this->Form->create($user) ?>
     <fieldset>
-        <legend><?= __('Add User') ?></legend>
+        <legend><?= __('Adicionar Usuário') ?></legend>
         <?php
             echo $this->Form->control('nome');
             echo $this->Form->control('username');
             echo $this->Form->control('password');
             echo $this->Form->control('email');
-            echo $this->Form->control('status');
-            echo $this->Form->control('criado_por');
-            echo $this->Form->control('modificado_por');
+            echo $this->Form->input('status',['options' => ['1' => 'ativo','0' => 'inativo']]);
+            //echo $this->Form->control('criado_por');
+            //echo $this->Form->control('modificado_por');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?php echo $this->Form->button('<i class="icon-eraser"></i> Limpar',['class'=>'btn btn-warning','type'=>'reset']); ?>
+    <?= $this->Form->button(__('Salvar')) ?>
     <?= $this->Form->end() ?>
 </div>

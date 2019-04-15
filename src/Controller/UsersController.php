@@ -19,8 +19,9 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $users = $this->paginate($this->Users);
-
+        //$users = $this->paginate($this->Users);
+        $users = $this->Users->find()->all();
+        //pr($users);exit;
         $this->set(compact('users'));
     }
 
@@ -36,7 +37,7 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
-
+        
         $this->set('user', $user);
     }
 
@@ -50,6 +51,9 @@ class UsersController extends AppController
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            $user['criado_por'] = 1;
+            $user['modificado_por'] = 1;
+            //pr($user);exit;
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -70,11 +74,13 @@ class UsersController extends AppController
     public function edit($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => []
+            'contain' => [],
+            'order' => ['status DESC']
         ]);
-        pr($user);exit;
+        
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            //pr($user);exit;
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 

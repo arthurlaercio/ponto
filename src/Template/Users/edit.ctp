@@ -10,7 +10,7 @@
         <li><?= $this->Form->postLink(
                 __('Delete'),
                 ['action' => 'delete', $user->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]
+                ['confirm' => __('Tem certeza que deseja deletar? # {0}?', $user->id)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
@@ -25,11 +25,12 @@
             echo $this->Form->control('username');
             echo $this->Form->control('password');
             echo $this->Form->control('email');
-            echo $this->Form->control('status');
-            echo $this->Form->control('criado_por');
-            echo $this->Form->control('modificado_por');
+            echo $this->Form->input('status',['options' => ['1' => 'ativo','0' => 'inativo']]);
+            //echo $this->Form->control('criado_por');
+            //echo $this->Form->control('modificado_por');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?php echo $this->Form->button('<i class="icon-eraser"></i> Limpar',['class'=>'btn btn-warning','type'=>'reset']); ?>
+    <?= $this->Form->button(__('Salvar')) ?>
     <?= $this->Form->end() ?>
 </div>
