@@ -1,8 +1,10 @@
 <?php
 namespace App\Controller;
 
+use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
+use Cake\Auth\Auth;
 use App\Controller\AppController;
-
 /**
  * Users Controller
  *
@@ -12,11 +14,33 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|void
-     */
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        // Allow users to register and logout.
+        // You should not add the "login" action to allow list. Doing so would
+        // cause problems with normal functioning of AuthComponent.
+        $this->Auth->allow(['add', 'logout']);
+    }
+
+    public function login()
+    {
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error(__('Usuário ou senha ínvalido, tente novamente'));
+        }
+    }
+
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
+
     public function index()
     {
         //$users = $this->paginate($this->Users);
@@ -25,13 +49,7 @@ class UsersController extends AppController
         $this->set(compact('users'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|void
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+  
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
@@ -41,36 +59,27 @@ class UsersController extends AppController
         $this->set('user', $user);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
+ 
     public function add()
     {
         $user = $this->Users->newEntity();
+        //pr($user);exit;
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
-            $user['criado_por'] = 1;
-            $user['modificado_por'] = 1;
+            $user->criado_por = 1;//$this->retornarIdUsuarioAtivo();
+            $user->modificado_por = 1;//$this->retornarIdUsuarioAtivo();
             //pr($user);exit;
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('Usuário criado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('Algo deu errado, tente novamente.'));
         }
         $this->set(compact('user'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+  
     public function edit($id = null)
     {
         $user = $this->Users->get($id, [
@@ -91,13 +100,7 @@ class UsersController extends AppController
         $this->set(compact('user'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+ 
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
@@ -110,4 +113,6 @@ class UsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    
 }

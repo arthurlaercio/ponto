@@ -37,7 +37,7 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-
+        $this->entityClass('App\Model\Entity\User');
         $this->belongsTo('Users', [
             'foreignKey' => 'criado_por',
             'joinType' => 'INNER'
@@ -97,16 +97,9 @@ class UsersTable extends Table
         return $validator;
     }
 
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['username']));
+        $rules->add($rules->isUnique(['username'],'Este nome de usuário já existe, tente novamente!'));
         $rules->add($rules->isUnique(['email']));
 
         return $rules;
