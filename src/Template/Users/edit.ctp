@@ -1,36 +1,45 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\User $user
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $user->id],
-                ['confirm' => __('Tem certeza que deseja deletar? # {0}?', $user->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
-    <fieldset>
-        <legend><?= __('Edit User') ?></legend>
-        <?php
-            echo $this->Form->control('nome');
-            echo $this->Form->control('username');
-            echo $this->Form->control('password');
-            echo $this->Form->control('email');
-            echo $this->Form->input('status',['options' => ['1' => 'ativo','0' => 'inativo']]);
-            //echo $this->Form->control('criado_por');
-            //echo $this->Form->control('modificado_por');
-        ?>
-    </fieldset>
-    <?php echo $this->Form->button('<i class="icon-eraser"></i> Limpar',['class'=>'btn btn-warning','type'=>'reset']); ?>
-    <?= $this->Form->button(__('Salvar')) ?>
-    <?= $this->Form->end() ?>
+<?= $this->Html->css('chosen.css') ?>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Editar Usuário</h4>
 </div>
+<?php echo $this->Form->create($user,['role'=>'form']); ?>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('nome',['class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->input('email',['class'=>'form-control']); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('username',['class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->input('password',['type' => 'password','class'=>'form-control','label' => 'Senha']);  ?>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-12">
+            <?php echo $this->Form->button('Cadastrar',['class'=>'btn btn-success']); ?>
+            <?php echo $this->Form->button('Limpar',['type'=>'reset', 'class'=>'btn btn-warning']); ?>
+        </div>
+    </div>  
+</div>
+<?php echo $this->Form->end(); ?>
+
+<?php echo $this->Html->script('chosen.jquery') ?>
+<script>
+    $(function () { 
+        $(".chzn-select").chosen();
+
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+    });
+</script>

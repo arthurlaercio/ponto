@@ -1,11 +1,30 @@
-<div class="users form">
-	<?= $this->Flash->render('auth') ?>
-	<?= $this->Form->create() ?>
-	    <fieldset>
-	        <legend><?= __('Por favor informe seu usuário e senha') ?></legend>
-	        <?= $this->Form->input('username',['label'=>'Login' , 'placeholder'=>'usuário','style'=>'text-align:center']) ?>
-	        <?= $this->Form->input('password',['placeholder'=>'senha','label'=>'Senha', 'type'=>'password', 'style'=>'text-align:center']) ?>
-	    </fieldset>
-	<?= $this->Form->button(__('Login')); ?>
-	<?= $this->Form->end() ?>
+<div class="login_wrapper">
+    <div class="animate form login_form">
+        <section class="login_content">
+            <?= $this->Form->create() ?>
+                <div>
+                    <center><?php echo $this->Html->image('hepoint.png', ['width'=>'150px']); ?></center>
+                </div>
+                <br>
+                <div>
+                    <h1>HEPOINT</h1>
+                </div>                
+                <div>
+                    <?= $this->Form->input('username',['class'=>'form-control', 'placeholder'=>'usuário','label'=>false,'style'=>'text-align:center']) ?>
+                </div>
+                <div>
+                    <?= $this->Form->input('password',['class'=>'form-control', 'placeholder'=>'senha','label'=>'Senha', 'type'=>'password', 'style'=>'text-align:center']); ?>
+                </div>
+                <div class="clearfix"></div>
+                <div>
+                    <?= $this->Form->button('Entrar',['class'=>'btn btn-block btn-primary']) ?>
+                </div>
+                <div class="separator">
+                    <div> 
+                        <center>HEPOINT</center>  
+                    </div>
+                </div>
+            <?= $this->Form->end(); ?>
+        </section>
+    </div>
 </div>

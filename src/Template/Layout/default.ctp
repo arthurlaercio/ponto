@@ -1,19 +1,22 @@
 <?php
+
 /**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
 $cakeDescription = 'HEPOINT';
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,15 +28,10 @@ $cakeDescription = 'HEPOINT';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('bootstrap.min.css') ?>
-    <?= $this->Html->css('font-awesome.min.css') ?>
-    <?= $this->Html->css('custom.min.css') ?>
-    <?= $this->Html->css('nprogress.css') ?>
-    <?= $this->Html->css('green.css') ?>
-    <?= $this->Html->css('bootstrap-progressbar-3.3.4.min.css') ?>
-
+    <?= $this->Html->css('bootstrap.css') ?>
+    <?= $this->Html->css('font-awesome.css') ?>
+    <?= $this->Html->css('custom.css') ?>
+    
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
@@ -41,8 +39,9 @@ $cakeDescription = 'HEPOINT';
     <?php echo $this->Html->script('jquery') ?>
     <?php echo $this->Html->script('bootstrap') ?>
     <?php echo $this->Html->script('input-maskmoney') ?>
+
 </head>
-<body class="nav-md">
+<body class="nav-sm">
     <div class="container body">
         <div class="main_container">
             <div class="col-md-3 left_col">
@@ -51,6 +50,8 @@ $cakeDescription = 'HEPOINT';
                         <a href= "<?php echo $dominio_sistema; ?>" class="site_title"><i class="fa fa-plane"></i> <span>HEPOINT!</span></a>
                     </div>
                     <div class="clearfix"></div>
+                    </br>
+                    
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
                             <h3>CADASTROS</h3>
@@ -75,38 +76,87 @@ $cakeDescription = 'HEPOINT';
                     </div>
                 </div>
             </div>
+
             <div class="top_nav">
-                <div class="nav_menu">
-                    <nav>
-                        <div class="nav toggle">
-                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                        </div>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="">
-                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <?php echo $usuarioAtivo["nome"]; ?>
-                                    <span class=" fa fa-angle-down"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    <li><a href="javascript:;">Help</a></li>
-                                    <li><?= $this->Html->link('<i class="fa fa-sign-out pull-right"></i> Sair', ['controller' => 'Users', 'action' => 'logout'],  array('escape' => false)) ?></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+              <div class="nav_menu">
+                <nav>
+                  <div class="nav toggle">
+                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                  </div>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                      <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <?php echo $usuarioAtivo["nome"]; ?>
+                        <span class=" fa fa-angle-down"></span>
+                      </a>
+                      <ul class="dropdown-menu dropdown-usermenu pull-right">
+                        <li><a href="javascript:;">Help</a></li>
+                        <li><?= $this->Html->link('<i class="fa fa-sign-out pull-right"></i> Sair', ['controller' => 'Users', 'action' => 'logout'],  array('escape' => false)) ?></li>
+                      </ul>
+                    </li>
+
+                    <li role="presentation" class="dropdown">
+                      <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-calendar"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
             </div>
+
             <div class="right_col" role="main">
-                <?php echo $this->fetch('content') ?>
+              <?php echo $this->fetch('content') ?>
             </div>
+            
             <footer>
-                <div class="pull-right">
-                    Projeto Ponto Eletrônico 2019
-                </div>
-                <div class="clearfix"></div>
+              <div class="pull-right">
+                HEPOINT
+              </div>
+              <div class="clearfix"></div>
             </footer>
         </div>
     </div>
+
     <?php echo $this->Html->script('custom') ?>
 </body>
 </html>
+<script type="text/javascript">
+   /* $(document).ready(function () {
+       
+        var url ='https://api.vitortec.com/currency/quotation/v1.2/';       
+        $.get( url, function(data){
+        $.each(data.data.currency, function(key, value){
+               
+           if(value.code == 'USD'){
+            var arredondado = value.buying;
+            arredondado = parseFloat(arredondado);
+            arredondado = arredondado.toFixed(3);
+            $("#dolar").val(arredondado);
+           }
+           if(value.code == 'EUR'){
+            arredondado = value.buying;
+            arredondado = parseFloat(arredondado);
+            arredondado = arredondado.toFixed(3);
+            $("#euro").val(arredondado);
+           }
+           if(value.code == 'ARS'){
+            arredondado = value.buying;
+            arredondado = parseFloat(arredondado);
+            arredondado = arredondado.toFixed(3);
+            $("#pesoarg").val(arredondado);
+           }
+         
+        });
+           
+     
+        }).complete(function(){
+
+        }).error(function(){
+        
+        });
+
+    });*/
+
+  
+</script>

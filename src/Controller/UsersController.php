@@ -67,8 +67,9 @@ class UsersController extends AppController
         //pr($user);exit;
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
-            $user->criado_por = 1;//$this->retornarIdUsuarioAtivo();
-            $user->modificado_por = 1;//$this->retornarIdUsuarioAtivo();
+            $user->criado_por = $this->retornarIdUsuarioAtivo();
+            $user->modificado_por = $this->retornarIdUsuarioAtivo();
+            $user->status = 1;
             //pr($user);exit;
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('Usuário criado com sucesso.'));
@@ -90,6 +91,7 @@ class UsersController extends AppController
         
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            $user->modificado_por = $this->retornarIdUsuarioAtivo();
             //pr($user);exit;
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
