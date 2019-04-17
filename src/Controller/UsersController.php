@@ -25,6 +25,7 @@ class UsersController extends AppController
 
     public function login()
     {
+        $this->viewBuilder()->layout("externo");
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
 
@@ -112,6 +113,10 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function home(){
+
     }
 
     

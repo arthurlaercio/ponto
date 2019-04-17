@@ -11,14 +11,13 @@
     </ul>
 </nav>
 <div class="users index large-9 medium-8 columns content">
-    <h3><?= __('Users') ?></h3>
+    <h3><?= __('Usuários') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('username') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('password') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('email') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('status') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -35,7 +34,6 @@
                 <td><?= $this->Number->format($user->id) ?></td>
                 <td><?= h($user->nome) ?></td>
                 <td><?= h($user->username) ?></td>
-                <td><?= h($user->password) ?></td>
                 <td><?= h($user->email) ?></td>
                 <td><?php if($user->status == 1) echo "ativo"; else echo "inativo" ?></td>
                 <?php /*<!--<td><?= $this->Number->format($user->criado_por) ?></td>
