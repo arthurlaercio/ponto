@@ -47,7 +47,7 @@ $cakeDescription = 'HEPOINT';
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href= "<?php echo $dominio_sistema; ?>" class="site_title"><i class="fa fa-plane"></i> <span>HEPOINT!</span></a>
+                        <?= $this->Html->link('<img src="'.$dominio_sistema.'/img/hepoint.png" alt="" width="65px"> <span> Lignus</span>',['controller'=>'Users','action'=>'home'], ['escape' => false,'class'=>'navbar-brand']); ?>
                     </div>
                     <div class="clearfix"></div>
                     </br>
@@ -58,7 +58,7 @@ $cakeDescription = 'HEPOINT';
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-users"></i> Usuários <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                      <li><?php echo $this->Html->link('<i class="fa-users"></i> Listar',['controller' => 'Users'],['escape'=>false]); ?></li>
+                                      <li><?php echo $this->Html->link('<i class="fa-users"></i> Listar',['controller' => 'Users','action' => 'index'],['escape'=>false]); ?></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-clock-o"></i> Horários <span class="fa fa-chevron-down"></span></a>
