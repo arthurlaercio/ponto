@@ -1,63 +1,96 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\QuadrosHora[]|\Cake\Collection\CollectionInterface $quadrosHoras
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Quadros Hora'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="quadrosHoras index large-9 medium-8 columns content">
-    <h3><?= __('Quadros Horas') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('hora_entrada') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('hora_saida') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('tolerancia') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('dia') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('status') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('criado_por') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modificado_por') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($quadrosHoras as $quadrosHora): ?>
-            <tr>
-                <td><?= $this->Number->format($quadrosHora->id) ?></td>
-                <td><?= h($quadrosHora->hora_entrada) ?></td>
-                <td><?= h($quadrosHora->hora_saida) ?></td>
-                <td><?= h($quadrosHora->tolerancia) ?></td>
-                <td><?= h($quadrosHora->dia) ?></td>
-                <td><?= $this->Number->format($quadrosHora->status) ?></td>
-                <td><?= $this->Number->format($quadrosHora->criado_por) ?></td>
-                <td><?= h($quadrosHora->created) ?></td>
-                <td><?= $this->Number->format($quadrosHora->modificado_por) ?></td>
-                <td><?= h($quadrosHora->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $quadrosHora->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $quadrosHora->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $quadrosHora->id], ['confirm' => __('Are you sure you want to delete # {0}?', $quadrosHora->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+<?php echo $this->Html->css('dataTables.bootstrap.css') ?>
+<?php echo $this->Html->script('jquery.dataTables') ?>
+<?php echo $this->Html->script('dataTables.bootstrap') ?>
+
+<div class="row">
+    <div class="col-md-9 col-sm-12 col-xs-12">
+        <div class="page-title">
+            <div class="title_left">
+                <h3><i class="fa fa-sitemap"></i> Quadro de Horas </h3>
+            </div>
+        </div>
     </div>
 </div>
+<div class="">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <div class="row">
+                        <div class="pull-left">
+                            <?php echo $this->Html->link('<i class="fa fa-plus"></i> Adicionar', ['action'=>'add'], ['escape'=>false, 'class' => 'btn btn-success btn-sm','data-toggle'=>'modal','data-target'=>'#AdicionarQuadroHoras']); ?>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <?= $this->Flash->render() ?>
+                    <div class="clearfix"></div>
+                </div>            
+                <div class="x_content">
+                    <table class="table table-striped dt-responsive nowrap" id="dataTables-example" aria-describedby="dataTables-example_info">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Hora Entrada</th>
+                                <th>Hora Saída</th>
+                                <th>Tolerância</th>
+                                <th>Dias</th>
+                                <th>Status</th>
+                                <th>Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($quadrosHoras as $quadro): ?>
+                                <tr>
+                                    <td><?php echo $quadro->id; ?></td>
+                                    <td><?php echo $quadro->hora_entrada->format('H:i'); ?></td>
+                                    <td><?php echo $quadro->hora_saida->format('H:i'); ?></td>
+                                    <td><?php echo $quadro->tolerancia->format('H:i'); ?></td>
+                                    <td><?php echo $quadro->dia; ?></td>
+                                    <td><?php if($quadro->status == 1) echo "Ativo"; else echo "Inativo"; ?></td>
+                                    <td>
+                                        <?php echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $quadro->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewQuadroHoras','escape'=>false]); ?>
+                                        <?php echo $this->Html->link('<i class="fa fa-edit"></i> Editar', ['action' => 'edit', $quadro->id],['class'=>'btn btn-warning btn-xs', 'data-toggle'=>'modal','data-target'=>'#EditarQuadroHoras','escape'=>false]); ?>
+                                        <?php echo $this->Form->postLink('<i class="fa fa-trash"></i> Excluir', ['action' => 'delete', $quadro->id], ['confirm' => 'Tem certeza?','class'=>'btn btn-danger btn-xs', 'escape'=>false]); ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true"  id="ViewQuadroHoras">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true"  id="AdicionarQuadroHoras">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true"  id="EditarQuadroHoras">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').dataTable();
+    });
+</script>

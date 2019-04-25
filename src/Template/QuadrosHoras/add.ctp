@@ -1,29 +1,57 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\QuadrosHora $quadrosHora
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Quadros Horas'), ['action' => 'index']) ?></li>
-    </ul>
-</nav>
-<div class="quadrosHoras form large-9 medium-8 columns content">
-    <?= $this->Form->create($quadrosHora) ?>
-    <fieldset>
-        <legend><?= __('Add Quadros Hora') ?></legend>
-        <?php
-            echo $this->Form->control('hora_entrada');
-            echo $this->Form->control('hora_saida');
-            echo $this->Form->control('tolerancia', ['empty' => true]);
-            echo $this->Form->control('dia');
-            echo $this->Form->control('status');
-            echo $this->Form->control('criado_por');
-            echo $this->Form->control('modificado_por');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<?= $this->Html->css('chosen.css') ?>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Adicionar Quadro de Horas</h4>
 </div>
+<?php echo $this->Form->create($quadrosHora,['role'=>'form','id'=>'inline-validate']); ?>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('hora_entrada',['class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->input('hora_saida',['class'=>'form-control']); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('tolerancia',['class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->input('dia',['class'=>'form-control']); ?>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-12">
+            <?php echo $this->Form->button('<i class="icon-ok"></i> Cadastrar',['class'=>'btn btn-success']); ?>
+            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-warning']); ?>
+        </div>
+    </div>  
+</div>
+<?php echo $this->Form->end(); ?>
+
+<?php echo $this->Html->script('chosen.jquery') ?>
+<?php echo $this->Html->script('jquery.validate') ?>
+<script>
+    $(function () { 
+        $(".chzn-select").chosen();
+
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+
+        formValidation();
+    });
+
+
+    ﻿function formValidation() {
+        "use strict";
+
+        /*----------- BEGIN validate CODE -------------------------*/
+        
+    /*----------- END validate CODE -------------------------*/
+    }
+</script>

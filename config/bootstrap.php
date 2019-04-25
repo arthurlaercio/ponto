@@ -99,7 +99,7 @@ if (Configure::read('debug')) {
  * Set the default server timezone. Using UTC makes time calculations / conversions easier.
  * Check http://php.net/manual/en/timezones.php for list of valid timezone strings.
  */
-date_default_timezone_set(Configure::read('App.defaultTimezone'));
+//date_default_timezone_set(Configure::read('App.defaultTimezone'));
 date_default_timezone_set('America/Maceio');
 /*
  * Configure the mbstring extension to use the correct encoding.
@@ -204,6 +204,7 @@ ini_set('intl.default_locale', 'pt_BR');
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
+
 Type::build('date')->useLocaleParser();
 Type::build('datetime')->useLocaleParser();
 

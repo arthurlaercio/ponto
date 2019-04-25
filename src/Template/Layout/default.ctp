@@ -58,17 +58,17 @@ $cakeDescription = 'HEPOINT';
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-users"></i> Usuários <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                      <li><?php echo $this->Html->link('<i class="fa-users"></i> Listar',['controller' => 'Users','action' => 'index'],['escape'=>false]); ?></li>
+                                      <li><?php echo $this->Html->link('Listar',['controller' => 'Users','action' => 'index'],['escape'=>false]); ?></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-clock-o"></i> Horários <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                      <li><?php echo $this->Html->link('<i class="fa-users"></i> Listar',['controller' => 'QuadrosHoras'],['escape'=>false]); ?></li>
+                                      <li><?php echo $this->Html->link('Listar',['controller' => 'QuadrosHoras'],['escape'=>false]); ?></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-puzzle-piece"></i> Funcionários <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                      <li><?php echo $this->Html->link('<i class="fa-users"></i> Listar',['controller' => 'Funcionarios'],['escape'=>false]); ?></li>
+                                      <li><?php echo $this->Html->link('Listar',['controller' => 'Funcionarios'],['escape'=>false]); ?></li>
                                     </ul>
                                 </li>
                             </ul>

@@ -20,7 +20,7 @@ class QuadrosHorasController extends AppController
     public function index()
     {
         $quadrosHoras = $this->paginate($this->QuadrosHoras);
-
+        //pr($quadrosHoras);exit;
         $this->set(compact('quadrosHoras'));
     }
 
@@ -33,10 +33,9 @@ class QuadrosHorasController extends AppController
      */
     public function view($id = null)
     {
-        $quadrosHora = $this->QuadrosHoras->get($id, [
-            'contain' => []
-        ]);
+        $quadrosHora = $this->QuadrosHoras->find()->contain(['Users'])->where(['Users.id' => $id])->first();
 
+        //pr($quadrosHora);exit;
         $this->set('quadrosHora', $quadrosHora);
     }
 
@@ -50,12 +49,15 @@ class QuadrosHorasController extends AppController
         $quadrosHora = $this->QuadrosHoras->newEntity();
         if ($this->request->is('post')) {
             $quadrosHora = $this->QuadrosHoras->patchEntity($quadrosHora, $this->request->getData());
+            $quadrosHora->criado_por = $this->retornarIdUsuarioAtivo();
+            $quadrosHora->modificado_por = $this->retornarIdUsuarioAtivo();
+            $quadrosHora->status = 1;
             if ($this->QuadrosHoras->save($quadrosHora)) {
-                $this->Flash->success(__('The quadros hora has been saved.'));
+                $this->Flash->success(__('Salvo com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The quadros hora could not be saved. Please, try again.'));
+            $this->Flash->error(__('Algo deu errado, tente novamenete!'));
         }
         $this->set(compact('quadrosHora'));
     }
@@ -74,12 +76,13 @@ class QuadrosHorasController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $quadrosHora = $this->QuadrosHoras->patchEntity($quadrosHora, $this->request->getData());
+            $quadrosHora->modificado_por = $this->retornarIdUsuarioAtivo();
             if ($this->QuadrosHoras->save($quadrosHora)) {
-                $this->Flash->success(__('The quadros hora has been saved.'));
+                $this->Flash->success(__('O quadro de horas foi alterado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The quadros hora could not be saved. Please, try again.'));
+            $this->Flash->error(__('Algo deu errado, tente novamente!'));
         }
         $this->set(compact('quadrosHora'));
     }

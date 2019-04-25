@@ -51,6 +51,7 @@
                                     <td><?php if($usuario->status == 1) echo "Ativo"; else echo "Inativo"; ?></td>
                                     <td><?php echo $usuario->created->format('d/m/Y'); ?></td>
                                     <td>
+                                        <?php echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $usuario->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewUsuario','escape'=>false]); ?>
                                         <?php echo $this->Html->link('<i class="fa fa-edit"></i> Editar', ['action' => 'edit', $usuario->id],['class'=>'btn btn-warning btn-xs', 'data-toggle'=>'modal','data-target'=>'#EditarUsuario','escape'=>false]); ?>
                                         <?php echo $this->Form->postLink('<i class="fa fa-trash"></i> Excluir', ['action' => 'delete', $usuario->id], ['confirm' => 'Tem certeza?','class'=>'btn btn-danger btn-xs', 'escape'=>false]); ?>
                                     </td>
@@ -61,6 +62,14 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true"  id="ViewUsuario">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
     </div>
 </div>
 
