@@ -1,61 +1,94 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Relogio[]|\Cake\Collection\CollectionInterface $relogios
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Relogio'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="relogios index large-9 medium-8 columns content">
-    <h3><?= __('Relogios') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('serial') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('tipo') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('status') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('criado_por') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modificado_por') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($relogios as $relogio): ?>
-            <tr>
-                <td><?= $this->Number->format($relogio->id) ?></td>
-                <td><?= h($relogio->nome) ?></td>
-                <td><?= h($relogio->serial) ?></td>
-                <td><?= h($relogio->tipo) ?></td>
-                <td><?= $this->Number->format($relogio->status) ?></td>
-                <td><?= $this->Number->format($relogio->criado_por) ?></td>
-                <td><?= h($relogio->created) ?></td>
-                <td><?= $this->Number->format($relogio->modificado_por) ?></td>
-                <td><?= h($relogio->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $relogio->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $relogio->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $relogio->id], ['confirm' => __('Are you sure you want to delete # {0}?', $relogio->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+<?php echo $this->Html->css('dataTables.bootstrap.css') ?>
+<?php echo $this->Html->script('jquery.dataTables') ?>
+<?php echo $this->Html->script('dataTables.bootstrap') ?>
+
+<div class="row">
+    <div class="col-md-9 col-sm-12 col-xs-12">
+        <div class="page-title">
+            <div class="title_left">
+                <h3><i class="fa fa-sitemap"></i> Relógios </h3>
+            </div>
+        </div>
     </div>
 </div>
+<div class="">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <div class="row">
+                        <div class="pull-left">
+                            <?php echo $this->Html->link('<i class="fa fa-plus"></i> Adicionar', ['action'=>'add'], ['escape'=>false, 'class' => 'btn btn-success btn-sm','data-toggle'=>'modal','data-target'=>'#AdicionarRelogio']); ?>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <?= $this->Flash->render() ?>
+                    <div class="clearfix"></div>
+                </div>            
+                <div class="x_content">
+                    <table class="table table-striped dt-responsive nowrap" id="dataTables-example" aria-describedby="dataTables-example_info">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Serial</th>
+                                <th>Tipo</th>
+                                <th>Status</th>
+                                <th>Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($relogios as $relogio): ?>
+                                <tr>
+                                    <td><?php echo $relogio->id; ?></td>
+                                    <td><?php echo $relogio->nome; ?></td>
+                                    <td><?php echo $relogio->serial; ?></td>
+                                    <td><?php echo $relogio->tipo; ?></td>
+                                    <td><?php if($relogio->status == 1) echo "Ativo"; else echo "Inativo"; ?></td>
+                                    <td>
+                                        <?php echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $relogio->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewRelogio','escape'=>false]); ?>
+                                        <?php echo $this->Html->link('<i class="fa fa-edit"></i> Editar', ['action' => 'edit', $relogio->id],['class'=>'btn btn-warning btn-xs', 'data-toggle'=>'modal','data-target'=>'#EditarRelogio','escape'=>false]); ?>
+                                        <?php echo $this->Form->postLink('<i class="fa fa-trash"></i> Excluir', ['action' => 'delete', $relogio->id], ['confirm' => 'Tem certeza?','class'=>'btn btn-danger btn-xs', 'escape'=>false]); ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true"  id="ViewRelogio">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true"  id="AdicionarRelogio">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true"  id="EditarRelogio">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').dataTable();
+    });
+</script>

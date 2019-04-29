@@ -1,56 +1,61 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Relogio $relogio
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Relogio'), ['action' => 'edit', $relogio->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Relogio'), ['action' => 'delete', $relogio->id], ['confirm' => __('Are you sure you want to delete # {0}?', $relogio->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Relogios'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Relogio'), ['action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="relogios view large-9 medium-8 columns content">
-    <h3><?= h($relogio->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Nome') ?></th>
-            <td><?= h($relogio->nome) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Serial') ?></th>
-            <td><?= h($relogio->serial) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Tipo') ?></th>
-            <td><?= h($relogio->tipo) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($relogio->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Status') ?></th>
-            <td><?= $this->Number->format($relogio->status) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Criado Por') ?></th>
-            <td><?= $this->Number->format($relogio->criado_por) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modificado Por') ?></th>
-            <td><?= $this->Number->format($relogio->modificado_por) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($relogio->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($relogio->modified) ?></td>
-        </tr>
-    </table>
+<?= $this->Html->css('chosen.css') ?>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Detalhes Relógio</h4>
 </div>
+<?php echo $this->Form->create($relogio,['role'=>'form']); ?>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6">
+            <label>Id:</label>
+            <?php echo $relogio->id; ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <label>Nome:</label>
+            <?php echo $relogio->nome; ?>
+        </div>
+        <div class="col-md-4">
+            <label>Tipo:</label>
+            <?php echo $relogio->tipo; ?>
+        </div>
+        <div class="col-md-4">
+            <label>Serial:</label>
+            <?php echo $relogio->serial; ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Data criação:</label>
+            <?php echo $relogio->created->format('d/m/Y'); ?>
+        </div>
+        <div class="col-md-6">
+            <label>Última modificação:</label>
+            <?php echo $relogio->modified->format('d/m/Y');  ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Status:</label>
+            <?php if($relogio->status == 1) echo "Ativo"; else echo "Inativo"; ?>
+        </div>
+        <div class="col-md-6">
+            <label>Criado Por:</label>
+            <?php echo $relogio->user->nome; ?>
+        </div>
+    </div>
+</div>
+<?php echo $this->Form->end(); ?>
+
+<?php echo $this->Html->script('chosen.jquery') ?>
+<script>
+    $(function () { 
+        $(".chzn-select").chosen();
+
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+    });
+</script>

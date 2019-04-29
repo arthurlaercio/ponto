@@ -1,53 +1,93 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Funcionario $funcionario
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $funcionario->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $funcionario->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Funcionarios'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Empresas'), ['controller' => 'Empresas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Empresa'), ['controller' => 'Empresas', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Batidas'), ['controller' => 'Batidas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Batida'), ['controller' => 'Batidas', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="funcionarios form large-9 medium-8 columns content">
-    <?= $this->Form->create($funcionario) ?>
-    <fieldset>
-        <legend><?= __('Edit Funcionario') ?></legend>
-        <?php
-            echo $this->Form->control('users_id', ['options' => $users]);
-            echo $this->Form->control('empresa_id', ['options' => $empresas]);
-            echo $this->Form->control('nome');
-            echo $this->Form->control('endereco');
-            echo $this->Form->control('cpf');
-            echo $this->Form->control('rg');
-            echo $this->Form->control('email');
-            echo $this->Form->control('telefone');
-            echo $this->Form->control('data_nascimento', ['empty' => true]);
-            echo $this->Form->control('sexo');
-            echo $this->Form->control('pis');
-            echo $this->Form->control('ctps_numero');
-            echo $this->Form->control('ctps_serie');
-            echo $this->Form->control('ctps_uf');
-            echo $this->Form->control('data_admissao', ['empty' => true]);
-            echo $this->Form->control('data_demissao', ['empty' => true]);
-            echo $this->Form->control('status');
-            echo $this->Form->control('criado_por');
-            echo $this->Form->control('modificado_por');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<?= $this->Html->css('chosen.css') ?>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Editar Funcionário</h4>
 </div>
+<?php echo $this->Form->create($funcionario,['role'=>'form','id'=>'inline-validate']); ?>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('nome',['class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->input('endereco',['class'=>'form-control']); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('cpf',['class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->input('rg',['class'=>'form-control']); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('email',['class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->input('telefone',['class'=>'form-control']); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('data_nascimento',['class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->input('sexo',['class'=>'form-control','options' => ['1' => 'Masculino','2' => 'Feminino']]); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('pis',['class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->input('ctps_numero',['class'=>'form-control']); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('ctps_serie',['class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->input('ctps_uf',['class'=>'form-control']); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('data_admissao',['class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->control('users_id', ['options' => $users]); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->control('empresa_id', ['options' => $empresas]);  ?>
+        </div>
+    </div>
+            
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-12">
+            <?php echo $this->Form->button('<i class="icon-ok"></i> Salvar',['class'=>'btn btn-success']); ?>
+            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-warning']); ?>
+        </div>
+    </div>  
+</div>
+<?php echo $this->Form->end(); ?>
+
+<?php echo $this->Html->script('chosen.jquery') ?>
+<?php echo $this->Html->script('jquery.validate') ?>
+<script>
+    $(function () { 
+        $(".chzn-select").chosen();
+
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+    });
+
+</script>

@@ -46,6 +46,12 @@ class FuncionariosTable extends Table
             'foreignKey' => 'users_id',
             'joinType' => 'INNER'
         ]);
+
+        $this->belongsTo('Usuarios', [
+            'foreignKey' => 'criado_por',
+            'joinType' => 'INNER',
+            'joinTable' => 'users'
+        ]);
         $this->belongsTo('Empresas', [
             'foreignKey' => 'empresa_id',
             'joinType' => 'INNER'

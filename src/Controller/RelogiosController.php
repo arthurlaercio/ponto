@@ -34,7 +34,7 @@ class RelogiosController extends AppController
     public function view($id = null)
     {
         $relogio = $this->Relogios->get($id, [
-            'contain' => []
+            'contain' => ['Users']
         ]);
 
         $this->set('relogio', $relogio);
@@ -50,12 +50,15 @@ class RelogiosController extends AppController
         $relogio = $this->Relogios->newEntity();
         if ($this->request->is('post')) {
             $relogio = $this->Relogios->patchEntity($relogio, $this->request->getData());
+            $relogio->criado_por = $this->retornarIdUsuarioAtivo();
+            $relogio->modificado_por = $this->retornarIdUsuarioAtivo();
+            $relogio->status = 1;
             if ($this->Relogios->save($relogio)) {
-                $this->Flash->success(__('The relogio has been saved.'));
+                $this->Flash->success(__('Relógio criado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The relogio could not be saved. Please, try again.'));
+            $this->Flash->error(__('Algo deu errado, tente novamente!'));
         }
         $this->set(compact('relogio'));
     }
@@ -74,6 +77,7 @@ class RelogiosController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $relogio = $this->Relogios->patchEntity($relogio, $this->request->getData());
+            $relogio->modificado_por = $this->retornarIdUsuarioAtivo();
             if ($this->Relogios->save($relogio)) {
                 $this->Flash->success(__('The relogio has been saved.'));
 

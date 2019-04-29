@@ -82,6 +82,7 @@ class FuncionariosController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $funcionario = $this->Funcionarios->patchEntity($funcionario, $this->request->getData());
+            $funcionario->modificado_por = $this->retornarIdUsuarioAtivo();
             if ($this->Funcionarios->save($funcionario)) {
                 $this->Flash->success(__('The funcionario has been saved.'));
 

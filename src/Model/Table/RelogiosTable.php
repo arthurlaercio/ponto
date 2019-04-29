@@ -37,6 +37,10 @@ class RelogiosTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->belongsTo('Users', [
+            'foreignKey' => 'criado_por',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**

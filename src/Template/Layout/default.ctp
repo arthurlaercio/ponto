@@ -63,12 +63,17 @@ $cakeDescription = 'HEPOINT';
                                 </li>
                                 <li><a><i class="fa fa-clock-o"></i> Horários <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                      <li><?php echo $this->Html->link('Listar',['controller' => 'QuadrosHoras'],['escape'=>false]); ?></li>
+                                      <li><?php echo $this->Html->link('Listar',['controller' => 'QuadrosHoras','action' => 'index'],['escape'=>false]); ?></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-puzzle-piece"></i> Funcionários <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                      <li><?php echo $this->Html->link('Listar',['controller' => 'Funcionarios'],['escape'=>false]); ?></li>
+                                      <li><?php echo $this->Html->link('Listar',['controller' => 'Funcionarios','action' => 'index'],['escape'=>false]); ?></li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-puzzle-piece"></i> Relógio <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                      <li><?php echo $this->Html->link('Listar',['controller' => 'Relogios','action' => 'index'],['escape'=>false]); ?></li>
                                     </ul>
                                 </li>
                             </ul>
