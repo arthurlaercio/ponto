@@ -19,7 +19,7 @@
             <?php echo $this->Form->input('tolerancia',['class'=>'form-control']); ?>
         </div>
         <div class="col-md-6">
-            <?php echo $this->Form->input('dia',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('Dias',['type'=>'check','multiple' => 'true','class'=>'form-control','options'=>['2'=>'Disponivel', '1'=>'Indisponivel']]); ?>
         </div>
     </div>
 </div>

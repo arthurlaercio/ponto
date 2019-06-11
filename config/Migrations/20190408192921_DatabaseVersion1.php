@@ -104,7 +104,7 @@ class DatabaseVersion1 extends AbstractMigration
             ->create();
 
         $this->table('funcionarios')
-            ->addColumn('users_id', 'integer', [
+            ->addColumn('user_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
