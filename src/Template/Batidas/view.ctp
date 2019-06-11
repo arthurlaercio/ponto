@@ -39,6 +39,14 @@
             <td><?= $this->Number->format($batida->modificado_por) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Apuracao Importacao Id') ?></th>
+            <td><?= $this->Number->format($batida->apuracao_importacao_id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Batida Ajuste Id') ?></th>
+            <td><?= $this->Number->format($batida->batida_ajuste_id) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Created') ?></th>
             <td><?= h($batida->created) ?></td>
         </tr>

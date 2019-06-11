@@ -16,6 +16,17 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $created
  * @property int $modificado_por
  * @property \Cake\I18n\FrozenTime $modified
+ * @property int|null $segunda
+ * @property int|null $terca
+ * @property int|null $quarta
+ * @property int|null $quinta
+ * @property int|null $sexta
+ * @property int|null $sabado
+ * @property int|null $domingo
+ * @property \Cake\I18n\FrozenTime $intervalo_entrada
+ * @property \Cake\I18n\FrozenTime $intervalo_saida
+ *
+ * @property \App\Model\Entity\User $user
  */
 class QuadrosHora extends Entity
 {
@@ -37,6 +48,16 @@ class QuadrosHora extends Entity
         'criado_por' => true,
         'created' => true,
         'modificado_por' => true,
-        'modified' => true
+        'modified' => true,
+        'segunda' => true,
+        'terca' => true,
+        'quarta' => true,
+        'quinta' => true,
+        'sexta' => true,
+        'sabado' => true,
+        'domingo' => true,
+        'intervalo_entrada' => true,
+        'intervalo_saida' => true,
+        'user' => true
     ];
 }

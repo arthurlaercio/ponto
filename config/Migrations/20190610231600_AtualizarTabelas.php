@@ -145,10 +145,14 @@ class AtualizarTabelas extends AbstractMigration
                 'limit' => 255,
                 'null' => false,
             ])
+            ->addColumn('quadro_hora_id', 'integer', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
             ->addColumn('cartao_ponto', 'string', [
                 'default' => null,
                 'limit' => 20,
-                'null' => false,
             ])
             ->addColumn('data_inicio', 'date', [
                 'default' => null,
@@ -213,6 +217,10 @@ class AtualizarTabelas extends AbstractMigration
                 'default' => null,
                 'limit' => 11,
             ])
+            ->update();
+
+        $this->table('funcionarios')
+            ->removeColumn('user_id')
             ->update();
     }
 }

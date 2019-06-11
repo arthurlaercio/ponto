@@ -16,10 +16,18 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('tolerancia',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('intervalo_entrada',['class'=>'form-control']); ?>
         </div>
         <div class="col-md-6">
-            <?php echo $this->Form->input('Dias',['type'=>'check','multiple' => 'true','class'=>'form-control','options'=>['2'=>'Disponivel', '1'=>'Indisponivel']]); ?>
+            <?php echo $this->Form->input('intervalo_saida',['class'=>'form-control']); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('tolerancia',['class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-6 icheckbox_flat-green">
+            <?php echo $this->Form->input('Dias',['type'=>'select','multiple'=>'checkbox','class'=>'flat','options'=>['1'=>'Segunda', '2'=>'Terça','3'=>'Quarta', '4'=>'Quinta','5'=>'Sexta', '6'=>'Sabado','7'=>'Domingo']]); ?>
         </div>
     </div>
 </div>

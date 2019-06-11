@@ -9,9 +9,10 @@ use Cake\Validation\Validator;
 /**
  * Funcionarios Model
  *
- * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\EmpresasTable|\Cake\ORM\Association\BelongsTo $Empresas
  * @property \App\Model\Table\BatidasTable|\Cake\ORM\Association\HasMany $Batidas
+ * @property |\Cake\ORM\Association\HasMany $FuncionariosQuadrosRelogios
+ * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\HasMany $Users
  *
  * @method \App\Model\Entity\Funcionario get($primaryKey, $options = [])
  * @method \App\Model\Entity\Funcionario newEntity($data = null, array $options = [])
@@ -42,21 +43,17 @@ class FuncionariosTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Users', [
-            'foreignKey' => 'users_id',
-            'joinType' => 'INNER'
-        ]);
-
-        $this->belongsTo('Usuarios', [
-            'foreignKey' => 'criado_por',
-            'joinType' => 'INNER',
-            'joinTable' => 'users'
-        ]);
         $this->belongsTo('Empresas', [
             'foreignKey' => 'empresa_id',
             'joinType' => 'INNER'
         ]);
         $this->hasMany('Batidas', [
+            'foreignKey' => 'funcionario_id'
+        ]);
+        $this->hasMany('FuncionariosQuadrosRelogios', [
+            'foreignKey' => 'funcionario_id'
+        ]);
+        $this->hasMany('Users', [
             'foreignKey' => 'funcionario_id'
         ]);
     }
@@ -145,7 +142,6 @@ class FuncionariosTable extends Table
 
         $validator
             ->integer('status')
-            ->requirePresence('status', 'create')
             ->allowEmptyString('status', false);
 
         $validator
@@ -171,7 +167,6 @@ class FuncionariosTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->existsIn(['users_id'], 'Users'));
         $rules->add($rules->existsIn(['empresa_id'], 'Empresas'));
 
         return $rules;

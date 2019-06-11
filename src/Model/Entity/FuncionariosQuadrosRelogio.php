@@ -4,24 +4,26 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * User Entity
+ * FuncionariosQuadrosRelogio Entity
  *
  * @property int $id
- * @property string $nome
- * @property string $username
- * @property string $password
- * @property string $email
+ * @property int $funcionario_id
+ * @property int $relogio_id
+ * @property int $quadro_hora_id
+ * @property string $cartao_ponto
+ * @property \Cake\I18n\FrozenDate $data_inicio
+ * @property \Cake\I18n\FrozenDate $data_fim
  * @property int $status
  * @property int $criado_por
  * @property \Cake\I18n\FrozenTime $created
  * @property int $modificado_por
  * @property \Cake\I18n\FrozenTime $modified
- * @property \Cake\I18n\FrozenTime $tipo
- * @property int $funcionario_id
  *
- * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Funcionario $funcionario
+ * @property \App\Model\Entity\Relogio $relogio
+ * @property \App\Model\Entity\QuadroHora $quadro_hora
  */
-class User extends Entity
+class FuncionariosQuadrosRelogio extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -33,26 +35,19 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
-        'nome' => true,
-        'username' => true,
-        'password' => true,
-        'email' => true,
+        'funcionario_id' => true,
+        'relogio_id' => true,
+        'quadro_hora_id' => true,
+        'cartao_ponto' => true,
+        'data_inicio' => true,
+        'data_fim' => true,
         'status' => true,
         'criado_por' => true,
         'created' => true,
         'modificado_por' => true,
         'modified' => true,
-        'tipo' => true,
-        'funcionario_id' => true,
-        'user' => true
-    ];
-
-    /**
-     * Fields that are excluded from JSON versions of the entity.
-     *
-     * @var array
-     */
-    protected $_hidden = [
-        'password'
+        'funcionario' => true,
+        'relogio' => true,
+        'quadro_hora' => true
     ];
 }

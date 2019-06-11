@@ -27,6 +27,8 @@
             echo $this->Form->control('status');
             echo $this->Form->control('criado_por');
             echo $this->Form->control('modificado_por');
+            echo $this->Form->control('apuracao_importacao_id');
+            echo $this->Form->control('batida_ajuste_id');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

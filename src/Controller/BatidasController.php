@@ -20,7 +20,7 @@ class BatidasController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Funcionarios']
+            'contain' => ['Funcionarios', 'ApuracaoImportacaos', 'BatidaAjustes']
         ];
         $batidas = $this->paginate($this->Batidas);
 
@@ -37,7 +37,7 @@ class BatidasController extends AppController
     public function view($id = null)
     {
         $batida = $this->Batidas->get($id, [
-            'contain' => ['Funcionarios']
+            'contain' => ['Funcionarios', 'ApuracaoImportacaos', 'BatidaAjustes']
         ]);
 
         $this->set('batida', $batida);
@@ -61,7 +61,9 @@ class BatidasController extends AppController
             $this->Flash->error(__('The batida could not be saved. Please, try again.'));
         }
         $funcionarios = $this->Batidas->Funcionarios->find('list', ['limit' => 200]);
-        $this->set(compact('batida', 'funcionarios'));
+        $apuracaoImportacaos = $this->Batidas->ApuracaoImportacaos->find('list', ['limit' => 200]);
+        $batidaAjustes = $this->Batidas->BatidaAjustes->find('list', ['limit' => 200]);
+        $this->set(compact('batida', 'funcionarios', 'apuracaoImportacaos', 'batidaAjustes'));
     }
 
     /**
@@ -86,7 +88,9 @@ class BatidasController extends AppController
             $this->Flash->error(__('The batida could not be saved. Please, try again.'));
         }
         $funcionarios = $this->Batidas->Funcionarios->find('list', ['limit' => 200]);
-        $this->set(compact('batida', 'funcionarios'));
+        $apuracaoImportacaos = $this->Batidas->ApuracaoImportacaos->find('list', ['limit' => 200]);
+        $batidaAjustes = $this->Batidas->BatidaAjustes->find('list', ['limit' => 200]);
+        $this->set(compact('batida', 'funcionarios', 'apuracaoImportacaos', 'batidaAjustes'));
     }
 
     /**

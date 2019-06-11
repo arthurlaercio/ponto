@@ -25,6 +25,7 @@ class FuncionariosTableTest extends TestCase
     public $fixtures = [
         'app.Funcionarios',
         'app.Users',
+        'app.Usuarios',
         'app.Empresas',
         'app.Batidas'
     ];

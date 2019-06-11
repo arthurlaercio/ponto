@@ -11,10 +11,6 @@
             <label>Id:</label>
             <?php echo $funcionario->id; ?>
         </div>
-        <div class="col-md-6">
-            <label>Usuário:</label>
-            <?php echo $funcionario->user->nome; ?>
-        </div>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -93,7 +89,7 @@
         </div>
         <div class="col-md-6">
             <label>Criado Por:</label>
-            <?php echo $funcionario->user->nome; ?>
+            <?php //echo $funcionario->user->nome; ?>
         </div>
     </div>
     <div class="row">

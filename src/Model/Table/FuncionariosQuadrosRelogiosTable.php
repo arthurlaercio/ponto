@@ -7,22 +7,24 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Users Model
+ * FuncionariosQuadrosRelogios Model
  *
- * @property |\Cake\ORM\Association\BelongsTo $Funcionarios
+ * @property \App\Model\Table\FuncionariosTable|\Cake\ORM\Association\BelongsTo $Funcionarios
+ * @property \App\Model\Table\RelogiosTable|\Cake\ORM\Association\BelongsTo $Relogios
+ * @property \App\Model\Table\QuadroHorasTable|\Cake\ORM\Association\BelongsTo $QuadroHoras
  *
- * @method \App\Model\Entity\User get($primaryKey, $options = [])
- * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\User|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\User saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\User patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\User[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\User findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\FuncionariosQuadrosRelogio get($primaryKey, $options = [])
+ * @method \App\Model\Entity\FuncionariosQuadrosRelogio newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\FuncionariosQuadrosRelogio[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\FuncionariosQuadrosRelogio|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\FuncionariosQuadrosRelogio saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\FuncionariosQuadrosRelogio patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\FuncionariosQuadrosRelogio[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\FuncionariosQuadrosRelogio findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class UsersTable extends Table
+class FuncionariosQuadrosRelogiosTable extends Table
 {
     /**
      * Initialize method
@@ -34,14 +36,22 @@ class UsersTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('users');
-        $this->setDisplayField('username');
+        $this->setTable('funcionarios_quadros_relogios');
+        $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Funcionarios', [
             'foreignKey' => 'funcionario_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Relogios', [
+            'foreignKey' => 'relogio_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('QuadrosHoras', [
+            'foreignKey' => 'quadro_hora_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -59,27 +69,10 @@ class UsersTable extends Table
             ->allowEmptyString('id', 'create');
 
         $validator
-            ->scalar('nome')
-            ->maxLength('nome', 100)
-            ->requirePresence('nome', 'create')
-            ->allowEmptyString('nome', false);
+            ->scalar('cartao_ponto')
+            ->maxLength('cartao_ponto', 20)
+            ->allowEmptyString('cartao_ponto', false);
 
-        $validator
-            ->scalar('username')
-            ->maxLength('username', 255)
-            ->requirePresence('username', 'create')
-            ->allowEmptyString('username', false);
-
-        $validator
-            ->scalar('password')
-            ->maxLength('password', 255)
-            ->requirePresence('password', 'create')
-            ->allowEmptyString('password', false);
-
-        $validator
-            ->email('email')
-            ->requirePresence('email', 'create')
-            ->allowEmptyString('email', false);
 
         $validator
             ->integer('status')
@@ -96,11 +89,6 @@ class UsersTable extends Table
             ->requirePresence('modificado_por', 'create')
             ->allowEmptyString('modificado_por', false);
 
-        $validator
-            ->time('tipo')
-            ->requirePresence('tipo', 'create')
-            ->allowEmptyTime('tipo', false);
-
         return $validator;
     }
 
@@ -113,9 +101,9 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['username']));
-        $rules->add($rules->isUnique(['email']));
         $rules->add($rules->existsIn(['funcionario_id'], 'Funcionarios'));
+        $rules->add($rules->existsIn(['relogio_id'], 'Relogios'));
+        $rules->add($rules->existsIn(['quadro_hora_id'], 'QuadrosHoras'));
 
         return $rules;
     }

@@ -1,14 +1,14 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\BatidasController;
+use App\Controller\FuncionariosQuadrosRelogiosController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\BatidasController Test Case
+ * App\Controller\FuncionariosQuadrosRelogiosController Test Case
  */
-class BatidasControllerTest extends TestCase
+class FuncionariosQuadrosRelogiosControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -18,10 +18,10 @@ class BatidasControllerTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Batidas',
+        'app.FuncionariosQuadrosRelogios',
         'app.Funcionarios',
-        'app.ApuracaoImportacaos',
-        'app.BatidaAjustes'
+        'app.Relogios',
+        'app.QuadroHoras'
     ];
 
     /**

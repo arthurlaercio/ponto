@@ -24,6 +24,8 @@
                 <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modificado_por') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('apuracao_importacao_id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('batida_ajuste_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -37,6 +39,8 @@
                 <td><?= h($batida->created) ?></td>
                 <td><?= $this->Number->format($batida->modificado_por) ?></td>
                 <td><?= h($batida->modified) ?></td>
+                <td><?= $this->Number->format($batida->apuracao_importacao_id) ?></td>
+                <td><?= $this->Number->format($batida->batida_ajuste_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $batida->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $batida->id]) ?>

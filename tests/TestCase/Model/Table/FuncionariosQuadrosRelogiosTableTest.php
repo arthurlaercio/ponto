@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\BatidasTable;
+use App\Model\Table\FuncionariosQuadrosRelogiosTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\BatidasTable Test Case
+ * App\Model\Table\FuncionariosQuadrosRelogiosTable Test Case
  */
-class BatidasTableTest extends TestCase
+class FuncionariosQuadrosRelogiosTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\BatidasTable
+     * @var \App\Model\Table\FuncionariosQuadrosRelogiosTable
      */
-    public $Batidas;
+    public $FuncionariosQuadrosRelogios;
 
     /**
      * Fixtures
@@ -23,10 +23,10 @@ class BatidasTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Batidas',
+        'app.FuncionariosQuadrosRelogios',
         'app.Funcionarios',
-        'app.ApuracaoImportacaos',
-        'app.BatidaAjustes'
+        'app.Relogios',
+        'app.QuadroHoras'
     ];
 
     /**
@@ -37,8 +37,8 @@ class BatidasTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Batidas') ? [] : ['className' => BatidasTable::class];
-        $this->Batidas = TableRegistry::getTableLocator()->get('Batidas', $config);
+        $config = TableRegistry::getTableLocator()->exists('FuncionariosQuadrosRelogios') ? [] : ['className' => FuncionariosQuadrosRelogiosTable::class];
+        $this->FuncionariosQuadrosRelogios = TableRegistry::getTableLocator()->get('FuncionariosQuadrosRelogios', $config);
     }
 
     /**
@@ -48,7 +48,7 @@ class BatidasTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Batidas);
+        unset($this->FuncionariosQuadrosRelogios);
 
         parent::tearDown();
     }

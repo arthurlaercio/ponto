@@ -48,7 +48,7 @@
                                     <td><?php echo $quadro->hora_entrada->format('H:i'); ?></td>
                                     <td><?php echo $quadro->hora_saida->format('H:i'); ?></td>
                                     <td><?php echo $quadro->tolerancia->format('H:i'); ?></td>
-                                    <td><?php echo $quadro->dia; ?></td>
+                                    <td><?php if($quadro->segunda == 1) echo "Segunda ";if($quadro->terca == 1) echo "Terça ";if($quadro->quarta == 1) echo "Quarta ";if($quadro->quinta == 1) echo "Quinta ";if($quadro->sexta == 1) echo "Sexta ";if($quadro->sabado == 1) echo "Sábado ";if($quadro->domingo == 1) echo "Domingo "; ?></td>
                                     <td><?php if($quadro->status == 1) echo "Ativo"; else echo "Inativo"; ?></td>
                                     <td>
                                         <?php echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $quadro->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewQuadroHoras','escape'=>false]); ?>

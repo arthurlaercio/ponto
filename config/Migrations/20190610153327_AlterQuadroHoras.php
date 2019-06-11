@@ -12,9 +12,10 @@ class AlterQuadroHoras extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('quadros_horas')
-                    ->removeColumn('dia');
-
+        
+        $this->table('quadros_horas')
+            ->removeColumn('dia')
+            ->update();
         $this->table('quadros_horas')
             ->addColumn('segunda', 'integer', [
                 'default' => null,

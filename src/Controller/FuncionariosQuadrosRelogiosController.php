@@ -1,0 +1,123 @@
+<?php
+namespace App\Controller;
+
+use App\Controller\AppController;
+
+/**
+ * FuncionariosQuadrosRelogios Controller
+ *
+ * @property \App\Model\Table\FuncionariosQuadrosRelogiosTable $FuncionariosQuadrosRelogios
+ *
+ * @method \App\Model\Entity\FuncionariosQuadrosRelogio[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ */
+class FuncionariosQuadrosRelogiosController extends AppController
+{
+    /**
+     * Index method
+     *
+     * @return \Cake\Http\Response|void
+     */
+    public function index()
+    {
+        $this->paginate = [
+            'contain' => ['Funcionarios', 'Relogios', 'QuadrosHoras']
+        ];
+        $funcionariosQuadrosRelogios = $this->paginate($this->FuncionariosQuadrosRelogios);
+
+        $this->set(compact('funcionariosQuadrosRelogios'));
+    }
+
+    /**
+     * View method
+     *
+     * @param string|null $id Funcionarios Quadros Relogio id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $funcionariosQuadrosRelogio = $this->FuncionariosQuadrosRelogios->get($id, [
+            'contain' => ['Funcionarios', 'Relogios', 'QuadrosHoras']
+        ]);
+
+        $this->set('funcionariosQuadrosRelogio', $funcionariosQuadrosRelogio);
+    }
+
+    /**
+     * Add method
+     *
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
+     */
+    public function add($id = null)
+    {
+        $funcionario = $this->FuncionariosQuadrosRelogios->Funcionarios->find()->contain(['Empresas'])->where(['Funcionarios.id' => $id])->first();
+        //pr($funcionario);exit;
+        $funcionariosQuadrosRelogio = $this->FuncionariosQuadrosRelogios->newEntity();
+        if ($this->request->is('post')) {
+            $funcionariosQuadrosRelogio = $this->FuncionariosQuadrosRelogios->patchEntity($funcionariosQuadrosRelogio, $this->request->getData());
+            $funcionariosQuadrosRelogio->funcionario_id = $funcionario->id;
+            $funcionariosQuadrosRelogio->status = 1;
+            $funcionariosQuadrosRelogio->criado_por = $this->retornarIdUsuarioAtivo();
+            $funcionariosQuadrosRelogio->modificado_por = $this->retornarIdUsuarioAtivo();
+
+            if ($this->FuncionariosQuadrosRelogios->save($funcionariosQuadrosRelogio)) {
+                $this->Flash->success(__('The funcionarios quadros relogio has been saved.'));
+
+                return $this->redirect(['controller' => 'Funcionarios','action' => 'index']);
+            }
+
+            $this->Flash->error(__('The funcionarios quadros relogio could not be saved. Please, try again.'));
+        }
+        //$funcionarios = $this->FuncionariosQuadrosRelogios->Funcionarios->find('list', ['limit' => 200]);
+        $relogios = $this->FuncionariosQuadrosRelogios->Relogios->find('list', ['limit' => 200]);
+        $quadroHoras = $this->FuncionariosQuadrosRelogios->QuadrosHoras->find('list', ['limit' => 200]);
+        $this->set(compact('funcionariosQuadrosRelogio', 'relogios', 'quadroHoras','funcionario'));
+    }
+
+    /**
+     * Edit method
+     *
+     * @param string|null $id Funcionarios Quadros Relogio id.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function edit($id = null)
+    {
+        $funcionariosQuadrosRelogio = $this->FuncionariosQuadrosRelogios->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $funcionariosQuadrosRelogio = $this->FuncionariosQuadrosRelogios->patchEntity($funcionariosQuadrosRelogio, $this->request->getData());
+            if ($this->FuncionariosQuadrosRelogios->save($funcionariosQuadrosRelogio)) {
+                $this->Flash->success(__('The funcionarios quadros relogio has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The funcionarios quadros relogio could not be saved. Please, try again.'));
+        }
+        $funcionarios = $this->FuncionariosQuadrosRelogios->Funcionarios->find('list', ['limit' => 200]);
+        $relogios = $this->FuncionariosQuadrosRelogios->Relogios->find('list', ['limit' => 200]);
+        $quadroHoras = $this->FuncionariosQuadrosRelogios->QuadrosHoras->find('list', ['limit' => 200]);
+        $this->set(compact('funcionariosQuadrosRelogio', 'funcionarios', 'relogios', 'quadroHoras'));
+    }
+
+    /**
+     * Delete method
+     *
+     * @param string|null $id Funcionarios Quadros Relogio id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function delete($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $funcionariosQuadrosRelogio = $this->FuncionariosQuadrosRelogios->get($id);
+        if ($this->FuncionariosQuadrosRelogios->delete($funcionariosQuadrosRelogio)) {
+            $this->Flash->success(__('The funcionarios quadros relogio has been deleted.'));
+        } else {
+            $this->Flash->error(__('The funcionarios quadros relogio could not be deleted. Please, try again.'));
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
+}

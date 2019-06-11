@@ -37,10 +37,6 @@ class QuadrosHorasTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->belongsTo('Users', [
-            'foreignKey' => 'criado_por',
-            'joinType' => 'INNER'
-        ]);
     }
 
     /**
@@ -69,11 +65,6 @@ class QuadrosHorasTable extends Table
             ->time('tolerancia')
             ->allowEmptyTime('tolerancia');
 
-        $validator
-            ->scalar('dia')
-            ->maxLength('dia', 255)
-            ->requirePresence('dia', 'create')
-            ->allowEmptyString('dia', false);
 
         $validator
             ->integer('status')
@@ -89,6 +80,44 @@ class QuadrosHorasTable extends Table
             ->integer('modificado_por')
             ->requirePresence('modificado_por', 'create')
             ->allowEmptyString('modificado_por', false);
+
+        $validator
+            ->integer('segunda')
+            ->allowEmptyString('segunda');
+
+        $validator
+            ->integer('terca')
+            ->allowEmptyString('terca');
+
+        $validator
+            ->integer('quarta')
+            ->allowEmptyString('quarta');
+
+        $validator
+            ->integer('quinta')
+            ->allowEmptyString('quinta');
+
+        $validator
+            ->integer('sexta')
+            ->allowEmptyString('sexta');
+
+        $validator
+            ->integer('sabado')
+            ->allowEmptyString('sabado');
+
+        $validator
+            ->integer('domingo')
+            ->allowEmptyString('domingo');
+
+        $validator
+            ->time('intervalo_entrada')
+            ->requirePresence('intervalo_entrada', 'create')
+            ->allowEmptyTime('intervalo_entrada', false);
+
+        $validator
+            ->time('intervalo_saida')
+            ->requirePresence('intervalo_saida', 'create')
+            ->allowEmptyTime('intervalo_saida', false);
 
         return $validator;
     }

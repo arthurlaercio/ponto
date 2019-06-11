@@ -47,11 +47,30 @@ class QuadrosHorasController extends AppController
     public function add()
     {
         $quadrosHora = $this->QuadrosHoras->newEntity();
+        //pr($quadrosHora);exit;
         if ($this->request->is('post')) {
             $quadrosHora = $this->QuadrosHoras->patchEntity($quadrosHora, $this->request->getData());
             $quadrosHora->criado_por = $this->retornarIdUsuarioAtivo();
             $quadrosHora->modificado_por = $this->retornarIdUsuarioAtivo();
             $quadrosHora->status = 1;
+            //pr($this->request->data);exit;
+            //pr($quadrosHora);exit;
+            foreach ($this->request->data['Dias'] as $key => $value) {
+                if($value == 1)
+                    $quadrosHora->segunda = 1;
+                else if($value == 2)
+                    $quadrosHora->terca = 1;
+                else if($value == 3)
+                    $quadrosHora->quarta = 1;
+                else if($value == 4)
+                    $quadrosHora->quinta = 1;
+                else if($value == 5)
+                    $quadrosHora->sexta = 1;
+                else if($value == 6)
+                    $quadrosHora->sabado = 1;
+                else if($value == 7)
+                    $quadrosHora->domingo = 1;
+            }
             if ($this->QuadrosHoras->save($quadrosHora)) {
                 $this->Flash->success(__('Salvo com sucesso.'));
 

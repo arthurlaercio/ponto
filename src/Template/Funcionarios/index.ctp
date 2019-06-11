@@ -54,6 +54,8 @@
                                         <?php echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $funcionario->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewFuncionario','escape'=>false]); ?>
                                         <?php echo $this->Html->link('<i class="fa fa-edit"></i> Editar', ['action' => 'edit', $funcionario->id],['class'=>'btn btn-warning btn-xs', 'data-toggle'=>'modal','data-target'=>'#EditarFuncionario','escape'=>false]); ?>
                                         <?php echo $this->Form->postLink('<i class="fa fa-trash"></i> Excluir', ['action' => 'delete', $funcionario->id], ['confirm' => 'Tem certeza?','class'=>'btn btn-danger btn-xs', 'escape'=>false]); ?>
+                                        <?php echo $this->Html->link('<i class="icon-plus"></i> Adicionar Escala', ['controller'=>'FuncionariosQuadrosRelogios','action' => 'add', $funcionario->id],['escape'=>false, 'class' => 'btn btn-info btn-xs', 'data-toggle'=>'modal','data-target'=>'#AddEscala']); ?>
+                                        <?php //echo $this->Html->link('<i class="icon-plus"></i> Adicionar Escala', ['controller'=>'FuncionariosQuadrosRelogios','action' => 'add', $funcionario->id],['escape'=>false, 'class' => 'btn btn-info btn-xs']); ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -82,6 +84,14 @@
 </div>
 
 <div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true"  id="EditarFuncionario">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true"  id="AddEscala">
     <div class="modal-dialog">
       <div class="modal-content">
 

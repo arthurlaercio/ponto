@@ -59,7 +59,7 @@
             <?php echo $this->Form->input('data_admissao',['class'=>'form-control']); ?>
         </div>
         <div class="col-md-6">
-            <?php echo $this->Form->control('users_id', ['options' => $users]); ?>
+            <?php //echo $this->Form->control('users_id', ['options' => $users]); ?>
         </div>
     </div>
     <div class="row">

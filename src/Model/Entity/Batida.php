@@ -13,8 +13,12 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $created
  * @property int $modificado_por
  * @property \Cake\I18n\FrozenTime $modified
+ * @property int $apuracao_importacao_id
+ * @property int $batida_ajuste_id
  *
  * @property \App\Model\Entity\Funcionario $funcionario
+ * @property \App\Model\Entity\ApuracaoImportacao $apuracao_importacao
+ * @property \App\Model\Entity\BatidaAjuste $batida_ajuste
  */
 class Batida extends Entity
 {
@@ -34,6 +38,10 @@ class Batida extends Entity
         'created' => true,
         'modificado_por' => true,
         'modified' => true,
-        'funcionario' => true
+        'apuracao_importacao_id' => true,
+        'batida_ajuste_id' => true,
+        'funcionario' => true,
+        'apuracao_importacao' => true,
+        'batida_ajuste' => true
     ];
 }

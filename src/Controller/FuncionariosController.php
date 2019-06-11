@@ -2,7 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
+use Cake\ORM\ResultSet;
 /**
  * Funcionarios Controller
  *
@@ -114,4 +115,5 @@ class FuncionariosController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
 }

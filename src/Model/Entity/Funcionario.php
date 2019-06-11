@@ -7,7 +7,6 @@ use Cake\ORM\Entity;
  * Funcionario Entity
  *
  * @property int $id
- * @property int $users_id
  * @property int $empresa_id
  * @property string $nome
  * @property string $endereco
@@ -30,6 +29,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Usuario $usuario
  * @property \App\Model\Entity\Empresa $empresa
  * @property \App\Model\Entity\Batida[] $batidas
  */
@@ -45,7 +45,6 @@ class Funcionario extends Entity
      * @var array
      */
     protected $_accessible = [
-        'users_id' => true,
         'empresa_id' => true,
         'nome' => true,
         'endereco' => true,
@@ -67,6 +66,7 @@ class Funcionario extends Entity
         'modificado_por' => true,
         'modified' => true,
         'user' => true,
+        'usuario' => true,
         'empresa' => true,
         'batidas' => true
     ];
