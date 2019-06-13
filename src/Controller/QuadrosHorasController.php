@@ -33,7 +33,7 @@ class QuadrosHorasController extends AppController
      */
     public function view($id = null)
     {
-        $quadrosHora = $this->QuadrosHoras->find()->contain(['Users'])->where(['Users.id' => $id])->first();
+        $quadrosHora = $this->QuadrosHoras->find()->contain(['Users'])->where(['QuadrosHoras.id' => $id])->first();
 
         //pr($quadrosHora);exit;
         $this->set('quadrosHora', $quadrosHora);
