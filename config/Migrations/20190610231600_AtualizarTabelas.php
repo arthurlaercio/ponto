@@ -205,7 +205,7 @@ class AtualizarTabelas extends AbstractMigration
             ->update();
 
         $this->table('users')
-            ->addColumn('tipo','time', [
+            ->addColumn('tipo','integer', [
                 'default' => null,
             ])
             ->addColumn('funcionario_id','integer', [
