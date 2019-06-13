@@ -70,6 +70,7 @@ class UsersController extends AppController
             $user->criado_por = $this->retornarIdUsuarioAtivo();
             $user->modificado_por = $this->retornarIdUsuarioAtivo();
             $user->status = 1;
+            $user->tipo = 1;
             //pr($user);exit;
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('Usuário criado com sucesso.'));
