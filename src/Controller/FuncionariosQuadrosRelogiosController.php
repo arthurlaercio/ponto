@@ -59,13 +59,27 @@ class FuncionariosQuadrosRelogiosController extends AppController
             $funcionariosQuadrosRelogio->status = 1;
             $funcionariosQuadrosRelogio->criado_por = $this->retornarIdUsuarioAtivo();
             $funcionariosQuadrosRelogio->modificado_por = $this->retornarIdUsuarioAtivo();
+            $funcionariosQuadrosRelogio->data_inicio = date('y/m/d');
+            //pr($funcionariosQuadrosRelogio);exit;
+            $funcionariosQuadrosRelogioAnterior = $this->FuncionariosQuadrosRelogios->find()->where(['FuncionariosQuadrosRelogios.funcionario_id' => $funcionariosQuadrosRelogio->funcionario_id, 'FuncionariosQuadrosRelogios.status' => 1])->first();
+            if(!empty($funcionariosQuadrosRelogioAnterior)){
+                $funcionariosQuadrosRelogioAnterior->status = 0;
+                $funcionariosQuadrosRelogioAnterior->data_fim = date('y/m/d');
+                if ($this->FuncionariosQuadrosRelogios->save($funcionariosQuadrosRelogioAnterior)) {
+                    if ($this->FuncionariosQuadrosRelogios->save($funcionariosQuadrosRelogio)) {
+                        $this->Flash->success(__('The funcionarios quadros relogio has been saved.'));
 
-            if ($this->FuncionariosQuadrosRelogios->save($funcionariosQuadrosRelogio)) {
-                $this->Flash->success(__('The funcionarios quadros relogio has been saved.'));
+                        return $this->redirect(['controller' => 'Funcionarios','action' => 'index']);
+                    }
+                }
+            }else{
+                if ($this->FuncionariosQuadrosRelogios->save($funcionariosQuadrosRelogio)) {
+                        $this->Flash->success(__('The funcionarios quadros relogio has been saved.'));
 
-                return $this->redirect(['controller' => 'Funcionarios','action' => 'index']);
+                        return $this->redirect(['controller' => 'Funcionarios','action' => 'index']);
+                    }
             }
-
+            
             $this->Flash->error(__('The funcionarios quadros relogio could not be saved. Please, try again.'));
         }
         //$funcionarios = $this->FuncionariosQuadrosRelogios->Funcionarios->find('list', ['limit' => 200]);
@@ -84,14 +98,16 @@ class FuncionariosQuadrosRelogiosController extends AppController
     public function edit($id = null)
     {
         $funcionariosQuadrosRelogio = $this->FuncionariosQuadrosRelogios->get($id, [
-            'contain' => []
+            'contain' => ['Funcionarios']
         ]);
+        //pr($funcionariosQuadrosRelogio);exit;
         if ($this->request->is(['patch', 'post', 'put'])) {
             $funcionariosQuadrosRelogio = $this->FuncionariosQuadrosRelogios->patchEntity($funcionariosQuadrosRelogio, $this->request->getData());
+            //$funcionariosQuadrosRelogio->status = 0;
             if ($this->FuncionariosQuadrosRelogios->save($funcionariosQuadrosRelogio)) {
                 $this->Flash->success(__('The funcionarios quadros relogio has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'escalaFuncionario',$funcionariosQuadrosRelogio->funcionario_id]);
             }
             $this->Flash->error(__('The funcionarios quadros relogio could not be saved. Please, try again.'));
         }
@@ -119,5 +135,16 @@ class FuncionariosQuadrosRelogiosController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function escalaFuncionario($id = null)
+    {
+        $funcionario = $this->FuncionariosQuadrosRelogios->Funcionarios->find()->contain(['Empresas'])->where(['Funcionarios.id' => $id])->first();
+        $this->paginate = [
+            'contain' => ['Funcionarios', 'Relogios', 'QuadrosHoras']
+        ];
+        $funcionariosQuadrosRelogios = $this->paginate($this->FuncionariosQuadrosRelogios);
+        //pr($funcionariosQuadrosRelogios);exit;
+        $this->set(compact('funcionariosQuadrosRelogios','funcionario'));
     }
 }

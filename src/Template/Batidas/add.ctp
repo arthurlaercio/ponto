@@ -1,30 +1,37 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Batida $batida
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Batidas'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Funcionarios'), ['controller' => 'Funcionarios', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Funcionario'), ['controller' => 'Funcionarios', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="batidas form large-9 medium-8 columns content">
-    <?= $this->Form->create($batida) ?>
-    <fieldset>
-        <legend><?= __('Add Batida') ?></legend>
-        <?php
-            echo $this->Form->control('funcionario_id', ['options' => $funcionarios]);
-            echo $this->Form->control('status');
-            echo $this->Form->control('criado_por');
-            echo $this->Form->control('modificado_por');
-            echo $this->Form->control('apuracao_importacao_id');
-            echo $this->Form->control('batida_ajuste_id');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<?= $this->Html->css('chosen.css') ?>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Realizar batida</h4>
 </div>
+<?php echo $this->Form->create($batida,['role'=>'form','id'=>'inline-validate']); ?>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('funcionario_id', ['class'=>'form-control']); ?>
+        </div>
+    </div>
+            
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-12">
+            <?php echo $this->Form->button('<i class="icon-ok"></i> Salvar',['class'=>'btn btn-success']); ?>
+            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-warning']); ?>
+        </div>
+    </div>  
+</div>
+<?php echo $this->Form->end(); ?>
+
+<?php echo $this->Html->script('chosen.jquery') ?>
+<?php echo $this->Html->script('jquery.validate') ?>
+<script>
+    $(function () { 
+        $(".chzn-select").chosen();
+
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+    });
+
+</script>

@@ -56,7 +56,7 @@ class AtualizarTabelas extends AbstractMigration
             ])
             ->create();
 
-        $this->table('apuracoes_periodo')
+        $this->table('apuracoes_periodos')
             ->addColumn('data_encerra', 'date', [
                 'default' => null,
                 'limit' => null,
@@ -136,11 +136,6 @@ class AtualizarTabelas extends AbstractMigration
                 'null' => false,
             ])
             ->addColumn('relogio_id', 'integer', [
-                'default' => null,
-                'limit' => 255,
-                'null' => false,
-            ])
-            ->addColumn('quadro_hora_id', 'integer', [
                 'default' => null,
                 'limit' => 255,
                 'null' => false,

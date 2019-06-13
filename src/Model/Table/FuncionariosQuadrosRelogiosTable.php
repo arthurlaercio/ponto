@@ -73,6 +73,10 @@ class FuncionariosQuadrosRelogiosTable extends Table
             ->maxLength('cartao_ponto', 20)
             ->allowEmptyString('cartao_ponto', false);
 
+        $validator
+            ->integer('data_inicio')
+            ->requirePresence('status', 'create')
+            ->allowEmptyString('status', false);
 
         $validator
             ->integer('status')

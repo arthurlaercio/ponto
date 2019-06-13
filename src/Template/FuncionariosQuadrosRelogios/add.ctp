@@ -16,10 +16,18 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->control('quadro_hora_id', ['options' => $quadroHoras]);  ?>
+            <?php echo $this->Form->control('quadro_hora_id', ['options' => $quadroHoras,'label' => 'Quadro de horas']);  ?>
         </div>
        <div class="col-md-6">
             <?php echo $this->Form->input('empresa', ['class'=>'form-control','value'=>$funcionario->empresa->nome,'disabled' => 'disabled']); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->control('relogio_id', ['options' => $relogios]);  ?>
+        </div>
+       <div class="col-md-6">
+            <?php echo $this->Form->input('cartao_ponto', ['class'=>'form-control']); ?>
         </div>
     </div>
             

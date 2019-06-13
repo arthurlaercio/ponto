@@ -76,6 +76,16 @@ $cakeDescription = 'HEPOINT';
                                       <li><?php echo $this->Html->link('Listar',['controller' => 'Relogios','action' => 'index'],['escape'=>false]); ?></li>
                                     </ul>
                                 </li>
+                                <li><a><i class="fa fa-puzzle-piece"></i> Apurações <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                      <li><?php echo $this->Html->link('Listar',['controller' => 'apuracoesPeriodos','action' => 'index'],['escape'=>false]); ?></li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-puzzle-piece"></i> Batidas <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                      <li><?php echo $this->Html->link('Listar',['controller' => 'Batidas','action' => 'index'],['escape'=>false]); ?></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </div>

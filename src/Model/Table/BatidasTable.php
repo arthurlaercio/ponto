@@ -46,11 +46,11 @@ class BatidasTable extends Table
             'foreignKey' => 'funcionario_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('ApuracaoImportacaos', [
+        $this->belongsTo('ApuracoesImportacoes', [
             'foreignKey' => 'apuracao_importacao_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('BatidaAjustes', [
+        $this->belongsTo('BatidasAjustes', [
             'foreignKey' => 'batida_ajuste_id',
             'joinType' => 'INNER'
         ]);
@@ -96,8 +96,8 @@ class BatidasTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['funcionario_id'], 'Funcionarios'));
-        $rules->add($rules->existsIn(['apuracao_importacao_id'], 'ApuracaoImportacaos'));
-        $rules->add($rules->existsIn(['batida_ajuste_id'], 'BatidaAjustes'));
+        $rules->add($rules->existsIn(['apuracao_importacao_id'], 'ApuracoesImportacoes'));
+        $rules->add($rules->existsIn(['batida_ajuste_id'], 'BatidasAjustes'));
 
         return $rules;
     }

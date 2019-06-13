@@ -1,41 +1,50 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\FuncionariosQuadrosRelogio $funcionariosQuadrosRelogio
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $funcionariosQuadrosRelogio->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $funcionariosQuadrosRelogio->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Funcionarios Quadros Relogios'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Funcionarios'), ['controller' => 'Funcionarios', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Funcionario'), ['controller' => 'Funcionarios', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Relogios'), ['controller' => 'Relogios', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Relogio'), ['controller' => 'Relogios', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="funcionariosQuadrosRelogios form large-9 medium-8 columns content">
-    <?= $this->Form->create($funcionariosQuadrosRelogio) ?>
-    <fieldset>
-        <legend><?= __('Edit Funcionarios Quadros Relogio') ?></legend>
-        <?php
-            echo $this->Form->control('funcionario_id', ['options' => $funcionarios]);
-            echo $this->Form->control('relogio_id', ['options' => $relogios]);
-            echo $this->Form->control('quadro_hora_id');
-            echo $this->Form->control('cartao_ponto');
-            echo $this->Form->control('data_inicio');
-            echo $this->Form->control('data_fim');
-            echo $this->Form->control('status');
-            echo $this->Form->control('criado_por');
-            echo $this->Form->control('modificado_por');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<?= $this->Html->css('chosen.css') ?>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Atribuir Escala</h4>
 </div>
+<?php echo $this->Form->create($funcionariosQuadrosRelogio,['role'=>'form','id'=>'inline-validate']); ?>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('nome', ['class'=>'form-control','value'=>$funcionariosQuadrosRelogio->funcionario->nome,'disabled' => 'disabled']); ?>
+        </div>
+       <div class="col-md-6">
+            <?php echo $this->Form->input('cpf', ['class'=>'form-control','value'=>$funcionariosQuadrosRelogio->funcionario->cpf,'disabled' => 'disabled']); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->control('data_fim', ['class'=>'form-control','data-date-format'=>'dd/mm/yyyy']);  ?>
+        </div>
+    </div>
+    <div class="row">
+       <div class="col-md-6">
+            <?php echo $this->Form->input('cartao_ponto', ['class'=>'form-control','disabled' => 'disabled']); ?>
+        </div>
+    </div>
+            
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-12">
+            <?php echo $this->Form->button('<i class="icon-ok"></i> Salvar',['class'=>'btn btn-success']); ?>
+            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-warning']); ?>
+        </div>
+    </div>  
+</div>
+<?php echo $this->Form->end(); ?>
+
+<?php echo $this->Html->script('chosen.jquery') ?>
+<?php echo $this->Html->script('jquery.validate') ?>
+<script>
+    $(function () { 
+        $(".chzn-select").chosen();
+
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+    });
+
+</script>

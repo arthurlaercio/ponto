@@ -1,63 +1,85 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\Batida[]|\Cake\Collection\CollectionInterface $batidas
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Batida'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Funcionarios'), ['controller' => 'Funcionarios', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Funcionario'), ['controller' => 'Funcionarios', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="batidas index large-9 medium-8 columns content">
-    <h3><?= __('Batidas') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('funcionario_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('status') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('criado_por') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modificado_por') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('apuracao_importacao_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('batida_ajuste_id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($batidas as $batida): ?>
-            <tr>
-                <td><?= $this->Number->format($batida->id) ?></td>
-                <td><?= $batida->has('funcionario') ? $this->Html->link($batida->funcionario->id, ['controller' => 'Funcionarios', 'action' => 'view', $batida->funcionario->id]) : '' ?></td>
-                <td><?= $this->Number->format($batida->status) ?></td>
-                <td><?= $this->Number->format($batida->criado_por) ?></td>
-                <td><?= h($batida->created) ?></td>
-                <td><?= $this->Number->format($batida->modificado_por) ?></td>
-                <td><?= h($batida->modified) ?></td>
-                <td><?= $this->Number->format($batida->apuracao_importacao_id) ?></td>
-                <td><?= $this->Number->format($batida->batida_ajuste_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $batida->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $batida->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $batida->id], ['confirm' => __('Are you sure you want to delete # {0}?', $batida->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+<?php echo $this->Html->css('dataTables.bootstrap.css') ?>
+<?php echo $this->Html->script('jquery.dataTables') ?>
+<?php echo $this->Html->script('dataTables.bootstrap') ?>
+
+<div class="row">
+    <div class="col-md-9 col-sm-12 col-xs-12">
+        <div class="page-title">
+            <div class="title_left">
+                <h3><i class="fa fa-sitemap"></i> Batidas </h3>
+            </div>
+        </div>
     </div>
 </div>
+<div class="">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <div class="row">
+                        <div class="pull-left">
+                            <?php echo $this->Html->link('<i class="fa fa-plus"></i> Adicionar', ['action'=>'add'], ['escape'=>false, 'class' => 'btn btn-success btn-sm','data-toggle'=>'modal','data-target'=>'#AdicionarApuracao']); ?>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <?= $this->Flash->render() ?>
+                    <div class="clearfix"></div>
+                </div>            
+                <div class="x_content">
+                    <table class="table table-striped dt-responsive nowrap" id="dataTables-example" aria-describedby="dataTables-example_info">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Funcionario</th>
+                                <th>Hora da batida</th>
+                                <th>Ajuste</th>
+                                <th>Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($batidas as $batida): ?>
+                                <tr>
+                                    <td><?php echo $batida->id; ?></td>
+                                    <td><?php echo $batida->funcionario->nome; ?></td>
+                                    <td><?php echo $batida->created->format('d/m/Y H:i:s'); ?></td>
+                                    <td><?php echo $batida->batidas_ajuste->motivo; ?></td>
+                                    <td>
+                                        <?php //echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $apuracaoPeriodo->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewRelogio','escape'=>false]); ?>
+                                        <?php //echo $this->Html->link('<i class="fa fa-edit"></i> Editar', ['action' => 'edit', $batida->id],['class'=>'btn btn-warning btn-xs', 'data-toggle'=>'modal','data-target'=>'#EditarApuracao','escape'=>false]); ?>
+                                        <?php //echo $this->Form->postLink('<i class="fa fa-trash"></i> Excluir', ['action' => 'delete', $batida->id], ['confirm' => 'Tem certeza?','class'=>'btn btn-danger btn-xs', 'escape'=>false]); ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true"  id="AdicionarApuracao">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true"  id="EditarApuracao">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').dataTable();
+    });
+</script>
