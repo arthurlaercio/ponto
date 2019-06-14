@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * ApuracoesImportacoes Controller
  *
@@ -20,10 +20,10 @@ class ApuracoesImportacoesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Relogios', 'ApuracaoPeriodos']
+            'contain' => ['Relogios', 'ApuracoesPeriodos']
         ];
         $apuracoesImportacoes = $this->paginate($this->ApuracoesImportacoes);
-
+        //pr($apuracoesImportacoes);exit;
         $this->set(compact('apuracoesImportacoes'));
     }
 
@@ -37,7 +37,7 @@ class ApuracoesImportacoesController extends AppController
     public function view($id = null)
     {
         $apuracoesImportaco = $this->ApuracoesImportacoes->get($id, [
-            'contain' => ['Relogios', 'ApuracaoPeriodos']
+            'contain' => ['Relogios', 'ApuracoesPeriodos']
         ]);
 
         $this->set('apuracoesImportaco', $apuracoesImportaco);
@@ -50,19 +50,43 @@ class ApuracoesImportacoesController extends AppController
      */
     public function add()
     {
-        $apuracoesImportaco = $this->ApuracoesImportacoes->newEntity();
+        $apuracoesImportacao = $this->ApuracoesImportacoes->newEntity();
         if ($this->request->is('post')) {
-            $apuracoesImportaco = $this->ApuracoesImportacoes->patchEntity($apuracoesImportaco, $this->request->getData());
-            if ($this->ApuracoesImportacoes->save($apuracoesImportaco)) {
+
+            if($this->request->data['arquivo']['error'] != 0){
+                if($this->request->data['arquivo']['error'] == 1 || $this->request->data['arquivo']['error'] == 2)
+                    $this->Flash->error(__('Erro ao anexar arquivo, o mesmo pode estar excedendo o tamanho de 1 MB!'));
+                elseif($this->request->data['arquivo']['error'] == 4)
+                    $this->Flash->error(__('Nenhum arquivo foi anexado!'));
+                else
+                    $this->Flash->error(__('Erro ao anexar arquivo, tente novamente!'));
+                
+                return $this->redirect(['action' => 'index']);
+            }
+            //pr($this->request->data);exit;
+            $arquivo_info = pathinfo($this->request->data['arquivo']['name']);
+            $this->request->data['extensao'] = $arquivo_info['extension'];
+            $this->request->data['arquivo'] = $this->ApuracoesImportacoes->salvarArquivo($this->request->data['arquivo']);
+            //pr($this->request->data);
+            $apuracoesImportacao = $this->ApuracoesImportacoes->patchEntity($apuracoesImportacao, $this->request->data);
+            $apuracoesImportacao->arquivo_tamanho = 1;
+            $apuracoesImportacao->status = 1;
+            $apuracoesImportacao->criado_por = $this->retornarIdUsuarioAtivo();
+            $apuracoesImportacao->modificado_por = $this->retornarIdUsuarioAtivo();
+            //pr($apuracoesImportacao);exit;
+           
+            if ($this->ApuracoesImportacoes->save($apuracoesImportacao)) {
                 $this->Flash->success(__('The apuracoes importaco has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The apuracoes importaco could not be saved. Please, try again.'));
         }
+
+
         $relogios = $this->ApuracoesImportacoes->Relogios->find('list', ['limit' => 200]);
-        $apuracaoPeriodos = $this->ApuracoesImportacoes->ApuracaoPeriodos->find('list', ['limit' => 200]);
-        $this->set(compact('apuracoesImportaco', 'relogios', 'apuracaoPeriodos'));
+        $apuracaoPeriodos = $this->ApuracoesImportacoes->ApuracoesPeriodos->find('list', ['limit' => 200]);
+        $this->set(compact('apuracoesImportacao', 'relogios', 'apuracaoPeriodos'));
     }
 
     /**
@@ -109,5 +133,14 @@ class ApuracoesImportacoesController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function visualizarImportacao($id = null)
+    {
+        $apuracoesImportaco = $this->ApuracoesImportacoes->get($id, [
+            'contain' => ['Relogios', 'ApuracoesPeriodos']
+        ]);
+
+        $this->set('apuracoesImportaco', $apuracoesImportaco);
     }
 }

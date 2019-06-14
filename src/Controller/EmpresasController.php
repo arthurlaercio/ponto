@@ -19,7 +19,7 @@ class EmpresasController extends AppController
      */
     public function index()
     {
-        $empresas = $this->paginate($this->Empresas);
+        $empresas = $this->paginate($this->Empresas->find()->where(['status' => 1]));
 
         $this->set(compact('empresas'));
     }
@@ -36,7 +36,7 @@ class EmpresasController extends AppController
         $empresa = $this->Empresas->get($id, [
             'contain' => ['Funcionarios']
         ]);
-
+        //pr($empresa);exit;
         $this->set('empresa', $empresa);
     }
 
@@ -50,6 +50,9 @@ class EmpresasController extends AppController
         $empresa = $this->Empresas->newEntity();
         if ($this->request->is('post')) {
             $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
+            $empresa->criado_por = $this->retornarIdUsuarioAtivo();
+            $empresa->modificado_por = $this->retornarIdUsuarioAtivo();
+            $empresa->status = 1;
             if ($this->Empresas->save($empresa)) {
                 $this->Flash->success(__('The empresa has been saved.'));
 
@@ -74,6 +77,7 @@ class EmpresasController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
+            $empresa->modificado_por = $this->retornarIdUsuarioAtivo();
             if ($this->Empresas->save($empresa)) {
                 $this->Flash->success(__('The empresa has been saved.'));
 
@@ -95,7 +99,8 @@ class EmpresasController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $empresa = $this->Empresas->get($id);
-        if ($this->Empresas->delete($empresa)) {
+        $empresa->status = 0;
+        if ($this->Empresas->save($empresa)) {
             $this->Flash->success(__('The empresa has been deleted.'));
         } else {
             $this->Flash->error(__('The empresa could not be deleted. Please, try again.'));

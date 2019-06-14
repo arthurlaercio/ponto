@@ -1,30 +1,57 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\ApuracoesImportaco $apuracoesImportaco
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Apuracoes Importacoes'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Relogios'), ['controller' => 'Relogios', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Relogio'), ['controller' => 'Relogios', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="apuracoesImportacoes form large-9 medium-8 columns content">
-    <?= $this->Form->create($apuracoesImportaco) ?>
-    <fieldset>
-        <legend><?= __('Add Apuracoes Importaco') ?></legend>
-        <?php
-            echo $this->Form->control('relogio_id', ['options' => $relogios]);
-            echo $this->Form->control('apuracao_periodo_id');
-            echo $this->Form->control('arquivo_nome');
-            echo $this->Form->control('arquivo_tamanho');
-            echo $this->Form->control('criado_por');
-            echo $this->Form->control('modificado_por');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<?= $this->Html->css('chosen.css') ?>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Importar arquivo</h4>
 </div>
+<?php echo $this->Form->create($apuracoesImportacao,['role'=>'form','id'=>'inline-validate','type'=>'file']); ?>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('relogio_id',['class'=>'form-control','options' => $relogios]); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->input('apuracao_periodo_id',['class'=>'form-control','options' => $apuracaoPeriodos]); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('arquivo_nome',['class'=>'form-control']); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->input('arquivo',['class'=>'form-control','type'=>'file','label'=>'Arquivo (Tamanho inferior a 2MB)']); ?>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-12">
+            <?php echo $this->Form->button('<i class="icon-ok"></i> Cadastrar',['class'=>'btn btn-success']); ?>
+            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-warning']); ?>
+        </div>
+    </div>  
+</div>
+<?php echo $this->Form->end(); ?>
+
+<?php echo $this->Html->script('chosen.jquery') ?>
+<?php echo $this->Html->script('jquery.validate') ?>
+<script>
+    $(function () { 
+        $(".chzn-select").chosen();
+
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+
+        formValidation();
+    });
+
+
+    ﻿function formValidation() {
+        "use strict";
+
+        /*----------- BEGIN validate CODE -------------------------*/
+        
+    /*----------- END validate CODE -------------------------*/
+    }
+</script>

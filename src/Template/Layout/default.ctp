@@ -56,6 +56,11 @@ $cakeDescription = 'HEPOINT';
                         <div class="menu_section">
                             <h3>CADASTROS</h3>
                             <ul class="nav side-menu">
+                                <li><a><i class="fa fa-puzzle-piece"></i> Empresas <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                      <li><?php echo $this->Html->link('Listar',['controller' => 'Empresas','action' => 'index'],['escape'=>false]); ?></li>
+                                    </ul>
+                                </li>
                                 <li><a><i class="fa fa-users"></i> Usuários <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                       <li><?php echo $this->Html->link('Listar',['controller' => 'Users','action' => 'index'],['escape'=>false]); ?></li>
@@ -79,8 +84,10 @@ $cakeDescription = 'HEPOINT';
                                 <li><a><i class="fa fa-puzzle-piece"></i> Apurações <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                       <li><?php echo $this->Html->link('Listar',['controller' => 'apuracoesPeriodos','action' => 'index'],['escape'=>false]); ?></li>
+                                      <li><?php echo $this->Html->link('Importar',['controller' => 'apuracoesImportacoes','action' => 'index'],['escape'=>false]); ?></li>
                                     </ul>
                                 </li>
+
                                 <li><a><i class="fa fa-puzzle-piece"></i> Batidas <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                       <li><?php echo $this->Html->link('Listar',['controller' => 'Batidas','action' => 'index'],['escape'=>false]); ?></li>

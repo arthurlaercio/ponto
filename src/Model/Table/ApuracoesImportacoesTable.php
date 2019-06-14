@@ -1,36 +1,18 @@
 <?php
 namespace App\Model\Table;
 
+use App\Model\Entity\ApuracoesImportaco;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Filesystem\Folder;
+use Cake\Filesystem\File;
+use Cake\Utility\Inflector;
 
-/**
- * ApuracoesImportacoes Model
- *
- * @property \App\Model\Table\RelogiosTable|\Cake\ORM\Association\BelongsTo $Relogios
- * @property \App\Model\Table\ApuracaoPeriodosTable|\Cake\ORM\Association\BelongsTo $ApuracaoPeriodos
- *
- * @method \App\Model\Entity\ApuracoesImportaco get($primaryKey, $options = [])
- * @method \App\Model\Entity\ApuracoesImportaco newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\ApuracoesImportaco[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\ApuracoesImportaco|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\ApuracoesImportaco saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\ApuracoesImportaco patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\ApuracoesImportaco[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\ApuracoesImportaco findOrCreate($search, callable $callback = null, $options = [])
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- */
 class ApuracoesImportacoesTable extends Table
 {
-    /**
-     * Initialize method
-     *
-     * @param array $config The configuration for the Table.
-     * @return void
-     */
+  
     public function initialize(array $config)
     {
         parent::initialize($config);
@@ -56,8 +38,7 @@ class ApuracoesImportacoesTable extends Table
      *
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
-     */
-    public function validationDefault(Validator $validator)
+         public function validationDefault(Validator $validator)
     {
         $validator
             ->integer('id')
@@ -72,11 +53,6 @@ class ApuracoesImportacoesTable extends Table
             ->maxLength('arquivo_nome', 100)
             ->requirePresence('arquivo_nome', 'create')
             ->allowEmptyString('arquivo_nome', false);
-
-        $validator
-            ->integer('arquivo_tamanho')
-            ->requirePresence('arquivo_tamanho', 'create')
-            ->allowEmptyString('arquivo_tamanho', false);
 
         $validator
             ->integer('criado_por')
@@ -97,12 +73,79 @@ class ApuracoesImportacoesTable extends Table
      *
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
-     */
+     
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['relogio_id'], 'Relogios'));
         $rules->add($rules->existsIn(['apuracao_periodo_id'], 'ApuracoesPeriodos'));
 
         return $rules;
+    }*/
+
+    public function salvarArquivo($arquivo = array()){
+
+        $diretorio = MEDIA .DS. 'documentos' .DS;
+
+        if(($arquivo['error']!=0) and ($arquivo['size']==0)) {
+            // Processo caso dê algum erro
+        }
+
+        $this->checarDiretorio($diretorio);
+        //$arquivo = $this->checarNome($arquivo, $diretorio);
+        $arquivo = $this->mudarNome($arquivo);
+
+        $this->moverArquivos($arquivo, $diretorio);
+
+        return $arquivo['name'];
+    }
+
+    public function mudarNome($arquivo){
+        $arquivo_info = pathinfo($arquivo['name']);
+        $novoNomeArquivo = md5(time()) .'.'.$arquivo_info['extension'];
+
+        $arquivo['name'] = $novoNomeArquivo;
+        return $arquivo;
+    }
+
+    public function checarDiretorio($dir){
+        $folder = new Folder();
+        if (!is_dir($dir)){
+            $folder->create($dir);
+        }
+    }
+
+    public function checarNome($arquivo, $dir){
+        $arquivo_info = pathinfo($dir.$arquivo['name']);
+        $arquivoNome = $this->tratarNome($arquivo_info['filename']).'.'.$arquivo_info['extension'];
+        
+        $contador = 2;
+        while (file_exists($dir.$arquivoNome)) {
+            $arquivoNome  = $this->tratarNome($arquivo_info['filename']).'-'.$contador;
+            $arquivoNome .= '.'.$arquivo_info['extension'];
+            $contador++;
+        }
+
+        $arquivo['name'] = $arquivoNome;
+        return $arquivo;
+    }
+
+    public function tratarNome($arquivoNome)
+    {
+        $arquivo_nome = strtolower(Inflector::slug($arquivoNome,'-'));
+        return $arquivo_nome;
+    }
+
+    public function moverArquivos($arquivo, $dir)
+    {
+        $arquivoNovo = new File($arquivo['tmp_name']);
+        $arquivoNovo->copy($dir.$arquivo['name']);
+        $arquivoNovo->close();
+    }
+
+    public function deletarArquivo($arquivo){
+        $diretorio = MEDIA .DS. 'documentos' .DS;
+
+        $arquivo = new File($diretorio.$arquivo, false);
+        $arquivo->delete();
     }
 }
