@@ -47,7 +47,7 @@ $cakeDescription = 'HEPOINT';
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <?= $this->Html->link('<img src="'.$dominio_sistema.'/img/hepoint.png" alt="" width="65px"> <span> Lignus</span>',['controller'=>'Users','action'=>'home'], ['escape' => false,'class'=>'navbar-brand']); ?>
+                        <?= $this->Html->link('<img src="'.$dominio_sistema.'/img/hepoint.png" alt="" width="65px"> <span> Ponto</span>',['controller'=>'Users','action'=>'home'], ['escape' => false,'class'=>'navbar-brand']); ?>
                     </div>
                     <div class="clearfix"></div>
                     </br>
@@ -56,7 +56,7 @@ $cakeDescription = 'HEPOINT';
                         <div class="menu_section">
                             <h3>CADASTROS</h3>
                             <ul class="nav side-menu">
-                                <li><a><i class="fa fa-puzzle-piece"></i> Empresas <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-sitemap"></i> Empresas <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                       <li><?php echo $this->Html->link('Listar',['controller' => 'Empresas','action' => 'index'],['escape'=>false]); ?></li>
                                     </ul>
@@ -66,17 +66,17 @@ $cakeDescription = 'HEPOINT';
                                       <li><?php echo $this->Html->link('Listar',['controller' => 'Users','action' => 'index'],['escape'=>false]); ?></li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-clock-o"></i> Horários <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-table"></i> Quadro de Horários <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                       <li><?php echo $this->Html->link('Listar',['controller' => 'QuadrosHoras','action' => 'index'],['escape'=>false]); ?></li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-puzzle-piece"></i> Funcionários <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-user-plus"></i> Funcionários <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                       <li><?php echo $this->Html->link('Listar',['controller' => 'Funcionarios','action' => 'index'],['escape'=>false]); ?></li>
                                     </ul>
                                 </li>
-                                <li><a><i class="fa fa-puzzle-piece"></i> Relógio <span class="fa fa-chevron-down"></span></a>
+                                <li><a><i class="fa fa-clock-o"></i> Relógio <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                       <li><?php echo $this->Html->link('Listar',['controller' => 'Relogios','action' => 'index'],['escape'=>false]); ?></li>
                                     </ul>
