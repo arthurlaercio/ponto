@@ -8,17 +8,20 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('data_encerra', ['class'=>'form-control']); ?>
-        </div>
-       <div class="col-md-6">
             <?php echo $this->Form->input('data_inicio', ['class'=>'form-control']); ?>
         </div>
+             
     </div>
     <div class="row">
         <div class="col-md-6">
             <?php echo $this->Form->control('data_fim', ['class'=>'form-control has-feedback-left']);  ?>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('data_encerra', ['class'=>'form-control']); ?>
+        </div> 
+    </div> 
             
 </div>
 <div class="modal-footer">

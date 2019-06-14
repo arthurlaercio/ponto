@@ -6,7 +6,7 @@
     <div class="col-md-9 col-sm-12 col-xs-12">
         <div class="page-title">
             <div class="title_left">
-                <h3><i class="fa fa-sitemap"></i> Importação de apurações </h3>
+                <h3><i class="fa fa-sitemap"></i> Importação de batidas </h3>
             </div>
         </div>
     </div>
