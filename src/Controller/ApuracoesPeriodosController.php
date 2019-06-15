@@ -52,6 +52,18 @@ class ApuracoesPeriodosController extends AppController
     {
         $apuracoesPeriodo = $this->ApuracoesPeriodos->newEntity();
         if ($this->request->is('post')) {
+            $pieces = explode("/", $this->request->data['data_encerra2']);
+            $this->request->data['data_encerra']['day'] = $pieces[0];
+            $this->request->data['data_encerra']['month'] = $pieces[1];
+            $this->request->data['data_encerra']['year'] = $pieces[2];
+            $pieces = explode("/", $this->request->data['data_inicio2']);
+            $this->request->data['data_inicio']['day'] = $pieces[0];
+            $this->request->data['data_inicio']['month'] = $pieces[1];
+            $this->request->data['data_inicio']['year'] = $pieces[2];
+            $pieces = explode("/", $this->request->data['data_fim2']);
+            $this->request->data['data_fim']['day'] = $pieces[0];
+            $this->request->data['data_fim']['month'] = $pieces[1];
+            $this->request->data['data_fim']['year'] = $pieces[2];
             $apuracoesPeriodo = $this->ApuracoesPeriodos->patchEntity($apuracoesPeriodo, $this->request->getData());
             $apuracoesPeriodo->criado_por = $this->retornarIdUsuarioAtivo();
             $apuracoesPeriodo->modificado_por = $this->retornarIdUsuarioAtivo();

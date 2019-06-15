@@ -8,15 +8,18 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('data_encerra', ['class'=>'form-control']); ?>
+            <?php  echo $this->Form->input('data_encerra2', array(
+                                                'label' => 'Data de Encerramento','type'=>'text', 'class' => 'form-control','id'=>'DataEncerra','data-date-format'=>'dd/mm/yyyy')); ?>
         </div>
        <div class="col-md-6">
-            <?php echo $this->Form->input('data_inicio', ['class'=>'form-control']); ?>
+            <?php  echo $this->Form->input('data_inicio2', array(
+                                                'label' => 'Data de Inicio','type'=>'text', 'class' => 'form-control','id'=>'DataInicio','data-date-format'=>'dd/mm/yyyy')); ?>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->control('data_fim', ['class'=>'form-control has-feedback-left']);  ?>
+            <?php  echo $this->Form->input('data_fim2', array(
+                                                'label' => 'Data Fim','type'=>'text', 'class' => 'form-control','id'=>'DataFim','data-date-format'=>'dd/mm/yyyy')); ?>
         </div>
     </div>
             
@@ -33,6 +36,8 @@
 
 <?php echo $this->Html->script('chosen.jquery') ?>
 <?php echo $this->Html->script('jquery.validate') ?>
+<?php echo $this->Html->script('bootstrap-inputmask') ?>
+<?php echo $this->Html->script('bootstrap-datepicker') ?>
 <script>
     $(function () { 
         $(".chzn-select").chosen();
@@ -41,5 +46,19 @@
             $(this).removeData('bs.modal');
         });
     });
+    $(document).ready(function () {
+        $('#DataEncerra').datepicker().on('changeDate', function(ev)
+        {                 
+             $('.datepicker').hide();
+        });
+        $('#DataInicio').datepicker().on('changeDate', function(ev)
+        {                 
+             $('.datepicker').hide();
+        });
+        $('#DataFim').datepicker().on('changeDate', function(ev)
+        {                 
+             $('.datepicker').hide();
+        });
+    }); 
 
 </script>

@@ -11,7 +11,7 @@
             <?php echo $this->Form->input('nome',['class'=>'form-control']); ?>
         </div>
         <div class="col-md-6">
-            <?php echo $this->Form->input('cnpj',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('cnpj',['class'=>'form-control','data-mask'=>'99.999.999/9999-99']); ?>
         </div>
     </div>
     <div class="row">

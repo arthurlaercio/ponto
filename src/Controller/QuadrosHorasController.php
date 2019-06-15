@@ -49,11 +49,27 @@ class QuadrosHorasController extends AppController
         $quadrosHora = $this->QuadrosHoras->newEntity();
         //pr($quadrosHora);exit;
         if ($this->request->is('post')) {
+            //pr($this->request->data);exit;
+            $pieces = explode(":", $this->request->data['hora_entrada2']);
+            $this->request->data['hora_entrada']['hour'] = $pieces[0];
+            $this->request->data['hora_entrada']['minute'] = $pieces[1];
+            $pieces = explode(":", $this->request->data['hora_saida2']);
+            $this->request->data['hora_saida']['hour'] = $pieces[0];
+            $this->request->data['hora_saida']['minute'] = $pieces[1];
+            $pieces = explode(":", $this->request->data['intervalo_entrada2']);
+            $this->request->data['intervalo_entrada']['hour'] = $pieces[0];
+            $this->request->data['intervalo_entrada']['minute'] = $pieces[1];
+            $pieces = explode(":", $this->request->data['intervalo_saida2']);
+            $this->request->data['intervalo_saida']['hour'] = $pieces[0];
+            $this->request->data['intervalo_saida']['minute'] = $pieces[1];
+            $pieces = explode(":", $this->request->data['tolerancia2']);
+            $this->request->data['tolerancia']['hour'] = $pieces[0];
+            $this->request->data['tolerancia']['minute'] = $pieces[1];
             $quadrosHora = $this->QuadrosHoras->patchEntity($quadrosHora, $this->request->getData());
             $quadrosHora->criado_por = $this->retornarIdUsuarioAtivo();
             $quadrosHora->modificado_por = $this->retornarIdUsuarioAtivo();
             $quadrosHora->status = 1;
-            //pr($this->request->data);exit;
+
             //pr($quadrosHora);exit;
             foreach ($this->request->data['Dias'] as $key => $value) {
                 if($value == 1)
