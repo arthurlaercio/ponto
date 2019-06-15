@@ -33,15 +33,15 @@
             <td><?= $this->Number->format($apuracoesPeriodo->modificado_por) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Data Encerra') ?></th>
+            <th scope="row"><?= __('Data do Encerramento') ?></th>
             <td><?= h($apuracoesPeriodo->data_encerra) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Data Inicio') ?></th>
+            <th scope="row"><?= __('Data de Inicio') ?></th>
             <td><?= h($apuracoesPeriodo->data_inicio) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Data Fim') ?></th>
+            <th scope="row"><?= __('Data do Fim') ?></th>
             <td><?= h($apuracoesPeriodo->data_fim) ?></td>
         </tr>
         <tr>

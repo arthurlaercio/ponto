@@ -36,7 +36,7 @@
                                 <th>Hora Entrada</th>
                                 <th>Hora Saída</th>
                                 <th>Tolerância</th>
-                                <th>Dias</th>
+                                <th>Dias de Trabalho</th>
                                 <th>Status</th>
                                 <th>Opções</th>
                             </tr>

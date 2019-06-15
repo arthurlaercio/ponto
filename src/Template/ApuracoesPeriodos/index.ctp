@@ -6,7 +6,7 @@
     <div class="col-md-9 col-sm-12 col-xs-12">
         <div class="page-title">
             <div class="title_left">
-                <h3><i class="fa fa-sitemap"></i> Apurações </h3>
+                <h3><i class="fa fa-calendar"></i> Períodos de Apuração </h3>
             </div>
         </div>
     </div>
@@ -32,10 +32,10 @@
                     <table class="table table-striped dt-responsive nowrap" id="dataTables-example" aria-describedby="dataTables-example_info">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Data encerramento</th>
-                                <th>Data inicio</th>
-                                <th>Data final</th>
+                                <th>ID</th>                                
+                                <th>Data de inicio</th>
+                                <th>Data fim</th>
+                                <th>Data de encerramento</th>
                                 <th>Criado Por</th>
                                 <th>Opções</th>
                             </tr>
@@ -43,10 +43,10 @@
                         <tbody>
                             <?php foreach ($apuracoesPeriodos as $apuracaoPeriodo): ?>
                                 <tr>
-                                    <td><?php echo $apuracaoPeriodo->id; ?></td>
-                                    <td><?php echo $apuracaoPeriodo->data_encerra; ?></td>
+                                    <td><?php echo $apuracaoPeriodo->id; ?></td>                                    
                                     <td><?php echo $apuracaoPeriodo->data_inicio; ?></td>
                                     <td><?php echo $apuracaoPeriodo->data_fim; ?></td>
+                                    <td><?php echo $apuracaoPeriodo->data_encerra; ?></td>
                                     <td><?php echo $apuracaoPeriodo->user->nome; ?></td>
                                     <td>
                                         <?php //echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $apuracaoPeriodo->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewRelogio','escape'=>false]); ?>

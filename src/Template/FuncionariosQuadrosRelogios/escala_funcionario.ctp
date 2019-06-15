@@ -6,7 +6,7 @@
     <div class="col-md-9 col-sm-12 col-xs-12">
         <div class="page-title">
             <div class="title_left">
-                <h3><i class="fa fa-sitemap"></i> Escalas de  </h3>
+                <h3><i class="fa fa-link"></i> Enquadramento de Funcionário </h3>
             </div>
         </div>
     </div>
@@ -36,9 +36,9 @@
                                 <th>Nome</th>
                                 <th>Data Inicio</th>
                                 <th>Data Fim</th>
-                                <th>CPF</th>
+                                <th>Cartão de Ponto</th>
                                 <th>Relógio</th>
-                                <th>Quadro Hora</th>
+                                <th>Quadro de Horas</th>
                                 <th>Opções</th>
                             </tr>
                         </thead>
@@ -48,8 +48,8 @@
                                     <td><?php echo $funcionarioQuadroRelogio->id; ?></td>
                                     <td><?php echo $funcionario->nome; ?></td>
                                     <td><?php echo $funcionarioQuadroRelogio->data_inicio; ?></td>
-                                    <td><?php if($funcionarioQuadroRelogio->data_fim == null) echo "Escala ativa"; else echo $funcionarioQuadroRelogio->data_fim; ?></td>
-                                    <td><?php echo $funcionario->cpf; ?></td>
+                                    <td><?php if($funcionarioQuadroRelogio->data_fim == null) echo "Em aberto"; else echo $funcionarioQuadroRelogio->data_fim; ?></td>
+                                    <td><?php echo $funcionarioQuadroRelogio->cartao_ponto; ?></td>
                                     <td><?php echo $funcionarioQuadroRelogio->relogio->nome; ?></td>
                                     <td><?php echo $funcionarioQuadroRelogio->quadros_hora->id; ?></td>
                                     <td>
