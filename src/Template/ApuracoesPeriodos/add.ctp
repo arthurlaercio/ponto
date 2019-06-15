@@ -10,15 +10,14 @@
         <div class="col-md-6">
 <?php  echo $this->Form->input('data_encerra2', array('label' => 'Data de Encerramento','type'=>'text', 'class' => 'form-control','id'=>'DataEncerra','data-date-format'=>'dd/mm/yyyy')); ?>
         </div>
-       <div class="col-md-6">            <?php  echo $this->Form->input('data_inicio2', array(
-                                                'label' => 'Data de Inicio','type'=>'text', 'class' => 'form-control','id'=>'DataInicio','data-date-format'=>'dd/mm/yyyy')); ?>
+       <div class="col-md-6">            
+            <?php  echo $this->Form->input('data_inicio2', array('label' => 'Data de Inicio','type'=>'text', 'class' => 'form-control','id'=>'DataInicio','data-date-format'=>'dd/mm/yyyy')); ?>
         </div>
              
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php  echo $this->Form->input('data_fim2', array(
-                                                'label' => 'Data Fim','type'=>'text', 'class' => 'form-control','id'=>'DataFim','data-date-format'=>'dd/mm/yyyy')); ?>
+            <?php  echo $this->Form->input('data_fim2', array('label' => 'Data Fim','type'=>'text', 'class' => 'form-control','id'=>'DataFim','data-date-format'=>'dd/mm/yyyy')); ?>
         </div>
     </div>
     <div class="row">
