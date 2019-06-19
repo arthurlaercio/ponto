@@ -8,31 +8,32 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('nome',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('nome',['class'=>'form-control', 'maxlength'=>'150']); ?>
         </div>
         <div class="col-md-6">
-            <?php echo $this->Form->input('endereco',['class'=>'form-control']); ?>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <?php echo $this->Form->input('cpf',['class'=>'form-control']); ?>
-        </div>
-        <div class="col-md-6">
-            <?php echo $this->Form->input('rg',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('endereco',['class'=>'form-control', 'maxlength'=>'150']); ?>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('email',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('cpf',['class'=>'form-control', 'data-mask'=>'999.999.999-99']); ?>
         </div>
         <div class="col-md-6">
-            <?php echo $this->Form->input('telefone',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('rg',['class'=>'form-control', 'maxlength'=>'20']); ?>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('data_nascimento',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('email',['class'=>'form-control', 'maxlength'=>'60']); ?>
+        </div>
+        <div class="col-md-6">
+            <?php echo $this->Form->input('telefone',['class'=>'form-control','id' => 'telefone','data-mask'=>'(99) 99999-9999']); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('data_nascimento2', array(
+                                                'label' => 'Data de Nascimento','type'=>'text', 'class' => 'form-control','id'=>'DataNascimento','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999')); ?>
         </div>
         <div class="col-md-6">
             <?php echo $this->Form->input('sexo',['class'=>'form-control','options' => ['1' => 'Masculino','2' => 'Feminino']]); ?>
@@ -40,7 +41,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('pis',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('pis',['class'=>'form-control', 'data-mask'=>'999.99999.99-9']); ?>
         </div>
         <div class="col-md-6">
             <?php echo $this->Form->input('ctps_numero',['class'=>'form-control']); ?>
@@ -51,12 +52,13 @@
             <?php echo $this->Form->input('ctps_serie',['class'=>'form-control']); ?>
         </div>
         <div class="col-md-6">
-            <?php echo $this->Form->input('ctps_uf',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('ctps_uf',['class'=>'form-control', 'maxlength'=>'2']); ?>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('data_admissao',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('data_admissao2', array(
+                                                'label' => 'Data de Admissão','type'=>'text', 'class' => 'form-control','id'=>'DataAdmissao','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999')); ?>
         </div>
         <div class="col-md-6">
             <?php //echo $this->Form->control('users_id', ['options' => $users]); ?>
