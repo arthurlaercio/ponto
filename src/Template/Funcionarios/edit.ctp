@@ -32,7 +32,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('data_nascimento2', array(
+            <?php echo $this->Form->input('data_nascimento', array(
                                                 'label' => 'Data de Nascimento','type'=>'text', 'class' => 'form-control','id'=>'DataNascimento','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999')); ?>
         </div>
         <div class="col-md-6">
@@ -57,7 +57,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('data_admissao2', array(
+            <?php echo $this->Form->input('data_admissao', array(
                                                 'label' => 'Data de Admissão','type'=>'text', 'class' => 'form-control','id'=>'DataAdmissao','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999')); ?>
         </div>
         <div class="col-md-6">
