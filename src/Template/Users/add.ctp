@@ -8,7 +8,7 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('nome',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('nome',['class'=>'form-control', 'maxlength'=>'150']); ?>
         </div>
         <div class="col-md-6">
             <?php echo $this->Form->input('email',['class'=>'form-control']); ?>
@@ -16,14 +16,13 @@
     </div>
     <div class="row">
         <div class="col-md-4">
-            <?php echo $this->Form->input('username',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('username',['class'=>'form-control', 'maxlength'=>'20']); ?>
         </div>
         <div class="col-md-4">
-            <?php echo $this->Form->input('password',['type' => 'password','class'=>'form-control','label' => 'Senha']);  ?>
+            <?php echo $this->Form->input('password',['type' => 'password', 'class'=>'form-control', 'label' => 'Senha']);  ?>
         </div>
-
         <div class="col-md-4">
-            <?php echo $this->Form->input('confirmar',['type' => 'password','class'=>'form-control']);  ?>
+            <?php echo $this->Form->input('confirmar',['type' => 'password', 'class'=>'form-control']);  ?>
         </div>
     </div>
 </div>

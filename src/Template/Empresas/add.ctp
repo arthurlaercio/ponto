@@ -8,10 +8,10 @@
 <div class="modal-body">
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('nome',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('nome',['class'=>'form-control', 'maxlength'=>'80']); ?>
         </div>
         <div class="col-md-6">
-            <?php echo $this->Form->input('cnpj',['class'=>'form-control','data-mask'=>'99.999.999/9999-99']); ?>
+            <?php echo $this->Form->input('cnpj',['class'=>'form-control']); ?>
         </div>
     </div>
     <div class="row">
@@ -32,6 +32,7 @@
 
 <?php echo $this->Html->script('chosen.jquery') ?>
 <?php echo $this->Html->script('jquery.validate') ?>
+<?php echo $this->Html->script('bootstrap-inputmask') ?>
 <script>
     $(function () { 
         $(".chzn-select").chosen();

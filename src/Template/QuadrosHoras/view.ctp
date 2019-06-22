@@ -24,6 +24,22 @@
     </div>
     <div class="row">
         <div class="col-md-6">
+            <label>Intervalo Entrada:</label>
+            <?php echo $quadrosHora->intervalo_entrada->format('H:i'); ?>
+        </div>
+        <div class="col-md-6">
+            <label>Intervalo Saída:</label>
+            <?php echo $quadrosHora->intervalo_saida->format('H:i'); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Tolerância:</label>
+            <?php echo $quadrosHora->tolerancia->format('H:i'); ?>
+        </div>
+    </div>  
+    <div class="row">
+        <div class="col-md-6">
             <label>Data criação:</label>
             <?php echo $quadrosHora->created->format('d/m/Y'); ?>
         </div>
