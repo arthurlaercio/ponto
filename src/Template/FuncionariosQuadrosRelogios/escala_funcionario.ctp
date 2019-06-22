@@ -48,7 +48,7 @@
                                     <td><?php echo $funcionarioQuadroRelogio->id; ?></td>
                                     <td><?php echo $funcionario->nome; ?></td>
                                     <td><?php echo $funcionarioQuadroRelogio->data_inicio; ?></td>
-                                    <td><?php if($funcionarioQuadroRelogio->data_fim == null) echo "Em aberto"; else echo $funcionarioQuadroRelogio->data_fim; ?></td>
+                                    <td><?php if($funcionarioQuadroRelogio->data_fim == null) echo "Escala em uso"; else echo $funcionarioQuadroRelogio->data_fim; ?></td>
                                     <td><?php echo $funcionarioQuadroRelogio->cartao_ponto; ?></td>
                                     <td><?php echo $funcionarioQuadroRelogio->relogio->nome; ?></td>
                                     <td><?php echo $funcionarioQuadroRelogio->quadros_hora->id; ?></td>

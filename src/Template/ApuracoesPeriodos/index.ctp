@@ -46,7 +46,7 @@
                                     <td><?php echo $apuracaoPeriodo->id; ?></td>                                    
                                     <td><?php echo $apuracaoPeriodo->data_inicio; ?></td>
                                     <td><?php echo $apuracaoPeriodo->data_fim; ?></td>
-                                    <td><?php echo $apuracaoPeriodo->data_encerra; ?></td>
+                                    <td><?php if($apuracaoPeriodo->data_encerra == null) echo "Em aberto"; else echo $apuracaoPeriodo->data_encerra; ?></td>                                    
                                     <td><?php echo $apuracaoPeriodo->user->nome; ?></td>
                                     <td>
                                         <?php //echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $apuracaoPeriodo->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewRelogio','escape'=>false]); ?>
