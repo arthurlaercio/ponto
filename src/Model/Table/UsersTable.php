@@ -97,7 +97,7 @@ class UsersTable extends Table
             ->allowEmptyString('modificado_por', false);
 
         $validator
-            ->time('tipo')
+            ->integer('tipo')
             ->requirePresence('tipo', 'create')
             ->allowEmptyTime('tipo', false);
 

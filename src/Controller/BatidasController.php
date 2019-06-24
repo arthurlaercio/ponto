@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
 /**
  * Batidas Controller
  *
@@ -53,12 +53,13 @@ class BatidasController extends AppController
         $batida = $this->Batidas->newEntity();
         if ($this->request->is('post')) {
             $batida = $this->Batidas->patchEntity($batida, $this->request->getData());
-            $batida->batida = date('d/m/Y H:i');
-            $batida->criado_por = $this->retornarIdUsuarioAtivo();
-            $batida->modificado_por = $this->retornarIdUsuarioAtivo();
-            $batida->status = 1;
             $batida->apuracao_importacao_id = 1;
             $batida->batida_ajuste_id = 1;
+            $batida->batida = date('d/m/Y H:i:s');
+            $batida->status = 1;
+            $batida->criado_por = $this->retornarIdUsuarioAtivo();
+            $batida->modificado_por = $this->retornarIdUsuarioAtivo();
+            
             //pr($batida);exit;
             if ($this->Batidas->save($batida)) {
                 $this->Flash->success(__('The batida has been saved.'));
@@ -66,6 +67,7 @@ class BatidasController extends AppController
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The batida could not be saved. Please, try again.'));
+            return $this->redirect(['action' => 'index']);
         }
         $funcionarios = $this->Batidas->Funcionarios->find('list', ['limit' => 200]);
         $apuracoesImportacoes = $this->Batidas->ApuracoesImportacoes->find('list', ['limit' => 200]);
@@ -118,5 +120,45 @@ class BatidasController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function realizarBatida(){
+        $batida = $this->Batidas->newEntity();
+        $funcUsuarioTable = TableRegistry::get('Users');
+        $funcUser = $funcUsuarioTable->find()->contain(['Funcionarios'])->where(['Users.id' => $this->retornarIdUsuarioAtivo()])->first();
+        //pr($this->retornarIdUsuarioAtivo());exit;
+        $funcionario = $funcUser->funcionario;
+        if ($this->request->is('post')) {
+            $batida = $this->Batidas->patchEntity($batida, $this->request->getData());
+            $batida->apuracao_importacao_id = 1;
+            $batida->batida_ajuste_id = 1;
+            $batida->batida = date('d/m/Y H:i:s');
+            $batida->status = 1;
+            $batida->criado_por = $this->retornarIdUsuarioAtivo();
+            $batida->modificado_por = $this->retornarIdUsuarioAtivo();
+            
+            
+            if ($this->Batidas->save($batida)) {
+                $this->Flash->success(__('The batida has been saved.'));
+
+                return $this->redirect(['action' => 'indexFuncionario',$funcionario->id]);
+            }
+            $this->Flash->error(__('The batida could not be saved. Please, try again.'));
+            return $this->redirect(['action' => 'indexFuncionario',$funcionario->id]);
+        }
+        
+        $this->set(compact('batida', 'funcionario'));
+    }
+
+    public function indexFuncionario($id = null)
+    {
+        $this->paginate = [
+            'contain' => ['Funcionarios', 'ApuracoesImportacoes', 'BatidasAjustes'],
+            'where' => ['funcionario_Id' => $id]
+        ];
+        $query = $this->Batidas->find()->contain(['Funcionarios', 'ApuracoesImportacoes', 'BatidasAjustes'])->where(['Batidas.funcionario_id' => $id]);
+        $batidas = $this->paginate($query); 
+        //pr($batidas);exit;
+        $this->set(compact('batidas'));
     }
 }

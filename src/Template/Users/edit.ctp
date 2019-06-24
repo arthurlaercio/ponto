@@ -22,6 +22,11 @@
             <?php echo $this->Form->input('password',['type' => 'password','class'=>'form-control','label' => 'Senha']);  ?>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('funcionario_Id',['type'=>'select','class'=>'form-control','options'=>$funcionarios,'label' => 'Associar a funcionário','default' => $userFuncionario]); ?>
+        </div>
+    </div>
 </div>
 <div class="modal-footer">
     <div class="row">

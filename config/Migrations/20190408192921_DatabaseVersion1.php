@@ -450,7 +450,7 @@ class DatabaseVersion1 extends AbstractMigration
             ->addColumn('data_encerra', 'string', [
                 'default' => null,
                 'limit' => null,
-                'null' => false,
+                'null' => true,
             ])
             ->addColumn('data_inicio', 'string', [
                 'default' => null,

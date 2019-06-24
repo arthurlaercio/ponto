@@ -67,7 +67,7 @@ class BatidasTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-    public function validationDefault(Validator $validator)
+    /*public function validationDefault(Validator $validator)
     {
         $validator
             ->integer('id')
@@ -96,7 +96,7 @@ class BatidasTable extends Table
 
         return $validator;
     }
-
+*/
     /**
      * Returns a rules checker object that will be used for validating
      * application integrity.
@@ -111,5 +111,10 @@ class BatidasTable extends Table
         $rules->add($rules->existsIn(['batida_ajuste_id'], 'BatidasAjustes'));
 
         return $rules;
+    }
+
+    public function isOwnedBy($batidaId, $userId)
+    {
+        return $this->exists(['id' => $batidaId, 'user_id' => $userId]);
     }
 }

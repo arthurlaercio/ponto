@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->control('quadro_hora_id', ['options' => $quadroHoras,'label' => 'Quadro de horas']);  ?>
+            <?php echo $this->Form->control('quadro_hora_id', ['options' => $quadroHoras,'label' => 'Quadro de horas','class'=>'form-control']);  ?>
         </div>
        <div class="col-md-6">
             <?php echo $this->Form->input('empresa', ['class'=>'form-control','value'=>$funcionario->empresa->nome,'disabled' => 'disabled']); ?>
@@ -24,7 +24,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->control('relogio_id', ['options' => $relogios]);  ?>
+            <?php echo $this->Form->control('relogio_id', ['options' => $relogios,'class'=>'form-control']);  ?>
         </div>
        <div class="col-md-6">
             <?php echo $this->Form->input('cartao_ponto', ['class'=>'form-control']); ?>

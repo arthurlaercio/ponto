@@ -37,6 +37,7 @@
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Status</th>
+                                <th>Nível de Acesso</th>
                                 <th>Data de Criação</th>
                                 <th>Opções</th>
                             </tr>
@@ -49,6 +50,7 @@
                                     <td><?php echo $usuario->username; ?></td>
                                     <td><?php echo $usuario->email; ?></td>
                                     <td><?php if($usuario->status == 1) echo "Ativo"; else echo "Inativo"; ?></td>
+                                    <td><?php if($usuario->tipo == 1) echo "Administrador"; else echo "Colaborador"; ?></td>
                                     <td><?php echo $usuario->created->format('d/m/Y'); ?></td>
                                     <td>
                                         <?php echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $usuario->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewUsuario','escape'=>false]); ?>

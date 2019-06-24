@@ -47,14 +47,14 @@ class AppController extends Controller
         ]);
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
-            
+           
             'loginRedirect' => [
-                'controller' => 'Users',
-                'action' => 'index'
+                'controller' => 'Batidas',
+                'action' => 'realizarBatida'
             ],
             'logoutRedirect' => [
-                'controller' => 'Pages',
-                'action' => 'display',
+                'controller' => 'Users',
+                'action' => 'login',
                 'home'
             ]
         ]);
@@ -75,4 +75,6 @@ class AppController extends Controller
     public function retornarIdUsuarioAtivo(){
         return $this->Auth->user('id');
     }
+
+    
 }

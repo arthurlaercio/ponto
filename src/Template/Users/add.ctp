@@ -15,14 +15,24 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <?php echo $this->Form->input('username',['class'=>'form-control', 'maxlength'=>'20']); ?>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('tipo',['type'=>'select','class'=>'form-control','options'=>['1'=>'Administrador', '2'=>'Colaborador']]); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
             <?php echo $this->Form->input('password',['type' => 'password', 'class'=>'form-control', 'label' => 'Senha']);  ?>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <?php echo $this->Form->input('confirmar',['type' => 'password', 'class'=>'form-control']);  ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <?php echo $this->Form->input('funcionario_Id',['type'=>'select','class'=>'form-control','options'=>$funcionarios,'label' => 'Associar a funcionário']); ?>
         </div>
     </div>
 </div>

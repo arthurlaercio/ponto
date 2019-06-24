@@ -55,45 +55,47 @@ $cakeDescription = 'HEPOINT';
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
                             <h3>CADASTROS</h3>
-                            <ul class="nav side-menu">
-                                <li><a><i class="fa fa-sitemap"></i> Empresas <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                      <li><?php echo $this->Html->link('Listar',['controller' => 'Empresas','action' => 'index'],['escape'=>false]); ?></li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-users"></i> Usuários <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                      <li><?php echo $this->Html->link('Listar',['controller' => 'Users','action' => 'index'],['escape'=>false]); ?></li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-table"></i> Quadro de Horários <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                      <li><?php echo $this->Html->link('Listar',['controller' => 'QuadrosHoras','action' => 'index'],['escape'=>false]); ?></li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-user-plus"></i> Funcionários <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                      <li><?php echo $this->Html->link('Listar',['controller' => 'Funcionarios','action' => 'index'],['escape'=>false]); ?></li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-clock-o"></i> Relógio <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                      <li><?php echo $this->Html->link('Listar',['controller' => 'Relogios','action' => 'index'],['escape'=>false]); ?></li>
-                                    </ul>
-                                </li>
-                                <li><a><i class="fa fa-puzzle-piece"></i> Apurações <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                      <li><?php echo $this->Html->link('Listar',['controller' => 'apuracoesPeriodos','action' => 'index'],['escape'=>false]); ?></li>
-                                      <li><?php echo $this->Html->link('Importar',['controller' => 'apuracoesImportacoes','action' => 'index'],['escape'=>false]); ?></li>
-                                    </ul>
-                                </li>
+                            <?php if($usuarioAtivo['tipo'] == 1){ ?>
+                              <ul class="nav side-menu">
+                                  <li><a><i class="fa fa-sitemap"></i> Empresas <span class="fa fa-chevron-down"></span></a>
+                                      <ul class="nav child_menu">
+                                        <li><?php echo $this->Html->link('Listar',['controller' => 'Empresas','action' => 'index'],['escape'=>false]); ?></li>
+                                      </ul>
+                                  </li>
+                                  <li><a><i class="fa fa-users"></i> Usuários <span class="fa fa-chevron-down"></span></a>
+                                      <ul class="nav child_menu">
+                                        <li><?php echo $this->Html->link('Listar',['controller' => 'Users','action' => 'index'],['escape'=>false]); ?></li>
+                                      </ul>
+                                  </li>
+                                  <li><a><i class="fa fa-table"></i> Quadro de Horários <span class="fa fa-chevron-down"></span></a>
+                                      <ul class="nav child_menu">
+                                        <li><?php echo $this->Html->link('Listar',['controller' => 'QuadrosHoras','action' => 'index'],['escape'=>false]); ?></li>
+                                      </ul>
+                                  </li>
+                                  <li><a><i class="fa fa-user-plus"></i> Funcionários <span class="fa fa-chevron-down"></span></a>
+                                      <ul class="nav child_menu">
+                                        <li><?php echo $this->Html->link('Listar',['controller' => 'Funcionarios','action' => 'index'],['escape'=>false]); ?></li>
+                                      </ul>
+                                  </li>
+                                  <li><a><i class="fa fa-clock-o"></i> Relógio <span class="fa fa-chevron-down"></span></a>
+                                      <ul class="nav child_menu">
+                                        <li><?php echo $this->Html->link('Listar',['controller' => 'Relogios','action' => 'index'],['escape'=>false]); ?></li>
+                                      </ul>
+                                  </li>
+                                  <li><a><i class="fa fa-puzzle-piece"></i> Apurações <span class="fa fa-chevron-down"></span></a>
+                                      <ul class="nav child_menu">
+                                        <li><?php echo $this->Html->link('Listar',['controller' => 'apuracoesPeriodos','action' => 'index'],['escape'=>false]); ?></li>
+                                        <li><?php echo $this->Html->link('Importar',['controller' => 'apuracoesImportacoes','action' => 'index'],['escape'=>false]); ?></li>
+                                      </ul>
+                                  </li>
 
-                                <li><a><i class="fa fa-puzzle-piece"></i> Batidas <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                      <li><?php echo $this->Html->link('Listar',['controller' => 'Batidas','action' => 'index'],['escape'=>false]); ?></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                                  <li><a><i class="fa fa-puzzle-piece"></i> Batidas <span class="fa fa-chevron-down"></span></a>
+                                      <ul class="nav child_menu">
+                                        <li><?php echo $this->Html->link('Listar',['controller' => 'Batidas','action' => 'index'],['escape'=>false]); ?></li>
+                                      </ul>
+                                  </li>
+                              </ul>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

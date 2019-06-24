@@ -59,7 +59,7 @@ class FuncionariosQuadrosRelogiosController extends AppController
             $funcionariosQuadrosRelogio->status = 1;
             $funcionariosQuadrosRelogio->criado_por = $this->retornarIdUsuarioAtivo();
             $funcionariosQuadrosRelogio->modificado_por = $this->retornarIdUsuarioAtivo();
-            $funcionariosQuadrosRelogio->data_inicio = date('y/m/d');
+            $funcionariosQuadrosRelogio->data_inicio = date('d/m/Y');
             //pr($funcionariosQuadrosRelogio);exit;
             $funcionariosQuadrosRelogioAnterior = $this->FuncionariosQuadrosRelogios->find()->where(['FuncionariosQuadrosRelogios.funcionario_id' => $funcionariosQuadrosRelogio->funcionario_id, 'FuncionariosQuadrosRelogios.status' => 1])->first();
             if(!empty($funcionariosQuadrosRelogioAnterior)){
@@ -140,10 +140,13 @@ class FuncionariosQuadrosRelogiosController extends AppController
     public function escalaFuncionario($id = null)
     {
         $funcionario = $this->FuncionariosQuadrosRelogios->Funcionarios->find()->contain(['Empresas'])->where(['Funcionarios.id' => $id])->first();
+        //pr($funcionario);exit;
         $this->paginate = [
-            'contain' => ['Funcionarios', 'Relogios', 'QuadrosHoras']
+            'contain' => ['Funcionarios', 'Relogios', 'QuadrosHoras'],
+            'where' => ['funcionario_id' => $id]
         ];
         $funcionariosQuadrosRelogios = $this->paginate($this->FuncionariosQuadrosRelogios);
+        $funcionariosQuadrosRelogios = $this->FuncionariosQuadrosRelogios->find()->contain(['Funcionarios.Empresas','Relogios','QuadrosHoras'])->where(['funcionario_id' => $id])->all();
         //pr($funcionariosQuadrosRelogios);exit;
         $this->set(compact('funcionariosQuadrosRelogios','funcionario'));
     }
