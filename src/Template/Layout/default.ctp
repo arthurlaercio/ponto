@@ -95,6 +95,14 @@ $cakeDescription = 'HEPOINT';
                                       </ul>
                                   </li>
                               </ul>
+                            <?php }else{ ?>
+                              <ul class="nav side-menu">
+                                <li><a><i class="fa fa-puzzle-piece"></i> Batidas <span class="fa fa-chevron-down"></span></a>
+                                      <ul class="nav child_menu">
+                                        <li><?php echo $this->Html->link('Minhas batidas',['controller' => 'Batidas','action' => 'indexFuncionario'],['escape'=>false]); ?></li>
+                                      </ul>
+                                  </li>
+                              </ul>
                             <?php } ?>
                         </div>
                     </div>

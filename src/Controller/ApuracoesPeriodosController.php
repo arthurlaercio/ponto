@@ -39,7 +39,7 @@ class ApuracoesPeriodosController extends AppController
         $apuracoesPeriodo = $this->ApuracoesPeriodos->get($id, [
             'contain' => ['Users']
         ]);
-
+        
         $this->set('apuracoesPeriodo', $apuracoesPeriodo);
     }
 

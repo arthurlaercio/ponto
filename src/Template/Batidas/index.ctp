@@ -21,6 +21,9 @@
                         <div class="pull-left">
                             <?php echo $this->Html->link('<i class="fa fa-plus"></i> Adicionar', ['action'=>'add'], ['escape'=>false, 'class' => 'btn btn-success btn-sm','data-toggle'=>'modal','data-target'=>'#AdicionarApuracao']); ?>
                         </div>
+                        <div class="pull-right">
+                            <?php echo $this->Html->link('<i class="icon-book"></i> Relatório mensal', '#', ['escape'=>false, 'class' => 'btn btn-default','id'=>'btn-relatorios']); ?>
+                        </div>
                     </div>
                     <div class="clearfix"></div>
                 </div>

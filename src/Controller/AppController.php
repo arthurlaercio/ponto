@@ -45,6 +45,7 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler', [
             'enableBeforeRedirect' => false,
         ]);
+
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
            
@@ -58,6 +59,8 @@ class AppController extends Controller
                 'home'
             ]
         ]);
+        
+        
         $this->set('usuarioAtivo', $this->Auth->user());
         $this->set('dominio_sistema',Configure::read('dominio_sistema'));
         /*
@@ -65,6 +68,7 @@ class AppController extends Controller
          * see https://book.cakephp.org/3.0/en/controllers/components/security.html
          */
         $this->loadComponent('Security');
+       
     }
 
     public function beforeFilter(Event $event)

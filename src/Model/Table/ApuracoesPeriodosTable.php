@@ -61,10 +61,6 @@ class ApuracoesPeriodosTable extends Table
             ->allowEmptyString('nome', false);
 
         $validator
-            ->scalar('data_encerra')
-            ->maxLength('data_encerra', 255)
-
-        $validator
             ->scalar('data_inicio')
             ->maxLength('data_inicio', 255)
             ->requirePresence('data_inicio', 'create')
