@@ -23,7 +23,7 @@ class BatidasController extends AppController
             'contain' => ['Funcionarios', 'ApuracoesImportacoes', 'BatidasAjustes']
         ];
         $batidas = $this->paginate($this->Batidas);
-        //pr($batidas);exit;
+
         $this->set(compact('batidas'));
     }
 
@@ -53,11 +53,13 @@ class BatidasController extends AppController
         $batida = $this->Batidas->newEntity();
         if ($this->request->is('post')) {
             $batida = $this->Batidas->patchEntity($batida, $this->request->getData());
+            $batida->batida = date('d/m/Y H:i');
             $batida->criado_por = $this->retornarIdUsuarioAtivo();
             $batida->modificado_por = $this->retornarIdUsuarioAtivo();
             $batida->status = 1;
             $batida->apuracao_importacao_id = 1;
             $batida->batida_ajuste_id = 1;
+            //pr($batida);exit;
             if ($this->Batidas->save($batida)) {
                 $this->Flash->success(__('The batida has been saved.'));
 
@@ -66,9 +68,9 @@ class BatidasController extends AppController
             $this->Flash->error(__('The batida could not be saved. Please, try again.'));
         }
         $funcionarios = $this->Batidas->Funcionarios->find('list', ['limit' => 200]);
-        $apuracaoImportacaos = $this->Batidas->ApuracoesImportacoes->find('list', ['limit' => 200]);
-        $batidaAjustes = $this->Batidas->BatidasAjustes->find('list', ['limit' => 200]);
-        $this->set(compact('batida', 'funcionarios', 'apuracaoImportacaos', 'batidaAjustes'));
+        $apuracoesImportacoes = $this->Batidas->ApuracoesImportacoes->find('list', ['limit' => 200]);
+        $batidasAjustes = $this->Batidas->BatidasAjustes->find('list', ['limit' => 200]);
+        $this->set(compact('batida', 'funcionarios', 'apuracoesImportacoes', 'batidasAjustes'));
     }
 
     /**
@@ -93,9 +95,9 @@ class BatidasController extends AppController
             $this->Flash->error(__('The batida could not be saved. Please, try again.'));
         }
         $funcionarios = $this->Batidas->Funcionarios->find('list', ['limit' => 200]);
-        $apuracaoImportacaos = $this->Batidas->ApuracoesImportacoes->find('list', ['limit' => 200]);
-        $batidaAjustes = $this->Batidas->BatidasAjustes->find('list', ['limit' => 200]);
-        $this->set(compact('batida', 'funcionarios', 'apuracaoImportacaos', 'batidaAjustes'));
+        $apuracoesImportacoes = $this->Batidas->ApuracoesImportacoes->find('list', ['limit' => 200]);
+        $batidasAjustes = $this->Batidas->BatidasAjustes->find('list', ['limit' => 200]);
+        $this->set(compact('batida', 'funcionarios', 'apuracoesImportacoes', 'batidasAjustes'));
     }
 
     /**

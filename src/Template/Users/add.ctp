@@ -62,12 +62,12 @@
                 username: {
                     required: true
                 },
-                senha: {
+                password: {
                     required: true
                 },
                 confirmar: {
                     required: true,
-                    equalTo: "#senha"
+                    equalTo: "#password"
                 }
             },
             errorClass: 'help-block col-md-12',

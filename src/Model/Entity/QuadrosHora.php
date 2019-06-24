@@ -7,15 +7,12 @@ use Cake\ORM\Entity;
  * QuadrosHora Entity
  *
  * @property int $id
+ * @property string $descricao
  * @property \Cake\I18n\FrozenTime $hora_entrada
  * @property \Cake\I18n\FrozenTime $hora_saida
+ * @property \Cake\I18n\FrozenTime $intervalo_entrada
+ * @property \Cake\I18n\FrozenTime $intervalo_saida
  * @property \Cake\I18n\FrozenTime|null $tolerancia
- * @property string $dia
- * @property int $status
- * @property int $criado_por
- * @property \Cake\I18n\FrozenTime $created
- * @property int $modificado_por
- * @property \Cake\I18n\FrozenTime $modified
  * @property int|null $segunda
  * @property int|null $terca
  * @property int|null $quarta
@@ -23,8 +20,11 @@ use Cake\ORM\Entity;
  * @property int|null $sexta
  * @property int|null $sabado
  * @property int|null $domingo
- * @property \Cake\I18n\FrozenTime $intervalo_entrada
- * @property \Cake\I18n\FrozenTime $intervalo_saida
+ * @property int $status
+ * @property int $criado_por
+ * @property \Cake\I18n\FrozenTime $created
+ * @property int $modificado_por
+ * @property \Cake\I18n\FrozenTime $modified
  *
  * @property \App\Model\Entity\User $user
  */
@@ -40,15 +40,12 @@ class QuadrosHora extends Entity
      * @var array
      */
     protected $_accessible = [
+        'descricao' => true,
         'hora_entrada' => true,
         'hora_saida' => true,
+        'intervalo_entrada' => true,
+        'intervalo_saida' => true,
         'tolerancia' => true,
-        'dia' => true,
-        'status' => true,
-        'criado_por' => true,
-        'created' => true,
-        'modificado_por' => true,
-        'modified' => true,
         'segunda' => true,
         'terca' => true,
         'quarta' => true,
@@ -56,8 +53,11 @@ class QuadrosHora extends Entity
         'sexta' => true,
         'sabado' => true,
         'domingo' => true,
-        'intervalo_entrada' => true,
-        'intervalo_saida' => true,
+        'status' => true,
+        'criado_por' => true,
+        'created' => true,
+        'modificado_por' => true,
+        'modified' => true,
         'user' => true
     ];
 }

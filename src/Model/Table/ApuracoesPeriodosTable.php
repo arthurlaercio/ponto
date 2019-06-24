@@ -33,15 +33,13 @@ class ApuracoesPeriodosTable extends Table
         parent::initialize($config);
 
         $this->setTable('apuracoes_periodos');
-        $this->setDisplayField('id');
+        $this->setDisplayField('data_encerra');
         $this->setPrimaryKey('id');
-
-        $this->addBehavior('Timestamp');
-
         $this->belongsTo('Users', [
             'foreignKey' => 'criado_por',
             'joinType' => 'INNER'
         ]);
+        $this->addBehavior('Timestamp');
     }
 
     /**
@@ -57,19 +55,28 @@ class ApuracoesPeriodosTable extends Table
             ->allowEmptyString('id', 'create');
 
         $validator
-            ->date('data_encerra')
+            ->scalar('nome')
+            ->maxLength('nome', 255)
+            ->requirePresence('nome', 'create')
+            ->allowEmptyString('nome', false);
+
+        $validator
+            ->scalar('data_encerra')
+            ->maxLength('data_encerra', 255)
             ->requirePresence('data_encerra', 'create')
-            ->allowEmptyDate('data_encerra', false);
+            ->allowEmptyString('data_encerra', false);
 
         $validator
-            ->date('data_inicio')
+            ->scalar('data_inicio')
+            ->maxLength('data_inicio', 255)
             ->requirePresence('data_inicio', 'create')
-            ->allowEmptyDate('data_inicio', false);
+            ->allowEmptyString('data_inicio', false);
 
         $validator
-            ->date('data_fim')
+            ->scalar('data_fim')
+            ->maxLength('data_fim', 255)
             ->requirePresence('data_fim', 'create')
-            ->allowEmptyDate('data_fim', false);
+            ->allowEmptyString('data_fim', false);
 
         $validator
             ->integer('status')

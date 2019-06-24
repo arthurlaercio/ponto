@@ -33,15 +33,10 @@ class QuadrosHorasTable extends Table
         parent::initialize($config);
 
         $this->setTable('quadros_horas');
-        $this->setDisplayField('id');
+        $this->setDisplayField('descricao');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-
-        $this->belongsTo('Users', [
-            'foreignKey' => 'criado_por',
-            'joinType' => 'INNER'
-        ]);
     }
 
     /**
@@ -57,6 +52,12 @@ class QuadrosHorasTable extends Table
             ->allowEmptyString('id', 'create');
 
         $validator
+            ->scalar('descricao')
+            ->maxLength('descricao', 255)
+            ->requirePresence('descricao', 'create')
+            ->allowEmptyString('descricao', false);
+
+        $validator
             ->time('hora_entrada')
             ->requirePresence('hora_entrada', 'create')
             ->allowEmptyTime('hora_entrada', false);
@@ -67,24 +68,18 @@ class QuadrosHorasTable extends Table
             ->allowEmptyTime('hora_saida', false);
 
         $validator
+            ->time('intervalo_entrada')
+            ->requirePresence('intervalo_entrada', 'create')
+            ->allowEmptyTime('intervalo_entrada', false);
+
+        $validator
+            ->time('intervalo_saida')
+            ->requirePresence('intervalo_saida', 'create')
+            ->allowEmptyTime('intervalo_saida', false);
+
+        $validator
             ->time('tolerancia')
             ->allowEmptyTime('tolerancia');
-
-
-        $validator
-            ->integer('status')
-            ->requirePresence('status', 'create')
-            ->allowEmptyString('status', false);
-
-        $validator
-            ->integer('criado_por')
-            ->requirePresence('criado_por', 'create')
-            ->allowEmptyString('criado_por', false);
-
-        $validator
-            ->integer('modificado_por')
-            ->requirePresence('modificado_por', 'create')
-            ->allowEmptyString('modificado_por', false);
 
         $validator
             ->integer('segunda')
@@ -115,14 +110,19 @@ class QuadrosHorasTable extends Table
             ->allowEmptyString('domingo');
 
         $validator
-            ->time('intervalo_entrada')
-            ->requirePresence('intervalo_entrada', 'create')
-            ->allowEmptyTime('intervalo_entrada', false);
+            ->integer('status')
+            ->requirePresence('status', 'create')
+            ->allowEmptyString('status', false);
 
         $validator
-            ->time('intervalo_saida')
-            ->requirePresence('intervalo_saida', 'create')
-            ->allowEmptyTime('intervalo_saida', false);
+            ->integer('criado_por')
+            ->requirePresence('criado_por', 'create')
+            ->allowEmptyString('criado_por', false);
+
+        $validator
+            ->integer('modificado_por')
+            ->requirePresence('modificado_por', 'create')
+            ->allowEmptyString('modificado_por', false);
 
         return $validator;
     }

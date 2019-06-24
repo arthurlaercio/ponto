@@ -103,10 +103,6 @@ class FuncionariosTable extends Table
             ->allowEmptyString('telefone');
 
         $validator
-            ->date('data_nascimento')
-            ->allowEmptyDate('data_nascimento');
-
-        $validator
             ->scalar('sexo')
             ->maxLength('sexo', 255)
             ->requirePresence('sexo', 'create')
@@ -131,14 +127,6 @@ class FuncionariosTable extends Table
             ->scalar('ctps_uf')
             ->maxLength('ctps_uf', 255)
             ->allowEmptyString('ctps_uf');
-
-        $validator
-            ->date('data_admissao')
-            ->allowEmptyDate('data_admissao');
-
-        $validator
-            ->date('data_demissao')
-            ->allowEmptyDate('data_demissao');
 
         $validator
             ->integer('status')

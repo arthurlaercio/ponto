@@ -16,9 +16,10 @@ class ApuracoesPeriodosFixture extends TestFixture
     // @codingStandardsIgnoreStart
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'data_encerra' => ['type' => 'date', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
-        'data_inicio' => ['type' => 'date', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
-        'data_fim' => ['type' => 'date', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+        'nome' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'data_encerra' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'data_inicio' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'data_fim' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'status' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'criado_por' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
@@ -43,14 +44,15 @@ class ApuracoesPeriodosFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'data_encerra' => '2019-06-13',
-                'data_inicio' => '2019-06-13',
-                'data_fim' => '2019-06-13',
+                'nome' => 'Lorem ipsum dolor sit amet',
+                'data_encerra' => 'Lorem ipsum dolor sit amet',
+                'data_inicio' => 'Lorem ipsum dolor sit amet',
+                'data_fim' => 'Lorem ipsum dolor sit amet',
                 'status' => 1,
                 'criado_por' => 1,
-                'created' => '2019-06-13 17:14:05',
+                'created' => '2019-06-23 23:20:45',
                 'modificado_por' => 1,
-                'modified' => '2019-06-13 17:14:05'
+                'modified' => '2019-06-23 23:20:45'
             ],
         ];
         parent::init();

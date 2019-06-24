@@ -75,11 +75,11 @@
     <div class="row">
         <div class="col-md-6">
             <label>Data adminissão:</label>
-            <?php echo $funcionario->data_admissao->format('d/m/Y'); ?>
+            <?php echo $funcionario->data_admissao; ?>
         </div>
         <div class="col-md-6">
             <label>Data demissão:</label>
-            <?php if(!empty($funcionario->data_demissao)) echo $funcionario->data_demissao->format('d/m/Y'); else echo "Ainda ativo na empresa"; ?>
+            <?php if(!empty($funcionario->data_demissao)) echo $funcionario->data_demissao; else echo "Ainda ativo na empresa"; ?>
         </div>
     </div>
     <div class="row">

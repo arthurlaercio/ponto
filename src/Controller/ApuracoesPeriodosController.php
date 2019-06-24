@@ -23,7 +23,7 @@ class ApuracoesPeriodosController extends AppController
             'contain' => ['Users']
         ];
         $apuracoesPeriodos = $this->paginate($this->ApuracoesPeriodos);
-        //pr($apuracoesPeriodos);exit;
+
         $this->set(compact('apuracoesPeriodos'));
     }
 
@@ -37,7 +37,7 @@ class ApuracoesPeriodosController extends AppController
     public function view($id = null)
     {
         $apuracoesPeriodo = $this->ApuracoesPeriodos->get($id, [
-            'contain' => []
+            'contain' => ['Users']
         ]);
 
         $this->set('apuracoesPeriodo', $apuracoesPeriodo);
@@ -52,22 +52,11 @@ class ApuracoesPeriodosController extends AppController
     {
         $apuracoesPeriodo = $this->ApuracoesPeriodos->newEntity();
         if ($this->request->is('post')) {
-            $pieces = explode("/", $this->request->data['data_encerra2']);
-            $this->request->data['data_encerra']['day'] = $pieces[0];
-            $this->request->data['data_encerra']['month'] = $pieces[1];
-            $this->request->data['data_encerra']['year'] = $pieces[2];
-            $pieces = explode("/", $this->request->data['data_inicio2']);
-            $this->request->data['data_inicio']['day'] = $pieces[0];
-            $this->request->data['data_inicio']['month'] = $pieces[1];
-            $this->request->data['data_inicio']['year'] = $pieces[2];
-            $pieces = explode("/", $this->request->data['data_fim2']);
-            $this->request->data['data_fim']['day'] = $pieces[0];
-            $this->request->data['data_fim']['month'] = $pieces[1];
-            $this->request->data['data_fim']['year'] = $pieces[2];
             $apuracoesPeriodo = $this->ApuracoesPeriodos->patchEntity($apuracoesPeriodo, $this->request->getData());
             $apuracoesPeriodo->criado_por = $this->retornarIdUsuarioAtivo();
             $apuracoesPeriodo->modificado_por = $this->retornarIdUsuarioAtivo();
             $apuracoesPeriodo->status = 1;
+            //pr($apuracoesPeriodo);exit;
             if ($this->ApuracoesPeriodos->save($apuracoesPeriodo)) {
                 $this->Flash->success(__('The apuracoes periodo has been saved.'));
 
@@ -75,7 +64,8 @@ class ApuracoesPeriodosController extends AppController
             }
             $this->Flash->error(__('The apuracoes periodo could not be saved. Please, try again.'));
         }
-        $this->set(compact('apuracoesPeriodo'));
+        $users = $this->ApuracoesPeriodos->Users->find('list', ['limit' => 200]);
+        $this->set(compact('apuracoesPeriodo', 'users'));
     }
 
     /**
@@ -92,6 +82,7 @@ class ApuracoesPeriodosController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $apuracoesPeriodo = $this->ApuracoesPeriodos->patchEntity($apuracoesPeriodo, $this->request->getData());
+            $apuracoesPeriodo->modificado_por = $this->retornarIdUsuarioAtivo();
             if ($this->ApuracoesPeriodos->save($apuracoesPeriodo)) {
                 $this->Flash->success(__('The apuracoes periodo has been saved.'));
 
@@ -99,7 +90,8 @@ class ApuracoesPeriodosController extends AppController
             }
             $this->Flash->error(__('The apuracoes periodo could not be saved. Please, try again.'));
         }
-        $this->set(compact('apuracoesPeriodo'));
+        $users = $this->ApuracoesPeriodos->Users->find('list', ['limit' => 200]);
+        $this->set(compact('apuracoesPeriodo', 'users'));
     }
 
     /**

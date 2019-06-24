@@ -13,9 +13,13 @@ class DatabaseVersion1 extends AbstractMigration
     public function change()
     {
         $this->table('users')
+            ->addColumn('funcionario_id','integer', [
+                'default' => null,
+                'limit' => 11,
+            ])
             ->addColumn('nome', 'string', [
                 'default' => null,
-                'limit' => 100,
+                'limit' => 255,
                 'null' => false,
             ])
             ->addColumn('username', 'string', [
@@ -32,6 +36,9 @@ class DatabaseVersion1 extends AbstractMigration
                 'default' => null,
                 'limit' => 100,
                 'null' => false,
+            ])
+            ->addColumn('tipo','integer', [
+                'default' => null,
             ])
             ->addColumn('status', 'integer', [
                 'default' => null,
@@ -63,7 +70,7 @@ class DatabaseVersion1 extends AbstractMigration
         $this->table('empresas')
             ->addColumn('nome', 'string', [
                 'default' => null,
-                'limit' => 100,
+                'limit' => 255,
                 'null' => false,
             ])
             ->addColumn('cnpj', 'string', [
@@ -104,11 +111,6 @@ class DatabaseVersion1 extends AbstractMigration
             ->create();
 
         $this->table('funcionarios')
-            ->addColumn('user_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => false,
-            ])
             ->addColumn('empresa_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
@@ -144,7 +146,7 @@ class DatabaseVersion1 extends AbstractMigration
                 'limit' => 255,
                 'null' => true,
             ])
-            ->addColumn('data_nascimento', 'date', [
+            ->addColumn('data_nascimento', 'string', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -174,12 +176,12 @@ class DatabaseVersion1 extends AbstractMigration
                 'limit' => 255,
                 'null' => true,
             ])
-            ->addColumn('data_admissao', 'date', [
+            ->addColumn('data_admissao', 'string', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('data_demissao', 'date', [
+            ->addColumn('data_demissao', 'string', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
@@ -214,7 +216,7 @@ class DatabaseVersion1 extends AbstractMigration
         $this->table('relogios')
             ->addColumn('nome', 'string', [
                 'default' => null,
-                'limit' => 100,
+                'limit' => 255,
                 'null' => false,
             ])
             ->addColumn('serial', 'string', [
@@ -260,6 +262,19 @@ class DatabaseVersion1 extends AbstractMigration
                 'limit' => 11,
                 'null' => false,
             ])
+            ->addColumn('apuracao_importacao_id','integer', [
+                'default' => null,
+                'limit' => 11,
+            ])
+            ->addColumn('batida_ajuste_id','integer', [
+                'default' => null,
+                'limit' => 11,
+            ])
+            ->addColumn('batida', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => true,
+            ])
             ->addColumn('status', 'integer', [
                 'default' => null,
                 'limit' => 2,
@@ -288,30 +303,254 @@ class DatabaseVersion1 extends AbstractMigration
             ->create();
 
         $this->table('quadros_horas')
-            ->addColumn('hora_entrada', 'time', [
+            ->addColumn('descricao', 'string', [
+                'default' => null,
+                'limit' => 100,
+                'null' => false,
+            ])
+            ->addColumn('hora_entrada', 'string', [
                 'default' => null,
                 'limit' => null,
                 'null' => false,
             ])
-            ->addColumn('hora_saida', 'time', [
+            ->addColumn('hora_saida', 'string', [
                 'default' => null,
                 'limit' => null,
                 'null' => false,
             ])
-            ->addColumn('tolerancia', 'time', [
+             ->addColumn('intervalo_entrada','string', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('intervalo_saida','string', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('tolerancia', 'string', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('dia', 'string', [
+            ->addColumn('segunda', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('terca', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('quarta', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('quinta', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('sexta', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('sabado', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('domingo', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('status', 'integer', [
+                'default' => null,
+                'limit' => 2,
+                'null' => false,
+            ])
+            ->addColumn('criado_por', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('modificado_por', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->create();
+
+        $this->table('apuracoes_importacoes')
+            ->addColumn('relogio_id', 'integer', [
+                'default' => null,
+                'limit' => 100,
+                'null' => false,
+            ])
+            ->addColumn('apuracao_periodo_id', 'integer', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('arquivo', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('arquivo_nome', 'string', [
+                'default' => null,
+                'limit' => 100,
+                'null' => false,
+            ])
+            ->addColumn('arquivo_tamanho', 'integer', [
+                'default' => null,
+            ])
+            ->addColumn('criado_por', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('modificado_por', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->create();
+
+        $this->table('apuracoes_periodos')
+            ->addColumn('nome', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('data_encerra', 'string', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('data_inicio', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('data_fim', 'string', [
+                'default' => null,
+                'limit' => null,
+            ])
+            ->addColumn('status', 'integer', [
+                'default' => null,
+                'limit' => 11,
+            ])
+            ->addColumn('criado_por', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('modificado_por', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->create();
+
+        $this->table('batidas_ajustes')
+            ->addColumn('motivo', 'string', [
                 'default' => null,
                 'limit' => 255,
                 'null' => false,
             ])
             ->addColumn('status', 'integer', [
                 'default' => null,
-                'limit' => 2,
+                'limit' => 11,
+            ])
+            ->addColumn('criado_por', 'integer', [
+                'default' => null,
+                'limit' => 11,
                 'null' => false,
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('modificado_por', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => false,
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->create();
+
+        $this->table('funcionarios_quadros_relogios')
+            ->addColumn('funcionario_id', 'integer', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('relogio_id', 'integer', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('quadro_hora_id', 'integer', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('cartao_ponto', 'string', [
+                'default' => null,
+                'limit' => 20,
+            ])
+            ->addColumn('data_inicio', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('data_fim', 'string', [
+                'default' => null,
+                'limit' => null,
+            ])
+            ->addColumn('status', 'integer', [
+                'default' => null,
+                'limit' => 11,
             ])
             ->addColumn('criado_por', 'integer', [
                 'default' => null,

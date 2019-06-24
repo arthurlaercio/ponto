@@ -32,7 +32,8 @@
                     <table class="table table-striped dt-responsive nowrap" id="dataTables-example" aria-describedby="dataTables-example_info">
                         <thead>
                             <tr>
-                                <th>ID</th>                                
+                                <th>ID</th> 
+                                                            
                                 <th>Data de inicio</th>
                                 <th>Data fim</th>
                                 <th>Data de encerramento</th>
@@ -43,7 +44,8 @@
                         <tbody>
                             <?php foreach ($apuracoesPeriodos as $apuracaoPeriodo): ?>
                                 <tr>
-                                    <td><?php echo $apuracaoPeriodo->id; ?></td>                                    
+                                    <td><?php echo $apuracaoPeriodo->id; ?></td>
+                                                                        
                                     <td><?php echo $apuracaoPeriodo->data_inicio; ?></td>
                                     <td><?php echo $apuracaoPeriodo->data_fim; ?></td>
                                     <td><?php if($apuracaoPeriodo->data_encerra == null) echo "Em aberto"; else echo $apuracaoPeriodo->data_encerra; ?></td>                                    

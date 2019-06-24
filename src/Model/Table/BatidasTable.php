@@ -10,8 +10,8 @@ use Cake\Validation\Validator;
  * Batidas Model
  *
  * @property \App\Model\Table\FuncionariosTable|\Cake\ORM\Association\BelongsTo $Funcionarios
- * @property \App\Model\Table\ApuracaoImportacaosTable|\Cake\ORM\Association\BelongsTo $ApuracaoImportacaos
- * @property \App\Model\Table\BatidaAjustesTable|\Cake\ORM\Association\BelongsTo $BatidaAjustes
+ * @property |\Cake\ORM\Association\BelongsTo $ApuracaoImportacaos
+ * @property |\Cake\ORM\Association\BelongsTo $BatidaAjustes
  *
  * @method \App\Model\Entity\Batida get($primaryKey, $options = [])
  * @method \App\Model\Entity\Batida newEntity($data = null, array $options = [])
@@ -54,6 +54,11 @@ class BatidasTable extends Table
             'foreignKey' => 'batida_ajuste_id',
             'joinType' => 'INNER'
         ]);
+
+        $this->belongsTo('Users', [
+            'foreignKey' => 'criado_por',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**
@@ -67,6 +72,12 @@ class BatidasTable extends Table
         $validator
             ->integer('id')
             ->allowEmptyString('id', 'create');
+
+        $validator
+            ->scalar('batida')
+            ->maxLength('batida', 255)
+            ->requirePresence('batida', 'create')
+            ->allowEmptyString('batida', false);
 
         $validator
             ->integer('status')

@@ -23,7 +23,8 @@ class ApuracoesPeriodosTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.ApuracoesPeriodos'
+        'app.ApuracoesPeriodos',
+        'app.Users'
     ];
 
     /**
@@ -56,16 +57,6 @@ class ApuracoesPeriodosTableTest extends TestCase
      * @return void
      */
     public function testInitialize()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test validationDefault method
-     *
-     * @return void
-     */
-    public function testValidationDefault()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

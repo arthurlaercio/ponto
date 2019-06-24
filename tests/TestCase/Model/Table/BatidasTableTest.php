@@ -25,8 +25,8 @@ class BatidasTableTest extends TestCase
     public $fixtures = [
         'app.Batidas',
         'app.Funcionarios',
-        'app.ApuracaoImportacaos',
-        'app.BatidaAjustes'
+        'app.ApuracoesImportacoes',
+        'app.BatidasAjustes'
     ];
 
     /**

@@ -14,14 +14,14 @@ use Cake\ORM\Entity;
  * @property string|null $rg
  * @property string|null $email
  * @property string|null $telefone
- * @property \Cake\I18n\FrozenDate|null $data_nascimento
+ * @property string|null $data_nascimento
  * @property string $sexo
  * @property string|null $pis
  * @property string|null $ctps_numero
  * @property string|null $ctps_serie
  * @property string|null $ctps_uf
- * @property \Cake\I18n\FrozenDate|null $data_admissao
- * @property \Cake\I18n\FrozenDate|null $data_demissao
+ * @property string|null $data_admissao
+ * @property string|null $data_demissao
  * @property int $status
  * @property int $criado_por
  * @property \Cake\I18n\FrozenTime $created

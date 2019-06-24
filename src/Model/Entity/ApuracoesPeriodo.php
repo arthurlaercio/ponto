@@ -7,14 +7,17 @@ use Cake\ORM\Entity;
  * ApuracoesPeriodo Entity
  *
  * @property int $id
- * @property \Cake\I18n\FrozenDate $data_encerra
- * @property \Cake\I18n\FrozenDate $data_inicio
- * @property \Cake\I18n\FrozenDate $data_fim
+ * @property string $nome
+ * @property string $data_encerra
+ * @property string $data_inicio
+ * @property string $data_fim
  * @property int $status
  * @property int $criado_por
  * @property \Cake\I18n\FrozenTime $created
  * @property int $modificado_por
  * @property \Cake\I18n\FrozenTime $modified
+ *
+ * @property \App\Model\Entity\User $user
  */
 class ApuracoesPeriodo extends Entity
 {
@@ -28,6 +31,7 @@ class ApuracoesPeriodo extends Entity
      * @var array
      */
     protected $_accessible = [
+        'nome' => true,
         'data_encerra' => true,
         'data_inicio' => true,
         'data_fim' => true,
@@ -35,6 +39,7 @@ class ApuracoesPeriodo extends Entity
         'criado_por' => true,
         'created' => true,
         'modificado_por' => true,
-        'modified' => true
+        'modified' => true,
+        'user' => true
     ];
 }

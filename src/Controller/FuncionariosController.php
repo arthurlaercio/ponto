@@ -53,19 +53,12 @@ class FuncionariosController extends AppController
     {
         $funcionario = $this->Funcionarios->newEntity();
         if ($this->request->is('post')) {
-            $pieces = explode("/", $this->request->data['data_nascimento2']);
-            $this->request->data['data_nascimento']['day'] = $pieces[0];
-            $this->request->data['data_nascimento']['month'] = $pieces[1];
-            $this->request->data['data_nascimento']['year'] = $pieces[2];
-            $pieces = explode("/", $this->request->data['data_admissao2']);
-            $this->request->data['data_admissao']['day'] = $pieces[0];
-            $this->request->data['data_admissao']['month'] = $pieces[1];
-            $this->request->data['data_admissao']['year'] = $pieces[2];
-            //pr($this->request->data);exit;
+           
             $funcionario = $this->Funcionarios->patchEntity($funcionario, $this->request->getData());
             $funcionario->criado_por = $this->retornarIdUsuarioAtivo();
             $funcionario->modificado_por = $this->retornarIdUsuarioAtivo();
             $funcionario->status = 1;
+            //pr($funcionario);exit;
             if ($this->Funcionarios->save($funcionario)) {
                 $this->Flash->success(__('The funcionario has been saved.'));
 
@@ -93,6 +86,8 @@ class FuncionariosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $funcionario = $this->Funcionarios->patchEntity($funcionario, $this->request->getData());
             $funcionario->modificado_por = $this->retornarIdUsuarioAtivo();
+            //pr($this->request->data);exit;
+            //pr($funcionario);exit;
             if ($this->Funcionarios->save($funcionario)) {
                 $this->Flash->success(__('The funcionario has been saved.'));
 

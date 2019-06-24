@@ -49,22 +49,6 @@ class QuadrosHorasController extends AppController
         $quadrosHora = $this->QuadrosHoras->newEntity();
         //pr($quadrosHora);exit;
         if ($this->request->is('post')) {
-            //pr($this->request->data);exit;
-            $pieces = explode(":", $this->request->data['hora_entrada2']);
-            $this->request->data['hora_entrada']['hour'] = $pieces[0];
-            $this->request->data['hora_entrada']['minute'] = $pieces[1];
-            $pieces = explode(":", $this->request->data['hora_saida2']);
-            $this->request->data['hora_saida']['hour'] = $pieces[0];
-            $this->request->data['hora_saida']['minute'] = $pieces[1];
-            $pieces = explode(":", $this->request->data['intervalo_entrada2']);
-            $this->request->data['intervalo_entrada']['hour'] = $pieces[0];
-            $this->request->data['intervalo_entrada']['minute'] = $pieces[1];
-            $pieces = explode(":", $this->request->data['intervalo_saida2']);
-            $this->request->data['intervalo_saida']['hour'] = $pieces[0];
-            $this->request->data['intervalo_saida']['minute'] = $pieces[1];
-            $pieces = explode(":", $this->request->data['tolerancia2']);
-            $this->request->data['tolerancia']['hour'] = $pieces[0];
-            $this->request->data['tolerancia']['minute'] = $pieces[1];
             $quadrosHora = $this->QuadrosHoras->patchEntity($quadrosHora, $this->request->getData());
             $quadrosHora->criado_por = $this->retornarIdUsuarioAtivo();
             $quadrosHora->modificado_por = $this->retornarIdUsuarioAtivo();
@@ -109,17 +93,21 @@ class QuadrosHorasController extends AppController
         $quadrosHora = $this->QuadrosHoras->get($id, [
             'contain' => []
         ]);
+        //pr($quadrosHora);exit;
+        $checked = array();
+        if($quadrosHora->segunda == 1) $checked['1'] = 'Segunda';if($quadrosHora->terca == 1) $checked['2'] = 'Terça';if($quadrosHora->quarta == 1) $checked['3'] = 'Quarta';if($quadrosHora->quinta == 1) $checked['4'] = 'Quinta';if($quadrosHora->sexta == 1) $checked['5'] = 'Sexta';if($quadrosHora->sabado == 1) $checked['6'] = 'Sabado';if($quadrosHora->domingo == 1) $checked['7'] = 'Domingo';
         if ($this->request->is(['patch', 'post', 'put'])) {
             $quadrosHora = $this->QuadrosHoras->patchEntity($quadrosHora, $this->request->getData());
             $quadrosHora->modificado_por = $this->retornarIdUsuarioAtivo();
+            //pr($quadrosHora);exit;
             if ($this->QuadrosHoras->save($quadrosHora)) {
                 $this->Flash->success(__('O quadro de horas foi alterado com sucesso.'));
-
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('Algo deu errado, tente novamente!'));
+            return $this->redirect(['action' => 'index']);
         }
-        $this->set(compact('quadrosHora'));
+        $this->set(compact('quadrosHora','checked'));
     }
 
     /**

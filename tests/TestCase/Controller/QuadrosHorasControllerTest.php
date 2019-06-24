@@ -18,7 +18,8 @@ class QuadrosHorasControllerTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.QuadrosHoras'
+        'app.QuadrosHoras',
+        'app.Users'
     ];
 
     /**

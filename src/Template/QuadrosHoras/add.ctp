@@ -8,9 +8,14 @@
 <?php echo $this->Form->create($quadrosHora,['role'=>'form','id'=>'inline-validate']); ?>
 <div class="modal-body">
     <div class="row">
+        <div class="col-md-12">
+            <?php echo $this->Form->input('descricao',['class'=>'form-control','label' => 'Descrição']); ?>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
             <div class="controls input-append date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                <?php echo $this->Form->input('hora_entrada2',['class'=>'form-control','type' => 'text','label' => 'Hora Entrada']); ?>
+                <?php echo $this->Form->input('hora_entrada',['class'=>'form-control','type' => 'text','label' => 'Hora Entrada','data-mask'=>'99:99']); ?>
                 <span class="add-on"><i class="icon-remove"></i></span>
                 <span class="add-on"><i class="icon-th"></i></span>
                 </span>
@@ -18,7 +23,7 @@
         </div>
         <div class="col-md-6">
             <div class="controls input-append date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                <?php echo $this->Form->input('hora_saida2',['class'=>'form-control','type' => 'text','label' => 'Hora Saída']); ?>
+                <?php echo $this->Form->input('hora_saida',['class'=>'form-control','type' => 'text','label' => 'Hora Saída','data-mask'=>'99:99']); ?>
                 <span class="add-on"><i class="icon-remove"></i></span>
                 <span class="add-on"><i class="icon-th"></i></span>
                 </span>
@@ -28,7 +33,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="controls input-append date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                <?php echo $this->Form->input('intervalo_entrada2',['class'=>'form-control','type' => 'text','label' => 'Intervalo entrada']); ?>
+                <?php echo $this->Form->input('intervalo_entrada',['class'=>'form-control','type' => 'text','label' => 'Intervalo entrada','data-mask'=>'99:99']); ?>
                 <span class="add-on"><i class="icon-remove"></i></span>
                 <span class="add-on"><i class="icon-th"></i></span>
                 </span>
@@ -36,7 +41,7 @@
         </div>
         <div class="col-md-6">
             <div class="controls input-append date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                <?php echo $this->Form->input('intervalo_saida2',['class'=>'form-control','type' => 'text','label' => 'Intervalo saída']); ?>
+                <?php echo $this->Form->input('intervalo_saida',['class'=>'form-control','type' => 'text','label' => 'Intervalo saída','data-mask'=>'99:99']); ?>
                 <span class="add-on"><i class="icon-remove"></i></span>
                 <span class="add-on"><i class="icon-th"></i></span>
                 </span>
@@ -46,7 +51,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="controls input-append date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                <?php echo $this->Form->input('tolerancia2',['class'=>'form-control','type' => 'text','label' => 'Tolerância']); ?>
+                <?php echo $this->Form->input('tolerancia',['class'=>'form-control','type' => 'text','label' => 'Tolerância','data-mask'=>'99:99']); ?>
                 <span class="add-on"><i class="icon-remove"></i></span>
                 <span class="add-on"><i class="icon-th"></i></span>
                 </span>
@@ -70,7 +75,7 @@
 <?php echo $this->Html->script('chosen.jquery') ?>
 <?php echo $this->Html->script('jquery.validate') ?>
 <?php echo $this->Html->script('bootstrap-datetimepicker') ?>
-
+<?php echo $this->Html->script('bootstrap-inputmask') ?>
 <script>
     $('.form_date').datetimepicker({
         language:  'br',

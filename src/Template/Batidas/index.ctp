@@ -36,7 +36,7 @@
                                 <th>Funcionario</th>
                                 <th>Hora da batida</th>
                                 <th>Ajuste</th>
-                                <th>Opções</th>
+                               <!-- <th>Opções</th>-->
                             </tr>
                         </thead>
                         <tbody>
@@ -44,13 +44,13 @@
                                 <tr>
                                     <td><?php echo $batida->id; ?></td>
                                     <td><?php echo $batida->funcionario->nome; ?></td>
-                                    <td><?php echo $batida->created->format('d/m/Y H:i:s'); ?></td>
+                                    <td><?php echo $batida->batida; ?></td>
                                     <td><?php echo $batida->batidas_ajuste->motivo; ?></td>
-                                    <td>
+                                     <!--<td>
                                         <?php //echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $apuracaoPeriodo->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewRelogio','escape'=>false]); ?>
                                         <?php //echo $this->Html->link('<i class="fa fa-edit"></i> Editar', ['action' => 'edit', $batida->id],['class'=>'btn btn-warning btn-xs', 'data-toggle'=>'modal','data-target'=>'#EditarApuracao','escape'=>false]); ?>
                                         <?php //echo $this->Form->postLink('<i class="fa fa-trash"></i> Excluir', ['action' => 'delete', $batida->id], ['confirm' => 'Tem certeza?','class'=>'btn btn-danger btn-xs', 'escape'=>false]); ?>
-                                    </td>
+                                    </td> -->
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

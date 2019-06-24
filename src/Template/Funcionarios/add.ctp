@@ -32,7 +32,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php  echo $this->Form->input('data_nascimento2', array(
+            <?php  echo $this->Form->input('data_nascimento', array(
                                                 'label' => 'Data de Nascimento','type'=>'text', 'class' => 'form-control','id'=>'DataNascimento','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999')); ?>
         </div>
         <div class="col-md-6">
@@ -41,7 +41,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('pis',['class'=>'form-control', 'data-mask'=>'999.99999.99-9']); ?>
+            <?php echo $this->Form->input('pis',['class'=>'form-control']); ?>
         </div>
         <div class="col-md-6">
             <?php echo $this->Form->input('ctps_numero',['class'=>'form-control']); ?>
@@ -57,11 +57,11 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php  echo $this->Form->input('data_admissao2', array(
+            <?php  echo $this->Form->input('data_admissao', array(
                                                 'label' => 'Data de Admissão','type'=>'text', 'class' => 'form-control','id'=>'DataAdmissao','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999')); ?>
         </div>
          <div class="col-md-6">
-            <?php echo $this->Form->control('empresa_id', ['options' => $empresas]);  ?>
+            <?php echo $this->Form->control('empresa_id', ['class'=>'form-control','options' => $empresas]);  ?>
         </div>
     </div>
             
