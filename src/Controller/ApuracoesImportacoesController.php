@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Filesystem\Folder;
+use Cake\Filesystem\File;
 /**
  * ApuracoesImportacoes Controller
  *
@@ -63,21 +65,64 @@ class ApuracoesImportacoesController extends AppController
                 
                 return $this->redirect(['action' => 'index']);
             }
-            //pr($this->request->data);exit;
+           // pr($this->request->data['arquivo']['tmp_name']);exit;
             $arquivo_info = pathinfo($this->request->data['arquivo']['name']);
+
+
+            $arquivo_tmp = $this->request->data['arquivo']['tmp_name'];
+
+            $dados = file($arquivo_tmp);
+            //pr($dados);exit;
+
+
+
             $this->request->data['extensao'] = $arquivo_info['extension'];
             $this->request->data['arquivo'] = $this->ApuracoesImportacoes->salvarArquivo($this->request->data['arquivo']);
-            //pr($this->request->data);
+            //pr($this->request->data);exit;
+            
             $apuracoesImportacao = $this->ApuracoesImportacoes->patchEntity($apuracoesImportacao, $this->request->data);
             $apuracoesImportacao->arquivo_tamanho = 1;
             $apuracoesImportacao->status = 1;
             $apuracoesImportacao->criado_por = $this->retornarIdUsuarioAtivo();
             $apuracoesImportacao->modificado_por = $this->retornarIdUsuarioAtivo();
-            //pr($apuracoesImportacao);exit;
-           
+            
             if ($this->ApuracoesImportacoes->save($apuracoesImportacao)) {
+                $funcionariosTable = TableRegistry::get('Funcionarios');
+                $batidasTable = TableRegistry::get('Batidas');
+                foreach($dados as $key => $linha){
+                    if($key > 0){
+                        //Retirar os espaços em branco no inicio e no final da string
+                        $linha = trim($linha);
+                        //Colocar em um array cada item separado pela virgula na string
+                        $valor = explode('   ', $linha);
+                        
+                        //Recuperar o valor do array indicando qual posição do array requerido e atribuindo para um variável
+                        $no = $valor[0];
+                        $Mchn = $valor[1];
+                        $EnNo = $valor[2];
+                        $Name = $valor[3];
+                        $Mode = $valor[4];
+                        $IOMd = $valor[5];
+                        $DateTime = $valor[6];
+                        $var = $valor[7];
+                        $var2 = $valor[8];
+                        $funcionario = $funcionariosTable->find()->where(['id'=>$EnNo])->first();
+                        if(!empty($funcionario)){
+                            $batida = $batidasTable->newEntity();
+                            $batida->funcionario_id = $funcionario->id;
+                            $batida->apuracao_importacao_id = $apuracoesImportacao->id;
+                            $batida->batida_ajuste_id = 1;
+                            $batida->batida = $var2;
+                            $batida->status = 1;
+                            $batida->criado_por = $this->retornarIdUsuarioAtivo();
+                            $batida->modificado_por = $this->retornarIdUsuarioAtivo();
+                            $batidasTable->save($batida);
+                        }
+                        //pr($EnNo);pr($Name);pr($var2);exit;
+                    }        
+                }
                 $this->Flash->success(__('The apuracoes importaco has been saved.'));
-
+                
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The apuracoes importaco could not be saved. Please, try again.'));
