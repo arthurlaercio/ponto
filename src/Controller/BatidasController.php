@@ -85,10 +85,13 @@ class BatidasController extends AppController
     public function edit($id = null)
     {
         $batida = $this->Batidas->get($id, [
-            'contain' => []
+            'contain' => ['Funcionarios']
         ]);
+       
         if ($this->request->is(['patch', 'post', 'put'])) {
             $batida = $this->Batidas->patchEntity($batida, $this->request->getData());
+            $batida->modificado_por = $this->retornarIdUsuarioAtivo();
+            //pr($batida);exit;
             if ($this->Batidas->save($batida)) {
                 $this->Flash->success(__('The batida has been saved.'));
 
@@ -96,10 +99,10 @@ class BatidasController extends AppController
             }
             $this->Flash->error(__('The batida could not be saved. Please, try again.'));
         }
-        $funcionarios = $this->Batidas->Funcionarios->find('list', ['limit' => 200]);
-        $apuracoesImportacoes = $this->Batidas->ApuracoesImportacoes->find('list', ['limit' => 200]);
+        $funcionario = $this->Batidas->Funcionarios->find('list', ['limit' => 200])->where(['id' => $batida->funcionario->id])->all();
         $batidasAjustes = $this->Batidas->BatidasAjustes->find('list', ['limit' => 200]);
-        $this->set(compact('batida', 'funcionarios', 'apuracoesImportacoes', 'batidasAjustes'));
+        $batidasAjustes = $this->Batidas->BatidasAjustes->find('list', ['limit' => 200]);
+        $this->set(compact('batida', 'funcionario','batidasAjustes'));
     }
 
     /**

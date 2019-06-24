@@ -19,7 +19,7 @@
                 <div class="x_title">
                     <div class="row">
                         <div class="pull-left">
-                            <?php echo $this->Html->link('<i class="fa fa-plus"></i> Adicionar', ['action'=>'add'], ['escape'=>false, 'class' => 'btn btn-success btn-sm','data-toggle'=>'modal','data-target'=>'#AdicionarApuracao']); ?>
+                            <?php echo $this->Html->link('<i class="fa fa-plus"></i> Bater Ponto', ['action'=>'realizarBatida'], ['escape'=>false, 'class' => 'btn btn-success btn-sm']); ?>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -36,8 +36,7 @@
                                 <th>Funcionario</th>
                                 <th>Hora da batida</th>
                                 <th>Ajuste</th>
-                                <th>Status</th>
-                                <th>Opções</th>
+                               <!-- <th>Opções</th>-->
                             </tr>
                         </thead>
                         <tbody>
@@ -47,12 +46,11 @@
                                     <td><?php echo $batida->funcionario->nome; ?></td>
                                     <td><?php echo $batida->batida; ?></td>
                                     <td><?php echo $batida->batidas_ajuste->motivo; ?></td>
-                                    <td><?php if($batida->status == 1) echo "Válida"; else echo "Desconsiderada"; ?></td>
-                                     <td>
-                                        <?php echo $this->Html->link('<i class="fa fa-edit"></i> Ajustar batida', ['action' => 'edit', $batida->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#EditarBatida','escape'=>false]); ?>
+                                     <!--<td>
+                                        <?php //echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $apuracaoPeriodo->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewRelogio','escape'=>false]); ?>
                                         <?php //echo $this->Html->link('<i class="fa fa-edit"></i> Editar', ['action' => 'edit', $batida->id],['class'=>'btn btn-warning btn-xs', 'data-toggle'=>'modal','data-target'=>'#EditarApuracao','escape'=>false]); ?>
                                         <?php //echo $this->Form->postLink('<i class="fa fa-trash"></i> Excluir', ['action' => 'delete', $batida->id], ['confirm' => 'Tem certeza?','class'=>'btn btn-danger btn-xs', 'escape'=>false]); ?>
-                                    </td> 
+                                    </td> -->
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -72,7 +70,7 @@
     </div>
 </div>
 
-<div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true"  id="EditarBatida">
+<div class="modal fade bs-example-modal" tabindex="-1" role="dialog" aria-hidden="true"  id="EditarApuracao">
     <div class="modal-dialog">
       <div class="modal-content">
 

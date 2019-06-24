@@ -33,7 +33,7 @@ class BatidasAjustesTable extends Table
         parent::initialize($config);
 
         $this->setTable('batidas_ajustes');
-        $this->setDisplayField('id');
+        $this->setDisplayField('motivo');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
