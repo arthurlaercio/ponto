@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Datasource\ConnectionManager;
+use Cake\Event\Event;
 /**
  * Batidas Controller
  *
@@ -163,5 +165,50 @@ class BatidasController extends AppController
         $batidas = $this->paginate($query); 
         //pr($batidas);exit;
         $this->set(compact('batidas'));
+    }
+
+    //relatorios
+
+    public function relatorioPorPeriodo(){
+        /*$this->viewBuilder()->options([
+            'pdfConfig' => [
+                'orientation' => 'portrait',
+                'filename' => 'Relatorio'
+            ]
+        ]);*/
+        
+        $conditions = array();
+        if ($this->request->is('post','put')){
+            $filtro = $this->request->data['Relatorio'];
+            //pr($this->request->data);exit;
+            if(!empty($filtro['data_inicio'])){
+                $filtro['data_inicio'] = implode('-', array_reverse(explode('/', $filtro['data_inicio'])));
+                $data_inicio = date('Y-m-d 00:00:00', strtotime($filtro['data_inicio']));
+                $conditions += (['Batidas.created >=' => $data_inicio]);
+            }
+            if(!empty($filtro['data_fim'])){
+                $filtro['data_fim'] = implode('-', array_reverse(explode('/', $filtro['data_fim'])));
+                $data_fim = date('Y-m-d 23:59:59', strtotime($filtro['data_fim']));
+                $conditions +=(['Batidas.created <=' => $data_fim]);
+            } 
+            $conditions +=(['Batidas.status' => 1]);
+            $conditions +=(['Batidas.funcionario_id <>' => 1]);
+        }
+
+        $batidas = $this->Batidas->find()
+                ->contain(['Funcionarios','BatidasAjustes'])
+                ->where($conditions)
+                ->order(['Funcionarios.nome'=>'ASC'])
+                ->group(['Batidas.id'])
+                ->all();
+        $mesesAno = array(['01' => 'Janeiro','02' => 'Fevereiro','03' => 'Março','04' => 'Abril', '05' => 'Maio', '06' => 'Junho','07' => 'Julho', '08' => 'Agosto', '09' => 'Setembro','10' => 'Outubro', '11' => 'Novembro', '12' => 'Dezembro']);
+        $relatorio = array();
+        foreach ($batidas as $key => $value) {
+            $partes = explode("/", $value->created->format('d/m/Y'));
+            $mes = $partes[1];
+            $relatorio[$mesesAno[0][$mes]][] = $value;
+        }
+        //pr($relatorio);exit;
+        $this->set(compact('relatorio'));
     }
 }

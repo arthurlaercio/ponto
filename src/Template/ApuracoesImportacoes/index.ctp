@@ -44,7 +44,7 @@
                                 <tr>
                                     <td><?php echo $apuracaoImportacoes->id; ?></td>
                                     <td><?php echo $apuracaoImportacoes->relogio->nome; ?></td>
-                                    <td><?php echo $apuracaoImportacoes->apuracoes_periodo->data_inicio->format('d/m/Y') . ' até ' . $apuracaoImportacoes->apuracoes_periodo->data_fim->format('d/m/Y'); ?></td>
+                                    <td><?php echo $apuracaoImportacoes->apuracoes_periodo->data_inicio . ' até ' . $apuracaoImportacoes->apuracoes_periodo->data_fim; ?></td>
                                     <td><?php echo $apuracaoImportacoes->arquivo_nome; ?></td>
                                     <td>
                                         <?php echo $this->Html->link('<i class="fa fa-eye"></i> Visualizar', $dominio_sistema."/media/documentos/".$apuracaoImportacoes->arquivo,['escape'=>false,'class'=>'btn btn-default btn-xs', 'target'=>'_blank', 'type' => 'button']); 
