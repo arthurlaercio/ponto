@@ -1340,9 +1340,10 @@ table.jambo_table tbody tr.selected td {
     float: left
 }
 .dataTables_filter {
-    width: 50%;
+    width: 100%;
     float: right;
-    text-align: right
+    text-align: right;
+    display: grid;
 }
 .dataTables_info {
     width: 60%;
@@ -4248,5 +4249,5 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 .daterangepicker.xdisplay { width:228px; }
 
 .dataTables_wrapper > .row{
-  /*overflow:auto !important; prevent datatables overflowing its container*/
+  overflow:auto !important;
 }

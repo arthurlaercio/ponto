@@ -11556,7 +11556,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "_MENU_ Registros por página",
+			"sLengthMenu": "Registros por página: _MENU_ ",
 	
 	
 			/**

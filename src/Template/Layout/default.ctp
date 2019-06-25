@@ -47,7 +47,7 @@ $cakeDescription = 'HEPOINT';
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <?= $this->Html->link('<img src="'.$dominio_sistema.'/img/hepoint.png" alt="" width="65px"> <span> Ponto</span>',['controller'=>'Users','action'=>'home'], ['escape' => false,'class'=>'navbar-brand']); ?>
+                        <?= $this->Html->link('<img src="'.$dominio_sistema.'/img/hepoint.png" alt="" width="100px"> <span> Ponto</span>',['controller'=>'Users','action'=>'home'], ['escape' => false,'class'=>'navbar-brand']); ?>
                     </div>
                     <div class="clearfix"></div>
                     </br>
