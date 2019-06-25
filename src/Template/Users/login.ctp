@@ -3,17 +3,17 @@
         <section class="login_content">
             <?= $this->Form->create() ?>
                 <div>
-                    <center><?php echo $this->Html->image('hepoint.png', ['width'=>'150px']); ?></center>
+                    <center><?php echo $this->Html->image('hepoint.png', ['width'=>'200px']); ?></center>
                 </div>
                 <br>
                 <div>
                     <h1>HEPOINT</h1>
                 </div>                
                 <div>
-                    <?= $this->Form->input('username',['class'=>'form-control', 'placeholder'=>'usuário','label'=>false,'style'=>'text-align:center']) ?>
+                    <?= $this->Form->input('username',['class'=>'form-control', 'placeholder'=>'Informe o nome de usuário','label'=>false,'style'=>'text-align:center']) ?>
                 </div>
                 <div>
-                    <?= $this->Form->input('password',['class'=>'form-control', 'placeholder'=>'senha','label'=>'Senha', 'type'=>'password', 'style'=>'text-align:center']); ?>
+                    <?= $this->Form->input('password',['class'=>'form-control', 'placeholder'=>'Informe a senha do usuário','label'=>'Senha', 'type'=>'password', 'style'=>'text-align:center']); ?>
                 </div>
                 <div class="clearfix"></div>
                 <div>
