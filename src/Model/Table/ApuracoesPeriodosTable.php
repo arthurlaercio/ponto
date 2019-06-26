@@ -33,7 +33,7 @@ class ApuracoesPeriodosTable extends Table
         parent::initialize($config);
 
         $this->setTable('apuracoes_periodos');
-        $this->setDisplayField('data_encerra');
+        $this->setDisplayField('data_fim');
         $this->setPrimaryKey('id');
         $this->belongsTo('Users', [
             'foreignKey' => 'criado_por',

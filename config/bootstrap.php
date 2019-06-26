@@ -208,3 +208,17 @@ ini_set('intl.default_locale', 'pt_BR');
 Type::build('date')->useLocaleParser();
 Type::build('datetime')->useLocaleParser();
 
+//$this->addPlugin('Admin', ['bootstrap' => true, 'routes' => true]);
+//Plugin::load('CakePdf', ['bootstrap' => true, 'routes' => true, 'autoload' => true]);
+Configure::write('CakePdf', [
+    'engine' => [
+        'className' => 'CakePdf.WkHtmlToPdf',
+        //'binary' => '/usr/bin/wkhtmltopdf',
+        'binary' => 'C:\\Progra~1\\wkhtmltopdf\\bin\\wkhtmltopdf.exe',
+        'options' => [
+            'print-media-type' => false,
+            'outline' => true,
+            'dpi' => 96,
+        ],
+    ],
+]);

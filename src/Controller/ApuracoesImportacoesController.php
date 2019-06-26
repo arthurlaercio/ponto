@@ -114,6 +114,7 @@ class ApuracoesImportacoesController extends AppController
                             $batida->batida_ajuste_id = 1;
                             $batida->batida = $var2;
                             $batida->status = 1;
+                            $batida->created = $var2;
                             $batida->criado_por = $this->retornarIdUsuarioAtivo();
                             $batida->modificado_por = $this->retornarIdUsuarioAtivo();
                             $batidasTable->save($batida);
