@@ -2,7 +2,7 @@
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h4 class="modal-title" id="myModalLabel">Detalhes Quadro Horas</h4>
+    <h4 class="modal-title" id="myModalLabel">Detalhes do Funcionário</h4>
 </div>
 <?php echo $this->Form->create($funcionario,['role'=>'form']); ?>
 <div class="modal-body">
@@ -89,7 +89,7 @@
         </div>
         <div class="col-md-6">
             <label>Criado Por:</label>
-            <?php //echo $funcionario->user->nome; ?>
+            <?php echo $funcionario->criado_por; ?>
         </div>
     </div>
     <div class="row">
