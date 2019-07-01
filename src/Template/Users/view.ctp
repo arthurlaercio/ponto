@@ -22,16 +22,6 @@
             <?php echo $user->username; ?>
         </div>
         <div class="col-md-6">
-            <label>Criado Por:</label>
-            <?php echo $user->criado_por;  ?>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <label>Data criação:</label>
-            <?php echo $user->created->format('d/m/Y'); ?>
-        </div>
-        <div class="col-md-6">
             <label>Última modificação:</label>
             <?php echo $user->modified->format('d/m/Y');  ?>
         </div>
@@ -41,6 +31,20 @@
             <label>Status:</label>
             <?php if($user->status == 1) echo "Ativo"; else echo "Inativo"; ?>
         </div>
+        <div class="col-md-6">
+            <label>Status:</label>
+            <?php if($user->tipo == 1) echo "Administrador"; else echo "Colaborador"; ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Criado Por:</label>
+            <?php echo $user->criado_por;  ?>
+        </div>
+        <div class="col-md-6">
+            <label>Data criação:</label>
+            <?php echo $user->created->format('d/m/Y'); ?>
+        </div>        
     </div>
 </div>
 <?php echo $this->Form->end(); ?>

@@ -32,7 +32,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="page-title">
                 <div class="text-center">
-                <h3></i>Funcionários vinculados a empresa</h3>
+                <h3></i>Funcionários vinculados a empresa/responsável</h3>
             </div>
         </div>
     </div>           
