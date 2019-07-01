@@ -37,20 +37,23 @@
                         </thead>
                         <tbody>
                             <?php foreach ($funcionarios as $funcionario): ?>
+                                <?php if($funcionario->id != 1){ ?> <!-- Linha para ocultar o funcionário "não associar" -->
                                 <tr>
-                                    <td><?php echo $funcionario->id; ?></td>
-                                    <td><?php echo $funcionario->nome; ?></td>
-                                    <td><?php if($funcionario->data_demissao == null) echo "ativo"; else echo "Inativo"; ?></td>
-                                    <td><?php echo $funcionario->cpf; ?></td>
-                                    <td><?php echo $funcionario->email; ?></td>
-                                    <td><?php echo $funcionario->telefone; ?></td>
-                                    <td>
-                                        <?php echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $funcionario->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewFuncionario','escape'=>false]); ?>
-                                        <?php echo $this->Html->link('<i class="fa fa-edit"></i> Editar', ['action' => 'edit', $funcionario->id],['class'=>'btn btn-warning btn-xs', 'data-toggle'=>'modal','data-target'=>'#EditarFuncionario','escape'=>false]); ?>
-                                        <?php echo $this->Form->postLink('<i class="fa fa-trash"></i> Excluir', ['action' => 'delete', $funcionario->id], ['confirm' => 'Tem certeza?','class'=>'btn btn-danger btn-xs', 'escape'=>false]); ?>
-                                        <?php echo $this->Html->link('<i class="icon-plus"></i> Escalas', ['controller'=>'FuncionariosQuadrosRelogios','action' => 'escala_funcionario', $funcionario->id],['escape'=>false, 'class' => 'btn btn-info btn-xs']); ?>
-                                        <?php //echo $this->Html->link('<i class="icon-plus"></i> Adicionar Escala', ['controller'=>'FuncionariosQuadrosRelogios','action' => 'add', $funcionario->id],['escape'=>false, 'class' => 'btn btn-info btn-xs']); ?>
-                                    </td>
+                                    
+                                        <td><?php echo $funcionario->id; ?></td>
+                                        <td><?php echo $funcionario->nome; ?></td>
+                                        <td><?php if($funcionario->data_demissao == null) echo "ativo"; else echo "Inativo"; ?></td>
+                                        <td><?php echo $funcionario->cpf; ?></td>
+                                        <td><?php echo $funcionario->email; ?></td>
+                                        <td><?php echo $funcionario->telefone; ?></td>
+                                        <td>
+                                            <?php echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $funcionario->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewFuncionario','escape'=>false]); ?>
+                                            <?php echo $this->Html->link('<i class="fa fa-edit"></i> Editar', ['action' => 'edit', $funcionario->id],['class'=>'btn btn-warning btn-xs', 'data-toggle'=>'modal','data-target'=>'#EditarFuncionario','escape'=>false]); ?>
+                                            <?php echo $this->Form->postLink('<i class="fa fa-trash"></i> Excluir', ['action' => 'delete', $funcionario->id], ['confirm' => 'Tem certeza?','class'=>'btn btn-danger btn-xs', 'escape'=>false]); ?>
+                                            <?php echo $this->Html->link('<i class="icon-plus"></i> Escalas', ['controller'=>'FuncionariosQuadrosRelogios','action' => 'escala_funcionario', $funcionario->id],['escape'=>false, 'class' => 'btn btn-info btn-xs']); ?>
+                                            <?php //echo $this->Html->link('<i class="icon-plus"></i> Adicionar Escala', ['controller'=>'FuncionariosQuadrosRelogios','action' => 'add', $funcionario->id],['escape'=>false, 'class' => 'btn btn-info btn-xs']); ?>
+                                        </td>
+                                <?php } ?>     
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

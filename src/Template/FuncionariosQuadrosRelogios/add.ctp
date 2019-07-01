@@ -26,8 +26,8 @@
         <div class="col-md-6">
             <?php echo $this->Form->control('relogio_id', ['options' => $relogios,'class'=>'form-control']);  ?>
         </div>
-       <div class="col-md-6">
-            <?php echo $this->Form->input('cartao_ponto', ['class'=>'form-control']); ?>
+       <div class="col-md-6">            
+            <?php echo $this->Form->input('cartao_ponto', ['class'=>'form-control','value'=>$funcionario->id,'disabled' => 'disabled']); ?>
         </div>
     </div>
             

@@ -51,12 +51,14 @@
                         <tbody>
                             <?php foreach ($empresa->funcionarios as $funcionario): ?>
                                 <tr>
-                                    <td><?php echo $funcionario->id; ?></td>
-                                    <td><?php echo $funcionario->nome; ?></td>
-                                    <td><?php if($funcionario->data_demissao == null) echo "ativo"; else echo "Inativo"; ?></td>
-                                    <td><?php echo $funcionario->cpf; ?></td>
-                                    <td><?php echo $funcionario->email; ?></td>
-                                    <td><?php echo $funcionario->telefone; ?></td>
+                                    <?php if($funcionario->id != 1){ ?> <!-- Linha para ocultar o funcionário "não associar" -->
+                                        <td><?php echo $funcionario->id; ?></td>
+                                        <td><?php echo $funcionario->nome; ?></td>
+                                        <td><?php if($funcionario->data_demissao == null) echo "ativo"; else echo "Inativo"; ?></td>
+                                        <td><?php echo $funcionario->cpf; ?></td>
+                                        <td><?php echo $funcionario->email; ?></td>
+                                        <td><?php echo $funcionario->telefone; ?></td>  
+                                    <?php } ?>                                  
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
