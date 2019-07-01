@@ -2,21 +2,29 @@
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h4 class="modal-title" id="myModalLabel">Editar Importação</h4>
+    <h4 class="modal-title" id="myModalLabel">Editar: Período de Apuração</h4>
 </div>
 <?= $this->Form->create($apuracoesPeriodo) ?>
 <div class="modal-body">
-    <div class="row">
+    <div class="row">        
         <div class="col-md-12">
-            <?php echo $this->Form->input('nome',['class'=>'form-control', 'maxlength'=>'80']); ?>
-            <?php echo $this->Form->input('data_encerra',['class'=>'form-control']); ?>
-            <?php echo $this->Form->input('data_inicio',['class'=>'form-control']); ?>
-            <?php echo $this->Form->input('data_fim',['class'=>'form-control']); ?>
-            <?php echo $this->Form->input('status',['class'=>'form-control']); ?>
-            <?php echo $this->Form->input('criado_por', ['options' => $users, 'class'=>'form-control']); ?>
-            <?php echo $this->Form->input('modificado_por',['class'=>'form-control']); ?>
+            <?php  echo $this->Form->input('nome', array('class' => 'form-control','label' => 'Descrição', 'disabled' => 'disabled')); ?>    
         </div>
     </div>
+    <div class="row">        
+       <div class="col-md-4">            
+            <?php  echo $this->Form->input('data_inicio', array(
+                                                'label' => 'Data de Inicio','type'=>'text', 'class' => 'form-control','id'=>'DataInicio','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999', 'disabled' => 'disabled')); ?>
+       </div>             
+       <div class="col-md-4">
+            <?php  echo $this->Form->input('data_fim', array(
+                                                'label' => 'Data Fim','type'=>'text', 'class' => 'form-control','id'=>'DataFim','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999', 'disabled' => 'disabled')); ?>
+       </div>
+       <div class="col-md-4">
+           <?php  echo $this->Form->input('data_encerra', array(
+                                               'label' => 'Data de Encerramento','type'=>'text', 'class' => 'form-control','id'=>'DataEncerra','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999')); ?> 
+       </div>
+    </div>               
 </div>
 <div class="modal-footer">
     <div class="row">
@@ -30,6 +38,8 @@
 
 <?php echo $this->Html->script('chosen.jquery') ?>
 <?php echo $this->Html->script('jquery.validate') ?>
+<?php echo $this->Html->script('bootstrap-inputmask') ?>
+<?php echo $this->Html->script('bootstrap-datepicker') ?>
 <script>
     $(function () { 
         $(".chzn-select").chosen();
@@ -37,16 +47,19 @@
         $('body').on('hidden.bs.modal', '.modal', function () {
             $(this).removeData('bs.modal');
         });
-
-        formValidation();
     });
-
-
-    ﻿function formValidation() {
-        "use strict";
-
-        /*----------- BEGIN validate CODE -------------------------*/
-        
-    /*----------- END validate CODE -------------------------*/
-    }
+    $(document).ready(function () {
+        $('#DataEncerra').datepicker().on('changeDate', function(ev)
+        {                 
+             $('.datepicker').hide();
+        });
+        $('#DataInicio').datepicker().on('changeDate', function(ev)
+        {                 
+             $('.datepicker').hide();
+        });
+        $('#DataFim').datepicker().on('changeDate', function(ev)
+        {                 
+             $('.datepicker').hide();
+        });
+    }); 
 </script>
