@@ -22,36 +22,44 @@
 					<?php $totalGeral = 0; ?>
 					<?php foreach ($relatorio as $nome => $mes): ?>
 						<h3> <?php echo $nome; ?> </h3>
-						<table class="table table-relatorio">
-							<thead style="page-break-inside: avoid;">
-								<tr style="page-break-inside: avoid;">
-									<th style="page-break-inside: avoid;" width="30%">Funcionario</th>
-									<th style="page-break-inside: avoid;" width="20%">Batida</th>
-									<th style="page-break-inside: avoid;" width="20%">Ajuste</th>
-								</tr>
-							</thead>
-							<tbody style="page-break-inside: avoid;">
-							<?php $totalEstado = 0; ?> 
-								<?php foreach ($mes as $key => $batida) { 
-									$totalEstado++;
-								?>
-									
+						<?php foreach ($mes as $key => $funcionario) { //pr($funcionario);exit;?>
+							<table class="table table-relatorio">
+								<thead style="page-break-inside: avoid;">
 									<tr style="page-break-inside: avoid;">
-										<td style="page-break-inside: avoid;"><?php echo $batida->funcionario->nome; ?></td>
-										<td style="page-break-inside: avoid;"><?php echo $batida->created->format('d/m/Y'); ?></td>
-										<td style="page-break-inside: avoid;"><?php echo $batida->batidas_ajuste->motivo; ?></td>
+										<th style="page-break-inside: avoid;" width="20%">Funcionario</th>
+										<th style="page-break-inside: avoid;" width="20%">Dia da semana</th>
+										<th style="page-break-inside: avoid;" width="20%">Batida</th>
+										<th style="page-break-inside: avoid;" width="20%">Status</th>
+										<th style="page-break-inside: avoid;" width="20%">Ajuste</th>
 									</tr>
-								<?php } ?>
-
-							</tbody>
-						</table>
-						<?php 
-							echo "Total por Mês: ". $totalEstado;
-							$totalGeral += $totalEstado; 
-						?>
+								</thead>
+								<tbody style="page-break-inside: avoid;">
+								<?php $totalEstado = 0; ?> 
+									<?php foreach ($funcionario as $key => $data) { //pr($data);exit;
+										foreach ($data as $key2 => $batida) {
+										$totalEstado++;
+									?>
+											<?php if(!empty($batida)){ ?>
+												<tr style="page-break-inside: avoid;">
+													<td style="page-break-inside: avoid;"><?php echo $batida['funcionario_nome']; ?></td>
+													<td style="page-break-inside: avoid;"><?php echo $batida['data'] .' '.$batida['dia_semana']; ?></td>
+													<td style="page-break-inside: avoid;"><?php echo $batida['batida']; ?></td>
+													<td style="page-break-inside: avoid;"><?php echo $batida['status']; ?></td>
+													<td style="page-break-inside: avoid;"><?php echo $batida['motivo']; ?></td>
+												</tr>
+											<?php } ?>
+										<?php } ?>
+									<?php } ?>
+								</tbody>
+							</table>
+							<?php 
+								//echo "Total por Mês: ". $totalEstado;
+								$totalGeral += $totalEstado; 
+							?>
+						<?php } ?>
 					<?php endforeach; ?>
 					<br><br>
-					<?php echo "Total de prospectivos: ".$totalGeral; ?>
+					<?php //echo "Total de prospectivos: ".$totalGeral; ?>
 				</div>
 			</div>
 		</div>
