@@ -54,11 +54,11 @@ class EmpresasController extends AppController
             $empresa->modificado_por = $this->retornarIdUsuarioAtivo();
             $empresa->status = 1;
             if ($this->Empresas->save($empresa)) {
-                $this->Flash->success(__('The empresa has been saved.'));
+                $this->Flash->success(__('A empresa/responsável foi cadastrado(a) com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The empresa could not be saved. Please, try again.'));
+            $this->Flash->error(__('A empresa/responsável não pôde ser cadastrado, por favor tente novamente.'));
         }
         $this->set(compact('empresa'));
     }
@@ -79,11 +79,11 @@ class EmpresasController extends AppController
             $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
             $empresa->modificado_por = $this->retornarIdUsuarioAtivo();
             if ($this->Empresas->save($empresa)) {
-                $this->Flash->success(__('The empresa has been saved.'));
+                $this->Flash->success(__('A empresa/responsável foi editado(a) com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The empresa could not be saved. Please, try again.'));
+            $this->Flash->error(__('A empresa/responsável não pôde ser editado, por favor tente novamente.'));
         }
         $this->set(compact('empresa'));
     }
@@ -101,9 +101,9 @@ class EmpresasController extends AppController
         $empresa = $this->Empresas->get($id);
         $empresa->status = 0;
         if ($this->Empresas->save($empresa)) {
-            $this->Flash->success(__('The empresa has been deleted.'));
+            $this->Flash->success(__('A empresa/responsável foi deletado(a) com sucesso!'));
         } else {
-            $this->Flash->error(__('The empresa could not be deleted. Please, try again.'));
+            $this->Flash->error(__('A empresa/responsável não pôde ser deletado, por favor tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

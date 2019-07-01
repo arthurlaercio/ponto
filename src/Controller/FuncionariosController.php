@@ -60,11 +60,11 @@ class FuncionariosController extends AppController
             $funcionario->status = 1;
             //pr($funcionario);exit;
             if ($this->Funcionarios->save($funcionario)) {
-                $this->Flash->success(__('The funcionario has been saved.'));
+                $this->Flash->success(__('O funcionário foi salvo com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The funcionario could not be saved. Please, try again.'));
+            $this->Flash->error(__('O funcionário não pôde ser salvo, por favor tente novamente.'));
         }
         $users = $this->Funcionarios->Users->find('list', ['limit' => 200]);
         $empresas = $this->Funcionarios->Empresas->find('list', ['limit' => 200]);
@@ -89,11 +89,11 @@ class FuncionariosController extends AppController
             //pr($this->request->data);exit;
             //pr($funcionario);exit;
             if ($this->Funcionarios->save($funcionario)) {
-                $this->Flash->success(__('The funcionario has been saved.'));
+                $this->Flash->success(__('O funcionário foi salvo com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The funcionario could not be saved. Please, try again.'));
+            $this->Flash->error(__('O funcionário não pôde ser salvo, por favor tente novamente.'));
         }
         $users = $this->Funcionarios->Users->find('list', ['limit' => 200]);
         $empresas = $this->Funcionarios->Empresas->find('list', ['limit' => 200]);
@@ -112,9 +112,9 @@ class FuncionariosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $funcionario = $this->Funcionarios->get($id);
         if ($this->Funcionarios->delete($funcionario)) {
-            $this->Flash->success(__('The funcionario has been deleted.'));
+            $this->Flash->success(__('O funcionário foi deletado com sucesso!'));
         } else {
-            $this->Flash->error(__('The funcionario could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O funcionário não pôde ser deletado, por favor verifique os vínculos e tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);
