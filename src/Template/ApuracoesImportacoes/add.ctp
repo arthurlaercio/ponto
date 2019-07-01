@@ -14,7 +14,8 @@
             <?php echo $this->Form->input('relogio_id',['class'=>'form-control','options' => $relogios]); ?>
         </div>
         <div class="col-md-6">
-            <?php echo $this->Form->input('apuracao_periodo_id',['class'=>'form-control','options' => $apuracaoPeriodos]); ?>
+            <?php //echo $this->Form->input('apuracao_periodo_id',['class'=>'form-control','options' => $apuracaoPeriodos]); ?>            
+            <?php echo $this->Form->input('apuracao_periodo_id',['type'=>'select','class'=>'form-control','options'=>$apuracaoPeriodos,'label' => 'Períodos de apuração']); ?>
         </div>
     </div>
     <div class="row">

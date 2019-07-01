@@ -122,11 +122,11 @@ class ApuracoesImportacoesController extends AppController
                         //pr($EnNo);pr($Name);pr($var2);exit;
                     }        
                 }
-                $this->Flash->success(__('The apuracoes importaco has been saved.'));
+                $this->Flash->success(__('O arquivo de importação para apuração foi salvo com sucesso!'));
                 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The apuracoes importaco could not be saved. Please, try again.'));
+            $this->Flash->error(__('O arquivo de importação para apuração não pôde ser salvo, por favor, tente novamente.'));
         }
 
 
@@ -150,11 +150,11 @@ class ApuracoesImportacoesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $apuracoesImportaco = $this->ApuracoesImportacoes->patchEntity($apuracoesImportaco, $this->request->getData());
             if ($this->ApuracoesImportacoes->save($apuracoesImportaco)) {
-                $this->Flash->success(__('The apuracoes importaco has been saved.'));
+                $this->Flash->success(__('O arquivo de importação para apuração foi editado com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The apuracoes importaco could not be saved. Please, try again.'));
+            $this->Flash->error(__('O arquivo de importação para apuração não pôde ser editado, por favor, tente novamente.'));
         }
         $relogios = $this->ApuracoesImportacoes->Relogios->find('list', ['limit' => 200]);
         $apuracaoPeriodos = $this->ApuracoesImportacoes->ApuracaoPeriodos->find('list', ['limit' => 200]);
@@ -173,9 +173,9 @@ class ApuracoesImportacoesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $apuracoesImportaco = $this->ApuracoesImportacoes->get($id);
         if ($this->ApuracoesImportacoes->delete($apuracoesImportaco)) {
-            $this->Flash->success(__('The apuracoes importaco has been deleted.'));
+            $this->Flash->success(__('O arquivo de importação para apuração foi deletado com sucesso!'));
         } else {
-            $this->Flash->error(__('The apuracoes importaco could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O arquivo de importação para apuração não pode ser deletado, Por favor tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);
