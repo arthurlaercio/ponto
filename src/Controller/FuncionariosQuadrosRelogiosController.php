@@ -67,20 +67,20 @@ class FuncionariosQuadrosRelogiosController extends AppController
                 $funcionariosQuadrosRelogioAnterior->data_fim = date('y/m/d');
                 if ($this->FuncionariosQuadrosRelogios->save($funcionariosQuadrosRelogioAnterior)) {
                     if ($this->FuncionariosQuadrosRelogios->save($funcionariosQuadrosRelogio)) {
-                        $this->Flash->success(__('The funcionarios quadros relogio has been saved.'));
+                        $this->Flash->success(__('O enquadramento do funcionário foi efetuado com sucesso!'));
 
                         return $this->redirect(['controller' => 'Funcionarios','action' => 'index']);
                     }
                 }
             }else{
                 if ($this->FuncionariosQuadrosRelogios->save($funcionariosQuadrosRelogio)) {
-                        $this->Flash->success(__('The funcionarios quadros relogio has been saved.'));
+                        $this->Flash->success(__('O enquadramento do funcionário foi efetuado com sucesso!'));
 
                         return $this->redirect(['controller' => 'Funcionarios','action' => 'index']);
                     }
             }
             
-            $this->Flash->error(__('The funcionarios quadros relogio could not be saved. Please, try again.'));
+            $this->Flash->error(__('O enquadramento do funcionário não pode ser efetivado, por favor tente novamente.'));
         }
         //$funcionarios = $this->FuncionariosQuadrosRelogios->Funcionarios->find('list', ['limit' => 200]);
         $relogios = $this->FuncionariosQuadrosRelogios->Relogios->find('list', ['limit' => 200]);
@@ -105,11 +105,11 @@ class FuncionariosQuadrosRelogiosController extends AppController
             $funcionariosQuadrosRelogio = $this->FuncionariosQuadrosRelogios->patchEntity($funcionariosQuadrosRelogio, $this->request->getData());
             //$funcionariosQuadrosRelogio->status = 0;
             if ($this->FuncionariosQuadrosRelogios->save($funcionariosQuadrosRelogio)) {
-                $this->Flash->success(__('The funcionarios quadros relogio has been saved.'));
+                $this->Flash->success(__('O enquadramento do funcionário foi efetuado com sucesso!'));
 
                 return $this->redirect(['action' => 'escalaFuncionario',$funcionariosQuadrosRelogio->funcionario_id]);
             }
-            $this->Flash->error(__('The funcionarios quadros relogio could not be saved. Please, try again.'));
+            $this->Flash->error(__('O enquadramento do funcionário não pode ser efetivado, por favor tente novamente.'));
         }
         $funcionarios = $this->FuncionariosQuadrosRelogios->Funcionarios->find('list', ['limit' => 200]);
         $relogios = $this->FuncionariosQuadrosRelogios->Relogios->find('list', ['limit' => 200]);
@@ -129,9 +129,9 @@ class FuncionariosQuadrosRelogiosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $funcionariosQuadrosRelogio = $this->FuncionariosQuadrosRelogios->get($id);
         if ($this->FuncionariosQuadrosRelogios->delete($funcionariosQuadrosRelogio)) {
-            $this->Flash->success(__('The funcionarios quadros relogio has been deleted.'));
+            $this->Flash->success(__('O enquadramento do funcionário foi efetuado com sucesso!'));
         } else {
-            $this->Flash->error(__('The funcionarios quadros relogio could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O enquadramento do funcionário não pode ser deletado, por favor verifique os vínculos e tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

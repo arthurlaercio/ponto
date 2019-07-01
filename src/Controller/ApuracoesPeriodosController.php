@@ -58,11 +58,11 @@ class ApuracoesPeriodosController extends AppController
             $apuracoesPeriodo->status = 1;
             //pr($apuracoesPeriodo);exit;
             if ($this->ApuracoesPeriodos->save($apuracoesPeriodo)) {
-                $this->Flash->success(__('The apuracoes periodo has been saved.'));
+                $this->Flash->success(__('O período de apuração foi salvo com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The apuracoes periodo could not be saved. Please, try again.'));
+            $this->Flash->error(__('O período de apuração não pôde ser salvo, por favor tente novamente.'));
         }
         $users = $this->ApuracoesPeriodos->Users->find('list', ['limit' => 200]);
         $this->set(compact('apuracoesPeriodo', 'users'));
@@ -84,11 +84,11 @@ class ApuracoesPeriodosController extends AppController
             $apuracoesPeriodo = $this->ApuracoesPeriodos->patchEntity($apuracoesPeriodo, $this->request->getData());
             $apuracoesPeriodo->modificado_por = $this->retornarIdUsuarioAtivo();
             if ($this->ApuracoesPeriodos->save($apuracoesPeriodo)) {
-                $this->Flash->success(__('The apuracoes periodo has been saved.'));
+                $this->Flash->success(__('O período de apuração foi salvo com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The apuracoes periodo could not be saved. Please, try again.'));
+            $this->Flash->error(__('O período de apuração não pôde ser salvo, por favor tente novamente.'));
         }
         $users = $this->ApuracoesPeriodos->Users->find('list', ['limit' => 200]);
         $this->set(compact('apuracoesPeriodo', 'users'));
@@ -106,9 +106,9 @@ class ApuracoesPeriodosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $apuracoesPeriodo = $this->ApuracoesPeriodos->get($id);
         if ($this->ApuracoesPeriodos->delete($apuracoesPeriodo)) {
-            $this->Flash->success(__('The apuracoes periodo has been deleted.'));
+            $this->Flash->success(__('O período de apuração foi salvo com sucesso!'));
         } else {
-            $this->Flash->error(__('The apuracoes periodo could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O período de apuração não pôde ser deletado, por favor verifique os vínculos e tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

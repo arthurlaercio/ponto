@@ -45,7 +45,7 @@
                                     <td><?php if($funcionarioQuadroRelogio->data_fim == null) echo "Escala em uso"; else echo $funcionarioQuadroRelogio->data_fim; ?></td>
                                     <td><?php echo $funcionarioQuadroRelogio->cartao_ponto; ?></td>
                                     <td><?php echo $funcionarioQuadroRelogio->relogio->nome; ?></td>
-                                    <td><?php echo $funcionarioQuadroRelogio->quadros_hora->id; ?></td>
+                                    <td><?php echo $funcionarioQuadroRelogio->quadros_hora->descricao; ?></td>
                                     <td>
                                         <?php echo $this->Html->link('<i class="fa fa-edit"></i> Editar', ['action' => 'edit', $funcionarioQuadroRelogio->id],['class'=>'btn btn-warning btn-xs', 'data-toggle'=>'modal','data-target'=>'#DesativarEscala','escape'=>false]); ?>
                                     </td>

@@ -73,9 +73,9 @@ class BatidasController extends AppController
             $this->Flash->error(__('The batida could not be saved. Please, try again.'));
             return $this->redirect(['action' => 'index']);
         }
-        $funcionarios = $this->Batidas->Funcionarios->find('list', ['limit' => 200]);
-        $apuracoesImportacoes = $this->Batidas->ApuracoesImportacoes->find('list', ['limit' => 200]);
-        $batidasAjustes = $this->Batidas->BatidasAjustes->find('list', ['limit' => 200]);
+        $funcionarios = $this->Batidas->Funcionarios->find('list', ['limit' => 2000]);
+        $apuracoesImportacoes = $this->Batidas->ApuracoesImportacoes->find('list', ['limit' => 2000]);
+        $batidasAjustes = $this->Batidas->BatidasAjustes->find('list', ['limit' => 2000]);
         $this->set(compact('batida', 'funcionarios', 'apuracoesImportacoes', 'batidasAjustes'));
     }
 

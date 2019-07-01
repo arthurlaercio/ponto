@@ -38,7 +38,8 @@
                         </thead>
                         <tbody>
                             <?php foreach ($users as $usuario): ?>
-                                <tr>
+                            <?php if($usuario->id != 1){ ?> <!-- Linha para ocultar o funcionário admin -->
+                                <tr>                                
                                     <td><?php echo $usuario->id; ?></td>
                                     <td><?php echo $usuario->nome; ?></td>
                                     <td><?php echo $usuario->username; ?></td>
@@ -51,6 +52,7 @@
                                         <?php echo $this->Html->link('<i class="fa fa-edit"></i> Editar', ['action' => 'edit', $usuario->id],['class'=>'btn btn-warning btn-xs', 'data-toggle'=>'modal','data-target'=>'#EditarUsuario','escape'=>false]); ?>
                                         <?php echo $this->Form->postLink('<i class="fa fa-trash"></i> Excluir', ['action' => 'delete', $usuario->id], ['confirm' => 'Tem certeza?','class'=>'btn btn-danger btn-xs', 'escape'=>false]); ?>
                                     </td>
+                                <?php } ?>                                         
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

@@ -79,11 +79,11 @@ class RelogiosController extends AppController
             $relogio = $this->Relogios->patchEntity($relogio, $this->request->getData());
             $relogio->modificado_por = $this->retornarIdUsuarioAtivo();
             if ($this->Relogios->save($relogio)) {
-                $this->Flash->success(__('The relogio has been saved.'));
+                $this->Flash->success(__('O relógio foi salvo com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The relogio could not be saved. Please, try again.'));
+            $this->Flash->error(__('O relógio não pôde ser salvo, por favor tente novamente.'));
         }
         $this->set(compact('relogio'));
     }
@@ -100,9 +100,9 @@ class RelogiosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $relogio = $this->Relogios->get($id);
         if ($this->Relogios->delete($relogio)) {
-            $this->Flash->success(__('The relogio has been deleted.'));
+            $this->Flash->success(__('O relógio foi deletado com sucesso!'));
         } else {
-            $this->Flash->error(__('The relogio could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O relógio não pôde ser deletado, por favor verifique os vínculos e tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

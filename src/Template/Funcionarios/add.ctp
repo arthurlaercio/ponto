@@ -40,8 +40,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <?php echo $this->Form->input('pis',['class'=>'form-control']); ?>
+        <div class="col-md-6">            
+            <?php echo $this->Form->input('pis',['class'=>'form-control','data-mask'=>'999.99999.99-9']); ?>
         </div>
         <div class="col-md-6">
             <?php echo $this->Form->input('ctps_numero',['class'=>'form-control']); ?>
@@ -49,7 +49,7 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <?php echo $this->Form->input('ctps_serie',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('ctps_serie',['class'=>'form-control', 'maxlength'=>'4']); ?>
         </div>
         <div class="col-md-6">
             <?php echo $this->Form->input('ctps_uf',['class'=>'form-control', 'maxlength'=>'2']); ?>

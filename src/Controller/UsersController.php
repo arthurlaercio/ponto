@@ -73,7 +73,7 @@ class UsersController extends AppController
             //$user->tipo = 1;
             //pr($user);exit;
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('Usuário criado com sucesso.'));
+                $this->Flash->success(__('Usuário(a) criado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -100,11 +100,11 @@ class UsersController extends AppController
             $user->modificado_por = $this->retornarIdUsuarioAtivo();
            
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('O usuário(a) foi salvo com sucesso!'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('O usuário(a) não pôde ser salvo, por favor tente novamente.'));
         }
         
         $funcionarios = $funcionariosTable->find('list')->all();
@@ -118,9 +118,9 @@ class UsersController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
+            $this->Flash->success(__('O usuário(a) foi deletado(a) com sucesso!'));
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O usuário(a) não pôde ser deletado, por favor verifique os vínculos e tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);
