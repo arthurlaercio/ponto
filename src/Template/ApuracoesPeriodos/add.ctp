@@ -24,9 +24,7 @@
            <?php  echo $this->Form->input('data_encerra', array(
                                                'label' => 'Data de Encerramento','type'=>'text', 'class' => 'form-control','id'=>'DataEncerra','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999')); ?> 
        </div>
-    </div>
-     
-            
+    </div>               
 </div>
 <div class="modal-footer">
     <div class="row">
