@@ -39,7 +39,7 @@
     <div class="row">
         <div class="col-md-6">
             <label>Criado Por:</label>
-            <?php echo $user->criado_por;  ?>
+            <?php echo $user->criado_por;  ?>            
         </div>
         <div class="col-md-6">
             <label>Data criação:</label>
