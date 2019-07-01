@@ -7,6 +7,9 @@
 <?php echo $this->Form->create($apuracoesImportacao,['role'=>'form','id'=>'inline-validate','type'=>'file']); ?>
 <div class="modal-body">
     <div class="row">
+        <div class="col-md-12">
+            <?php echo $this->Form->input('arquivo_nome',['class'=>'form-control']); ?>
+        </div>
         <div class="col-md-6">
             <?php echo $this->Form->input('relogio_id',['class'=>'form-control','options' => $relogios]); ?>
         </div>
@@ -15,10 +18,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <?php echo $this->Form->input('arquivo_nome',['class'=>'form-control']); ?>
-        </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <?php echo $this->Form->input('arquivo',['class'=>'form-control','type'=>'file','label'=>'Arquivo (Tamanho inferior a 2MB)']); ?>
         </div>
     </div>
@@ -26,8 +26,8 @@
 <div class="modal-footer">
     <div class="row">
         <div class="col-md-12">
-            <?php echo $this->Form->button('<i class="icon-ok"></i> Cadastrar',['class'=>'btn btn-success']); ?>
-            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-warning']); ?>
+            <?php echo $this->Form->button('<i class="icon-ok"></i> Cadastrar',['class'=>'btn btn-block btn-success']); ?>
+            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-block btn-warning']); ?>
         </div>
     </div>  
 </div>

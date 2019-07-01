@@ -7,24 +7,18 @@
 <?php echo $this->Form->create($empresa,['role'=>'form','id'=>'inline-validate']); ?>
 <div class="modal-body">
     <div class="row">
-        <div class="col-md-6">
-            <?php echo $this->Form->input('nome',['class'=>'form-control', 'maxlength'=>'80']); ?>
-        </div>
-        <div class="col-md-6">
-            <?php echo $this->Form->input('cnpj',['class'=>'form-control']); ?>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <?php echo $this->Form->input('endereco',['class'=>'form-control']); ?>
+        <div class="col-md-12">
+            <?php echo $this->Form->input('nome',['class'=>'form-control', 'placeholder'=>'Nome da empresa', 'maxlength'=>'80']); ?>
+            <?php echo $this->Form->input('cnpj',['class'=>'form-control', 'placeholder'=>'CNPJ / CPF do responsável']); ?>
+            <?php echo $this->Form->input('endereco',['class'=>'form-control', 'placeholder'=>'Localização',]); ?>
         </div>
     </div>
 </div>
 <div class="modal-footer">
     <div class="row">
         <div class="col-md-12">
-            <?php echo $this->Form->button('<i class="icon-ok"></i> Cadastrar',['class'=>'btn btn-success']); ?>
-            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-warning']); ?>
+            <?php echo $this->Form->button('<i class="icon-ok"></i> Cadastrar',['class'=>'btn btn-block btn-success']); ?>
+            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-block btn-warning']); ?>
         </div>
     </div>  
 </div>

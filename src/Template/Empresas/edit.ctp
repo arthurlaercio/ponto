@@ -7,15 +7,9 @@
 <?php echo $this->Form->create($empresa,['role'=>'form','id'=>'inline-validate']); ?>
 <div class="modal-body">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <?php echo $this->Form->input('nome',['class'=>'form-control', 'maxlength'=>'80']); ?>
-        </div>
-        <div class="col-md-6">
             <?php echo $this->Form->input('cnpj',['class'=>'form-control']); ?>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
             <?php echo $this->Form->input('endereco',['class'=>'form-control']); ?>
         </div>
     </div>

@@ -2,15 +2,6 @@
 <?php echo $this->Html->script('jquery.dataTables') ?>
 <?php echo $this->Html->script('dataTables.bootstrap') ?>
 
-<div class="row">
-    <div class="col-md-9 col-sm-12 col-xs-12">
-        <div class="page-title">
-            <div class="title_left">
-                <h3><i class="fa fa-sitemap"></i> Funcionários </h3>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="">
     <div class="clearfix"></div>
     <div class="row">
@@ -18,7 +9,10 @@
             <div class="x_panel">
                 <div class="x_title">
                     <div class="row">
-                        <div class="pull-left">
+                    <div class="col-md-6">
+                        <h3><i class="fa fa-sitemap"></i> Funcionários </h3>
+                    </div>
+                        <div class="pull-right">
                             <?php echo $this->Html->link('<i class="fa fa-plus"></i> Adicionar', ['action'=>'add'], ['escape'=>false, 'class' => 'btn btn-success btn-sm','data-toggle'=>'modal','data-target'=>'#AdicionarFuncionario']); ?>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h4 class="modal-title" id="myModalLabel">Adicionar Quadro de Horas</h4>
+    <h4 class="modal-title" id="myModalLabel">Adicionar quadro de horas</h4>
 </div>
 <?php echo $this->Form->create($quadrosHora,['role'=>'form','id'=>'inline-validate']); ?>
 <div class="modal-body">

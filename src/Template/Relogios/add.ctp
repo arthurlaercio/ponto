@@ -7,15 +7,15 @@
 <?php echo $this->Form->create($relogio,['role'=>'form','id'=>'inline-validate']); ?>
 <div class="modal-body">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <?php echo $this->Form->input('nome',['class'=>'form-control']); ?>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <?php echo $this->Form->input('serial',['class'=>'form-control']); ?>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <?php echo $this->Form->input('tipo',['class'=>'form-control']); ?>
         </div>
     </div>
@@ -23,8 +23,8 @@
 <div class="modal-footer">
     <div class="row">
         <div class="col-md-12">
-            <?php echo $this->Form->button('<i class="icon-ok"></i> Cadastrar',['class'=>'btn btn-success']); ?>
-            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-warning']); ?>
+            <?php echo $this->Form->button('<i class="icon-ok"></i> Cadastrar',['class'=>'btn btn-block btn-success']); ?>
+            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-block btn-warning']); ?>
         </div>
     </div>  
 </div>

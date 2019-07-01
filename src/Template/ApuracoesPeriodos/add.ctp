@@ -12,28 +12,27 @@
         </div>
     </div>
     <div class="row">        
-       <div class="col-md-6">            
+       <div class="col-md-4">            
             <?php  echo $this->Form->input('data_inicio', array(
                                                 'label' => 'Data de Inicio','type'=>'text', 'class' => 'form-control','id'=>'DataInicio','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999')); ?>
        </div>             
-       <div class="col-md-6">
+       <div class="col-md-4">
             <?php  echo $this->Form->input('data_fim', array(
                                                 'label' => 'Data Fim','type'=>'text', 'class' => 'form-control','id'=>'DataFim','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999')); ?>
        </div>
+       <div class="col-md-4">
+           <?php  echo $this->Form->input('data_encerra', array(
+                                               'label' => 'Data de Encerramento','type'=>'text', 'class' => 'form-control','id'=>'DataEncerra','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999')); ?> 
+       </div>
     </div>
-    <div class="row">        
-        <div class="col-md-6">
-            <?php  echo $this->Form->input('data_encerra', array(
-                                                'label' => 'Data de Encerramento','type'=>'text', 'class' => 'form-control','id'=>'DataEncerra','data-date-format'=>'dd/mm/yyyy', 'data-mask'=>'99/99/9999')); ?> 
-        </div>
-    </div>
+     
             
 </div>
 <div class="modal-footer">
     <div class="row">
         <div class="col-md-12">
-            <?php echo $this->Form->button('<i class="icon-ok"></i> Salvar',['class'=>'btn btn-success']); ?>
-            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-warning']); ?>
+            <?php echo $this->Form->button('<i class="icon-ok"></i> Salvar',['class'=>'btn btn-block btn-success']); ?>
+            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-block btn-warning']); ?>
         </div>
     </div>  
 </div>

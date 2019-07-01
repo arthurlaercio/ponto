@@ -45,9 +45,9 @@ $cakeDescription = 'HEPOINT';
     <div class="container body">
         <div class="main_container">
             <div class="col-md-3 left_col">
-                <div class="left_col scroll-view">
-                    <div class="navbar nav_title" style="border: 0;">
-                        <?= $this->Html->link('<img src="'.$dominio_sistema.'/img/hepoint.png" alt="" width="100px"> <span> Ponto</span>',['controller'=>'Users','action'=>'home'], ['escape' => false,'class'=>'navbar-brand']); ?>
+                <div class="scroll-view">
+                    <div class="navbar nav_title center" style="max-width: 90px; border: 0;">
+                        <?= $this->Html->link('<img src="'.$dominio_sistema.'/img/hepoint2.png" alt="" style="max-width: 100%;">',['controller'=>'Users','action'=>'home'], ['escape' => false,'class'=>'navbar-brand']); ?>
                     </div>
                     <div class="clearfix"></div>
                     </br>
@@ -117,9 +117,9 @@ $cakeDescription = 'HEPOINT';
                   </div>
                   <ul class="nav navbar-nav navbar-right">
                     <li class="">
-                      <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <?php echo $usuarioAtivo["nome"]; ?>
-                        <span class=" fa fa-angle-down"></span>
+                      <a href="javascript:;" class="user-profile dropdown-toggle text-uppercase" data-toggle="dropdown" aria-expanded="false">
+                      <i class="fa fa-user" style="margin-right: 5px;"></i><?php echo $usuarioAtivo["nome"]; ?>
+                        <i class="fa fa-angle-down"></i>
                       </a>
                       <ul class="dropdown-menu dropdown-usermenu pull-right">
                         <li><a href="javascript:;">Help</a></li>

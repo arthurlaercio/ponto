@@ -2,15 +2,6 @@
 <?php echo $this->Html->script('jquery.dataTables') ?>
 <?php echo $this->Html->script('dataTables.bootstrap') ?>
 
-<div class="row">
-    <div class="col-md-9 col-sm-12 col-xs-12">
-        <div class="page-title">
-            <div class="title_left">
-                <h3><i class="fa fa-sitemap"></i> Quadro de Horas </h3>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="">
     <div class="clearfix"></div>
     <div class="row">
@@ -18,7 +9,10 @@
             <div class="x_panel">
                 <div class="x_title">
                     <div class="row">
-                        <div class="pull-left">
+                    <div class="col-md-6">
+                        <h3><i class="fa fa-sitemap"></i> Quadro de horas </h3>
+                    </div>
+                        <div class="pull-right">
                             <?php echo $this->Html->link('<i class="fa fa-plus"></i> Adicionar', ['action'=>'add'], ['escape'=>false, 'class' => 'btn btn-success btn-sm','data-toggle'=>'modal','data-target'=>'#AdicionarQuadroHoras']); ?>
                         </div>
                     </div>
@@ -50,7 +44,7 @@
                                     <td><?php echo $quadro->hora_entrada; ?></td>
                                     <td><?php echo $quadro->hora_saida; ?></td>
                                     <td><?php echo $quadro->tolerancia; ?></td>
-                                    <td><?php if($quadro->segunda == 1) echo "Segunda ";if($quadro->terca == 1) echo "Terça ";if($quadro->quarta == 1) echo "Quarta ";if($quadro->quinta == 1) echo "Quinta ";if($quadro->sexta == 1) echo "Sexta ";if($quadro->sabado == 1) echo "Sábado ";if($quadro->domingo == 1) echo "Domingo "; ?></td>
+                                    <td><?php if($quadro->segunda == 1) echo "Segunda, ";if($quadro->terca == 1) echo "Terça, ";if($quadro->quarta == 1) echo "Quarta, ";if($quadro->quinta == 1) echo "Quinta, ";if($quadro->sexta == 1) echo "Sexta, ";if($quadro->sabado == 1) echo "Sábado, ";if($quadro->domingo == 1) echo "Domingo, "; ?></td>
                                     <td><?php if($quadro->status == 1) echo "Ativo"; else echo "Inativo"; ?></td>
                                     <td>
                                         <?php //echo $this->Html->link('<i class="fa fa-eye"></i> Detalhes', ['action' => 'view', $quadro->id],['class'=>'btn btn-default btn-xs', 'data-toggle'=>'modal','data-target'=>'#ViewQuadroHoras','escape'=>false]); ?>

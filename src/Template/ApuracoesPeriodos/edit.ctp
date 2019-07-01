@@ -1,37 +1,52 @@
-<?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\ApuracoesPeriodo $apuracoesPeriodo
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $apuracoesPeriodo->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $apuracoesPeriodo->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Apuracoes Periodos'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="apuracoesPeriodos form large-9 medium-8 columns content">
-    <?= $this->Form->create($apuracoesPeriodo) ?>
-    <fieldset>
-        <legend><?= __('Edit Apuracoes Periodo') ?></legend>
-        <?php
-            echo $this->Form->control('nome');
-            echo $this->Form->control('data_encerra');
-            echo $this->Form->control('data_inicio');
-            echo $this->Form->control('data_fim');
-            echo $this->Form->control('status');
-            echo $this->Form->control('criado_por', ['options' => $users]);
-            echo $this->Form->control('modificado_por');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<?= $this->Html->css('chosen.css') ?>
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Editar Importação</h4>
 </div>
+<?= $this->Form->create($apuracoesPeriodo) ?>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <?php echo $this->Form->input('nome',['class'=>'form-control', 'maxlength'=>'80']); ?>
+            <?php echo $this->Form->input('data_encerra',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('data_inicio',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('data_fim',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('status',['class'=>'form-control']); ?>
+            <?php echo $this->Form->input('criado_por', ['options' => $users, 'class'=>'form-control']); ?>
+            <?php echo $this->Form->input('modificado_por',['class'=>'form-control']); ?>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-12">
+            <?php echo $this->Form->button('<i class="icon-ok"></i> Salvar',['class'=>'btn btn-block btn-success']); ?>
+            <?php echo $this->Form->button('<i class="icon-repeat"></i> Limpar',['type'=>'reset', 'class'=>'btn btn-block btn-warning']); ?>
+        </div>
+    </div>  
+</div>
+<?php echo $this->Form->end(); ?>
+
+<?php echo $this->Html->script('chosen.jquery') ?>
+<?php echo $this->Html->script('jquery.validate') ?>
+<script>
+    $(function () { 
+        $(".chzn-select").chosen();
+
+        $('body').on('hidden.bs.modal', '.modal', function () {
+            $(this).removeData('bs.modal');
+        });
+
+        formValidation();
+    });
+
+
+    ﻿function formValidation() {
+        "use strict";
+
+        /*----------- BEGIN validate CODE -------------------------*/
+        
+    /*----------- END validate CODE -------------------------*/
+    }
+</script>

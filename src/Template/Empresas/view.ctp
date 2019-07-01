@@ -20,15 +20,6 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-9 col-sm-12 col-xs-12">
-        <div class="page-title">
-            <div class="title_left">
-                <h3></i> Funcionários </h3>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="">
     <div class="clearfix"></div>
     <div class="row">
@@ -37,7 +28,14 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <?= $this->Flash->render() ?>
                     <div class="clearfix"></div>
-                </div>            
+                </div> 
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="page-title">
+                <div class="text-center">
+                <h3></i>Funcionários vinculados a empresa</h3>
+            </div>
+        </div>
+    </div>           
                 <div class="x_content">
                     <table class="table table-striped dt-responsive nowrap" id="dataTables-example" aria-describedby="dataTables-example_info">
                         <thead>
